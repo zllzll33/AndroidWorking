@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="match_parent"
+                                     android:orientation="vertical"
+                                     android:padding="15dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="路上有很多积雪，路滑，大家安全驾驶"/>
+    <ImageView
+        android:id="@+id/affiche_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="3dp"
+     />
+    <TextView
+        android:id="@+id/affiche_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/hint"
+        android:text="2016年12月26日"/>
+
+    <ImageView
+        android:id="@+id/affiche_pic"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/affiche_time"
+        android:layout_marginTop="8dp"
+        android:src="@color/white"
+        android:layout_marginLeft="13dp"/>
+    <TextView
+        android:id="@+id/affiche_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textColor="@color/hint"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/affiche_pic"
+        android:text="路上很多积雪，路滑，大家小心驾驶！路上很多积雪，路滑，大家小心驾驶！"/>
+    <TextView
+        android:id="@+id/affiche_look_all_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/bule"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/affiche_content"
+        android:text="查看全文"/>
+</RelativeLayout>

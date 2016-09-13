@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/rectangle_up_down"
+        android:paddingLeft="13dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="部门名称"
+            android:textColor="@color/black"
+            android:textSize="15dp"/>
+        <EditText
+            android:id="@+id/add_branch_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="填写新部门名称"
+            android:textSize="15dp"
+            android:textColorHint="@color/hint"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="13dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/rectangle_up_down"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/add_branch_ll"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上级部门"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/add_branch_tv"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="暂无"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="13dp"
+                android:src="@mipmap/to_right"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+
+

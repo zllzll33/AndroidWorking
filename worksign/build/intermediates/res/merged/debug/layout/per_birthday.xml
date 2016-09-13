@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                       android:layout_width="250dp"
+                                       android:layout_height="150dp"
+                                       android:background="@color/white"
+                                       android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改生日"
+        android:layout_marginTop="15px"
+        android:textColor="@color/black"
+        android:textSize="40px"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/birthday_et_name"
+        android:layout_width="450px"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:layout_marginTop="90px"
+        />
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/birthday_cancel"
+            android:layout_width="0px"
+            android:layout_height="70px"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:text="取消"/>
+
+        <TextView
+            android:id="@+id/birthday_confirm"
+            android:layout_width="0px"
+            android:layout_height="70px"
+            android:layout_weight="1"
+            android:background="@color/btn"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="确定"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

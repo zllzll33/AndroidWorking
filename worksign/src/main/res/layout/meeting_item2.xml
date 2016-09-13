@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/rectangle_up_down">
+    <TextView
+        android:id="@+id/meet_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="会议主题："/>
+    <TextView
+        android:id="@+id/meet_area2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_below="@+id/meet_title2"
+        android:layout_marginTop="5dp"
+        android:text="会议地点："/>
+
+    <TextView
+        android:id="@+id/meet_start_time2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_below="@+id/meet_area2"
+        android:layout_marginTop="5dp"
+        android:text="会议开始时间："/>
+
+    <TextView
+        android:id="@+id/meet_end_time2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="会议结束时间："
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/meet_start_time2"/>
+
+    <ImageView
+        android:id="@+id/meet_right2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@+id/meet_title1"
+        android:layout_marginTop="15dp"
+        android:background="@mipmap/to_right"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

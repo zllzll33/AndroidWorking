@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     android:orientation="vertical"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="match_parent">
+
+       <LinearLayout
+           android:id="@+id/my_self_pic"
+           android:layout_width="match_parent"
+           android:layout_height="110dp"
+           android:background="@color/colorPrimary"
+           android:orientation="vertical">
+           <ImageView
+               android:id="@+id/my_self_icon"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:layout_gravity="center_horizontal"
+               android:src="@mipmap/app"/>
+           <TextView
+               android:id="@+id/my_self_tv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="5dp"
+               android:textSize="20dp"
+               android:textColor="@color/white"
+               android:text="黄晓明"/>
+       </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_self_rlv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

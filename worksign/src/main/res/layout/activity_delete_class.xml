@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_layout"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="35px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="班次名称"
+            android:textColor="@color/black"
+            android:textSize="36px"/>
+
+        <EditText
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_weight="1"
+            android:background="@drawable/shape_editext"
+            android:hint="请填写班次名称..."
+            android:padding="20px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="35px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上班时间"
+            android:textColor="@color/black"
+            android:textSize="36px"/>
+
+        <EditText
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_weight="1"
+            android:background="@drawable/shape_editext"
+            android:hint="选择时间..."
+            android:padding="20px"/>
+    </com.zhy.autolayout.AutoLinearLayout>     \
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="35px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下班时间"
+            android:textColor="@color/black"
+            android:textSize="36px"/>
+
+        <EditText
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_weight="1"
+            android:background="@drawable/shape_editext"
+            android:hint="选择时间..."
+            android:padding="20px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="35px"
+        android:textColor="@color/black"
+        android:textSize="36px"
+        android:text="标签选择"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="18px"
+        android:layout_marginRight="18px"
+        android:background="@color/gray"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="15px"
+        android:orientation="horizontal">
+        <CheckBox
+            android:text="标签1"
+            android:layout_marginLeft="35px"
+            style="@style/new_add"/>
+
+        <CheckBox
+            android:text="标签2"
+            android:layout_marginLeft="50px"
+            style="@style/new_add"/>
+
+        <CheckBox
+            android:text="标签3"
+            android:layout_marginLeft="50px"
+            style="@style/new_add"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="15px"
+        android:orientation="horizontal">
+        <CheckBox
+            android:text="标签4"
+            android:layout_marginLeft="35px"
+            style="@style/new_add"/>
+
+        <CheckBox
+            android:text="标签5"
+            android:layout_marginLeft="50px"
+            style="@style/new_add"/>
+
+        <CheckBox
+            android:text="标签6"
+            android:layout_marginLeft="50px"
+            style="@style/new_add"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="35px"
+            android:textSize="36px"
+            android:textColor="@color/black"
+            android:text="考勤人员"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:id="@+id/delete_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/btn"
+        android:paddingTop="20px"
+        android:paddingBottom="20px"
+        android:layout_marginLeft="100px"
+        android:layout_marginRight="100px"
+        android:gravity="center"
+        android:text="删除该班段"
+        android:background="@drawable/wright_blue"/>
+</com.zhy.autolayout.AutoLinearLayout>

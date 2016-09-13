@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <translate
+        android:duration="200"
+        android:fromYDelta="100%p"
+        android:toYDelta="0" />
+
+    <!-- 持续时间200毫秒
+    	   y方向的起始位置100%个屏幕高度
+    	   y方向的结束为止,0点坐标 -->
+</set>

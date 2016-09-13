@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/rl_zong_bj"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b07F7F7F"
+    android:padding="10dip">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/myinfo_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_top_corner"
+            android:minHeight="60dp"
+            android:text="拍照"
+            android:gravity="center"
+            android:textColor="#F68765"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D4D4D4" />
+
+        <TextView
+            android:id="@+id/myinfo_album"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_bottom_corner"
+            android:minHeight="60dp"  android:gravity="center"
+            android:text="从手机相册中选择"
+            android:textColor="#73B4FC"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/myinfo_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layout_corner"
+            android:minHeight="60dp"
+            android:text="取消"  android:gravity="center"
+            android:textColor="#636363"
+            android:textSize="18sp" />
+    </LinearLayout>
+</RelativeLayout>

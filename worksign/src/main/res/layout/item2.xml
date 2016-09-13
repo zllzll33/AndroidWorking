@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/item2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正常打卡"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/item2_iv"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/to_right"/>
+
+        <TextView
+            android:id="@+id/item2_peops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/item2_iv"
+            android:text="9人"
+            android:textColor="@color/hint"/>
+
+        <ProgressBar
+            android:id="@+id/item2_pb"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@+id/item2_title"
+            android:layout_marginTop="5dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:max="100"
+            android:background="@drawable/round_gray_rectangle"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item2_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/lightGray"/>
+</LinearLayout>

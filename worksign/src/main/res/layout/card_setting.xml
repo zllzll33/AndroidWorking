@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/window_rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#b07F7F7F"
+                android:padding="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/card_nfc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_top_corner"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:text="NFC打卡"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D4D4D4"/>
+
+        <TextView
+            android:id="@+id/card_bule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_middle_corner"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:text="蓝牙打卡"
+            android:textColor="#73B4FC"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D4D4D4"/>
+
+        <TextView
+            android:id="@+id/card_gps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_bottom_corner"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:text="GPS打卡"
+            android:textColor="#73B4FC"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/myinfo_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layout_corner"
+            android:gravity="center"
+            android:minHeight="60dp"
+            android:text="取消"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</RelativeLayout>

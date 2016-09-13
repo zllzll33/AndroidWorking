@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                     android:orientation="vertical"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="match_parent"
+                                     android:layout_marginTop="30px">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="25px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="消息主题名称"/>
+        <TextView
+            android:id="@+id/work_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016-6-11"
+            />
+        <ImageView
+            android:layout_width="35px"
+            android:layout_height="35px"
+            app:layout_auto_basewidth="height"
+            android:layout_marginLeft="10px"
+            android:background="@mipmap/to_right"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="25px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="消息主题名称"/>
+        <TextView
+            android:id="@+id/work_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016-6-11"
+            />
+        <ImageView
+            android:layout_width="35px"
+            android:layout_height="35px"
+            app:layout_auto_basewidth="height"
+            android:layout_marginLeft="10px"
+            android:background="@mipmap/to_right"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="25px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="消息主题名称"/>
+        <TextView
+            android:id="@+id/work_out_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016-6-11"
+            />
+        <ImageView
+            android:layout_width="35px"
+            android:layout_height="35px"
+            app:layout_auto_basewidth="height"
+            android:layout_marginLeft="10px"
+            android:background="@mipmap/to_right"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

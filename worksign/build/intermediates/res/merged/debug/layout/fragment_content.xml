@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <com.luofangyun.shangchao.viewpager.NoScrollViewPager
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <RadioGroup
+        android:id="@+id/content_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/rectangle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_news"
+            style="@style/BottomTabStyle"
+            android:checked="true"
+            android:drawableTop="@drawable/message_select"
+            android:text="消息"/>
+
+        <RadioButton
+            android:id="@+id/rb_address"
+            style="@style/BottomTabStyle"
+            android:drawableTop="@drawable/address_select"
+            android:text="通讯录"/>
+
+        <RadioButton
+            android:id="@+id/rb_app"
+            style="@style/BottomTabStyle"
+            android:drawableTop="@drawable/app_select"
+            android:text="应用"/>
+
+        <RadioButton
+            android:id="@+id/rb_my"
+            style="@style/BottomTabStyle"
+            android:drawableTop="@drawable/my_select"
+            android:text="我"/>
+
+    </RadioGroup>
+
+</LinearLayout>

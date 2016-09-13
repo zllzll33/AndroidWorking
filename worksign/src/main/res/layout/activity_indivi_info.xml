@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/info_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="25dp"
+            android:background="@mipmap/blue_gray"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="16dp"
+            android:background="@color/btn"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:textColor="@color/black"
+             android:layout_marginLeft="5dp"
+            android:textSize="15dp"
+            android:gravity="center_vertical"
+            android:text="企业信息"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:text="公司："
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/info_tv1"
+            style="@style/indivi_hint"/>
+    </LinearLayout>
+
+    <TextView style="@style/short_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:text="部门："
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/info_tv2"
+            style="@style/indivi_hint"/>
+    </LinearLayout>
+
+    <TextView style="@style/short_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:text="职位："
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/info_tv3"
+            style="@style/indivi_hint"/>
+    </LinearLayout>
+
+    <TextView style="@style/long_line"/>
+
+    <TextView
+        style="@style/long_line"
+        android:layout_marginTop="15dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="16dp"
+            android:background="@color/btn"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:textSize="15dp"
+            android:gravity="center_vertical"
+            android:text="个人信息"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:text="姓名："
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/info_tv4"
+            style="@style/indivi_hint"/>
+    </LinearLayout>
+
+    <TextView style="@style/short_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:text="手机："
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/info_tv5"
+            style="@style/indivi_hint"/>
+        <TextView
+            android:id="@+id/info_tv9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_white_rectangle"
+            android:text="一键拨号"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_marginRight="10dp"
+            android:textSize="13dp"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+
+    <TextView style="@style/short_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:text="性别："
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/info_tv6"
+            style="@style/indivi_hint"/>
+    </LinearLayout>
+
+    <TextView style="@style/short_line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:text="生日："
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/info_tv7"
+            style="@style/indivi_hint"/>
+    </LinearLayout>
+
+    <TextView style="@style/short_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:text="地址："
+            style="@style/text"/>
+        <TextView
+            android:id="@+id/info_tv8"
+            style="@style/indivi_hint"/>
+    </LinearLayout>
+    <TextView style="@style/long_line"/>
+</LinearLayout>

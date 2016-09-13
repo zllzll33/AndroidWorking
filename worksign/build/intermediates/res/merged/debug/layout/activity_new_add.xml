@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="班次名称"
+            android:textColor="@color/black"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/new_add_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请填写班次名称..."
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/gray"
+        />
+
+    <LinearLayout
+        android:id="@+id/starttime_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上班时间"
+            android:textColor="@color/black"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/new_add_starttime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:hint="请选择开始时间(必填)"
+            android:padding="10dp"
+            android:background="@null"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/black"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/gray"/>
+
+    <LinearLayout
+        android:id="@+id/endtime_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下班时间"
+            android:textColor="@color/black"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/new_add_endtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请选择结束时间(必填)"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textColorHint="@color/hint"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/gray"/>
+
+    <LinearLayout
+        android:id="@+id/new_add_ll_info"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/rectangle_up_down"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="标签信息"
+            android:textSize="15dp"
+            android:paddingLeft="5dp"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/to_right"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/new_add_ll_peop"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/rectangle_up_down"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="考勤人员"
+            android:textSize="15dp"
+            android:paddingLeft="5dp"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/to_right"/>
+    </LinearLayout>
+
+</LinearLayout>

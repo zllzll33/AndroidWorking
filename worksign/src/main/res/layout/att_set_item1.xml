@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rectangle_up_down"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/att_set_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="班段"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"/>
+
+</RelativeLayout>

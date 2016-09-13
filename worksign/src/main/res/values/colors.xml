@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2199EF</color>
+    <color name="colorPrimaryDark">#2199EF</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bule">#3F51B5</color>
+    <color name="white">#fff</color>
+    <color name="gray">#E6E6E6</color>
+    <color name="lightGray">#eeeeee</color>
+    <color name="black">#000</color>
+    <color name="red">#f00</color>
+    <color name="btn">#3b79d7</color>
+    <color name="hint">#7A7A7A</color>
+    <color name="blue">#0000FF</color>
+    <color name="green">#53d6b3</color>
+    <color name="dark_gray">#4c4949</color>
+    <color name="province_line_border">#D0D0D0</color>
+</resources>

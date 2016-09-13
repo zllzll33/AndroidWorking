@@ -1,0 +1,346 @@
+[
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_confirm.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_confirm.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_down_right4_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_down_right4_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_right_bottom_line_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_right_bottom_line_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\my_select.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\my_select.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\layout_corner.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\layout_corner.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\button_select.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\button_select.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_down_left_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_down_left_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\ch.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\ch.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round_gray_empt_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round_gray_empt_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_rounded_white_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_rounded_white_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\layout_middle_corner.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\layout_middle_corner.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\seekbarstyle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\seekbarstyle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_left_line_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_left_line_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\layout_bottom_corner.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\layout_bottom_corner.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round_gray_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round_gray_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\address_select.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\address_select.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\wheel_bg.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\wheel_bg.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ratingbar_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\wheel_val.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\wheel_val.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\layout_top_corner.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\layout_top_corner.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_user_login.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_user_login.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\wright_blue.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\wright_blue.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\lines.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\lines.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\rectangle_up_down_left_right.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\rectangle_up_down_left_right.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round_shixin.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round_shixin.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_down_left4_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_down_left4_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_user_login_blue.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_user_login_blue.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\text_text_backgroung_selector.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\text_text_backgroung_selector.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_user_white.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_user_white.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_search_api_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round_blue_empt_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round_blue_empt_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\design_snackbar_background.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\drawable\\design_snackbar_background.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\selector_text_popu.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\selector_text_popu.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round_solid.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round_solid.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_dialog_background.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_dialog_background.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_blue_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_blue_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\rectangle_up_down.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\rectangle_up_down.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\message_select.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\message_select.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_round_rectangle_down.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_round_rectangle_down.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_click_black_havebackground.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\btn_click_black_havebackground.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\select_draw.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\select_draw.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_ab_back_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_editext.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_editext.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\design_fab_background.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\drawable\\design_fab_background.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_right_top_line_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_right_top_line_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_click_red_havebackground.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\btn_click_red_havebackground.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_down_right_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_down_right_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_rounded_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_rounded_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round_blue_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round_blue_rectangle.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\app_select.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\app_select.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_round.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_round.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_blue_confirm.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_blue_confirm.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\rectangle_down.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\rectangle_down.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_up_rectangle.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_up_rectangle.xml"
+    }
+]

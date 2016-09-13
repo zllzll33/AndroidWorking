@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/leavetype1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rectangle_up_down"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/leavetype_text1"
+            style="@style/three_text"
+            android:text="请假类型"/>
+
+        <EditText
+            android:id="@+id/leavetype_et1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="请选择(必填)"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/rectangle_up_down"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/leavetype2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/leavetype_text2"
+                style="@style/three_text"
+                android:text="开始时间"/>
+
+            <EditText
+                android:id="@+id/leavetype_et2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:background="@null"
+                android:hint="请选择开始时间(必填)"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textSize="14dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/gray"/>
+
+        <LinearLayout
+            android:id="@+id/leavetype3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/leavetype_text3"
+                style="@style/three_text"
+                android:text="结束时间"/>
+
+            <EditText
+                android:id="@+id/leavetype_et3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:background="@null"
+                android:hint="请选择结束时间(必填)"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hint"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textSize="14dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/leavetype4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/rectangle_up_down"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/leavetype_text4"
+            style="@style/three_text"
+            android:text="请假天数"/>
+
+        <EditText
+            android:id="@+id/leavetype_et4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="请输入请假天数(必填)"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint"
+            android:inputType="number"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/leavetype6"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/rectangle_up_down"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/leavetype_text6"
+            style="@style/three_text"
+            android:textColor="@color/black"
+            android:text="审批状态"/>
+
+        <EditText
+            android:id="@+id/leavetype_et6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="审批中"
+            android:textColor="@color/red"
+            android:textColorHint="@color/hint"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/leavetype5"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/rectangle_up_down"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/leavetype_text5"
+            style="@style/three_text"
+            android:text="理由"/>
+
+        <EditText
+            android:id="@+id/leavetype_et5"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:hint="请说明具体原因"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint"
+            android:gravity="top"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textSize="14dp"/>
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/leavetype_put"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_rectangle"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/btn"
+            android:visibility="gone"
+            android:text="提交"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:id="@+id/leavetype_ll">
+            <TextView
+                android:id="@+id/accede"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_up_down_left_right"
+                android:gravity="center"
+                android:text="同意"
+                android:textColor="@color/bule"/>
+            <TextView
+                android:id="@+id/negate"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_up_down_left_right"
+                android:gravity="center"
+                android:text="拒绝"
+                android:textColor="@color/red"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

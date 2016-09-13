@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\values-v19\\values-v19.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 111,
+                    "endOffset": 162
+                },
+                "from": {
+                    "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values-v19\\styles.xml",
+                    "position": {
+                        "startLine": 0,
+                        "startColumn": 70,
+                        "startOffset": 70,
+                        "endColumn": 184,
+                        "endOffset": 184
+                    }
+                }
+            }
+        ]
+    }
+]

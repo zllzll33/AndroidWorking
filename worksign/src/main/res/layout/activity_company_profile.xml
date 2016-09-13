@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView style="@style/text_front"
+            android:text="公司"/>
+        <TextView
+            style="@style/hint_back"
+            android:text="杭州简务网络科技有限公司"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+    <TextView style="@style/left_line"/>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView style="@style/text_front"
+                  android:text="部门"/>
+        <TextView
+            style="@style/hint_back"
+            android:text="产品部-设计部"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+    <TextView style="@style/left_line"/>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView style="@style/text_front"
+                  android:text="职位"/>
+        <TextView
+            style="@style/hint_back"
+            android:text="车间主任"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+    <TextView style="@style/long_line"/>
+
+</com.zhy.autolayout.AutoLinearLayout>
