@@ -177,9 +177,11 @@ public class AddPatrolLineActivity extends  BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        Bundle bundle=data.getBundleExtra("emp");
-        empname=bundle.getString("empname");
-        contactsname=bundle.getString("empphone");
-        contacts.setText(linename);
+        if(data!=null) {
+            Bundle bundle = data.getBundleExtra("emp");
+            empname = bundle.getString("empname");
+            contactsname = bundle.getString("empphone");
+            contacts.setText(empname);
+        }
     }
 }
