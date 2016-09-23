@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
 import com.luofangyun.shangchao.base.BaseActivity;
 import com.luofangyun.shangchao.domain.MessageBean;
+import com.luofangyun.shangchao.domain.SysMessageDetailBean;
 import com.luofangyun.shangchao.global.GlobalConstants;
 import com.luofangyun.shangchao.nohttp.CallServer;
 import com.luofangyun.shangchao.nohttp.HttpListener;
@@ -33,7 +34,7 @@ public class MessageSystem extends BaseActivity {
     private TextView systemeTitle, systemeTime, systemeContent;
     private Map<String, String> map;
     private String              phoneNumber, notifycodeSysteme;
-    private MessageBean SystemeBean;
+    private SysMessageDetailBean SystemeBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class MessageSystem extends BaseActivity {
         @Override
         public void onSucceed(int what, Response<String> response) {
             String result = response.get();
-            MessageBean messageBean = processSystem(result);
+            SysMessageDetailBean messageBean = processSystem(result);
             System.out.println("resultSystem=" + result);
         }
         @Override
@@ -89,9 +90,9 @@ public class MessageSystem extends BaseActivity {
 
         }
     };
-    private MessageBean processSystem(String result) {
+    private SysMessageDetailBean processSystem(String result) {
         Gson gson = new Gson();
-        SystemeBean = gson.fromJson(result, MessageBean.class);
+        SystemeBean = gson.fromJson(result, SysMessageDetailBean.class);
         String notifytitle = SystemeBean.result.notifytitle;
         String notifycontent = SystemeBean.result.notifycontent;
         String notifydate = SystemeBean.result.notifydate;

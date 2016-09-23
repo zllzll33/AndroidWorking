@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:layout_toRightOf="@+id/address_grade"
-                android:text="T"
+                android:text=""
                 android:textSize="15dp"/>
             <TextView
                 android:id="@+id/tv_down_text"
@@ -80,7 +80,7 @@
     </LinearLayout>
     <TextView
         android:text="常用联系人"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="3dp"
         style="@style/address_gray_text"/>
 
     <android.support.v7.widget.RecyclerView

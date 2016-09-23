@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/card_nfc"
@@ -22,7 +23,8 @@
             android:minHeight="60dp"
             android:text="NFC打卡"
             android:textColor="@color/colorPrimary"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:visibility="gone" />
 
         <ImageView
             android:layout_width="match_parent"

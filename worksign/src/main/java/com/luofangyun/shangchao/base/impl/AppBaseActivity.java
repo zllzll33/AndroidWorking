@@ -97,8 +97,8 @@ public class AppBaseActivity extends BaseActivity {
             map.put("access_id", "1234567890");
             map.put("timestamp", time);
             map.put("telnum", UiUtils.getPhoneNumber());
-            map.put("pindex", String.valueOf(j));
-            map.put("psize", String.valueOf(10));
+            map.put("pindex", String.valueOf(1));
+            map.put("psize", String.valueOf(200));
             map.put("flag", String.valueOf(0));
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
@@ -118,8 +118,8 @@ public class AppBaseActivity extends BaseActivity {
             map1.put("access_id", "1234567890");
             map1.put("timestamp", time);
             map1.put("telnum", UiUtils.getPhoneNumber());
-            map1.put("pindex", String.valueOf(k));
-            map1.put("psize", String.valueOf(100));
+            map1.put("pindex", String.valueOf(1));
+            map1.put("psize", String.valueOf(200));
             map1.put("flag", String.valueOf(1));
             String encode = MD5Encoder.encode(Sign.generateSign(map1) +
                     "12345678901234567890123456789011");
@@ -139,8 +139,8 @@ public class AppBaseActivity extends BaseActivity {
             map2.put("access_id", "1234567890");
             map2.put("timestamp", time);
             map2.put("telnum", UiUtils.getPhoneNumber());
-            map2.put("pindex", String.valueOf(l));
-            map2.put("psize", String.valueOf(100));
+            map2.put("pindex", String.valueOf(1));
+            map2.put("psize", String.valueOf(200));
             map2.put("flag", String.valueOf(2));
             String encode = MD5Encoder.encode(Sign.generateSign(map2) +
                     "12345678901234567890123456789011");
@@ -192,7 +192,7 @@ public class AppBaseActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.right:
-                startActivity(new Intent(this, LeavetypeListActivity.class));
+//                startActivity(new Intent(this, LeavetypeListActivity.class));
                 break;
             case R.id.my_leave_rb:
                 mTabLayout.setVisibility(View.GONE);

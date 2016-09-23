@@ -181,7 +181,21 @@
             android:exported="true"
             android:process=":pushservice"/>
         <activity android:name=".activity.MainActivity">
-    </activity>
+        </activity>
+        <activity android:name=".activity.app.PatrolRecordPunchActivty">
+        </activity>
+        <activity android:name=".activity.app.PatrolRecordDetailActivity">
+        </activity>
+        <activity android:name=".activity.app.SetPatrolPeopleActivity">
+        </activity>
+        <activity android:name=".activity.app.SetPatrolLineActivity">
+        </activity>
+        <activity android:name=".activity.message.JoinTeamActivty">
+        </activity>
+        <activity android:name=".activity.app.MeetingPeopleActivity">
+        </activity>
+        <activity android:name=".activity.app.AddNFCTagActivity">
+        </activity>
         <activity android:name=".activity.app.AddPatrolPointActivity">
         </activity>
         <activity android:name=".activity.addresslist.AddressListActivity">

@@ -21,6 +21,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
 import com.luofangyun.shangchao.base.BaseActivity;
+import com.luofangyun.shangchao.base.impl.MySelfPager;
 import com.luofangyun.shangchao.domain.ApplyBean;
 import com.luofangyun.shangchao.domain.Gender;
 import com.luofangyun.shangchao.domain.IconBean;
@@ -150,6 +151,7 @@ public class PersonalDataActivity extends BaseActivity {
                 dialog1.dismiss();
                 break;
             case R.id.save_icon:
+                dialog1.dismiss();
               /*Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
                 System.out.println("picturePath=" + picturePath);
                 personalPic.setImageBitmap(bitmap);*/
@@ -196,9 +198,15 @@ public class PersonalDataActivity extends BaseActivity {
                 YearMonthDayDialogUtil yearMonthDayDialogUtil1 = new YearMonthDayDialogUtil(this,
                         "");
                 yearMonthDayDialogUtil1.dateTimePicKDialog(perDate);
+                yearMonthDayDialogUtil1.setDataListener(new YearMonthDayDialogUtil.DataListener() {
+                    @Override
+                    public void OnData(String data) {
+                        getBirData(data);
+                    }
+                });
                 break;
             case R.id.phone:
-                UiUtils.ToastUtils("手机号不可修改");
+//                UiUtils.ToastUtils("手机号不可修改");
                 break;
             case R.id.address:
                 addressDialog = UiUtils.getDialog(this, R.layout.address_empt_dialog);
@@ -220,7 +228,6 @@ public class PersonalDataActivity extends BaseActivity {
                 break;
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {
@@ -445,6 +452,7 @@ public class PersonalDataActivity extends BaseActivity {
                 case 1:
                     String result1 = response.get();
                     System.out.println("修改姓名result1=" + result1);
+//                    MySelfPager.handler.sendEmptyMessage(1);
                     processNameData(result1);
                     break;
                 case 2:

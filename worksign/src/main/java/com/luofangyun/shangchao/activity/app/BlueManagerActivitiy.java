@@ -66,7 +66,8 @@ public class BlueManagerActivitiy extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.title_ll_back:
-                startActivity(new Intent(this, BlueLabelActivity.class));
+//                startActivity(new Intent(this, BlueLabelActivity.class));
+                finish();
                 break;
             case R.id.right:
                 if (TextUtils.isEmpty(blueManagerEt1.getText().toString().trim())) {
@@ -75,7 +76,8 @@ public class BlueManagerActivitiy extends BaseActivity {
                     UiUtils.ToastUtils("标签备注不能为空");
                 }  else {
                     getServerData();
-                    startActivity(new Intent(this, BlueLabelActivity.class));
+//                    startActivity(new Intent(this, BlueLabelActivity.class));
+
                 }
                 break;
 
@@ -104,12 +106,13 @@ public class BlueManagerActivitiy extends BaseActivity {
             e.printStackTrace();
         }
     }
-
     private HttpListener<String> httpListener = new HttpListener<String>() {
         @Override
         public void onSucceed(int what, Response<String> response) {
             String result = response.get();
             System.out.println("蓝牙增加标签=" + result);
+            BlueLabelActivity.handler.sendEmptyMessage(1);
+            finish();
         }
 
         @Override
@@ -122,14 +125,14 @@ public class BlueManagerActivitiy extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        YlwlManager ylwlmanager = YlwlManager.getInstance(this);
-        /**
+     /*   YlwlManager ylwlmanager = YlwlManager.getInstance(this);
+        *//**
          * 释放资源
-         */
+         *//*
         ylwlmanager.unbindService();
-        /**
+        *//**
          * 关闭扫描
-         */
-        ylwlmanager.scanLeDevice(false);
+         *//*
+        ylwlmanager.scanLeDevice(false);*/
     }
 }

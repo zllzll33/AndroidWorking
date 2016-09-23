@@ -1,5 +1,6 @@
 package com.luofangyun.shangchao.activity.addresslist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -7,6 +8,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
+import com.luofangyun.shangchao.activity.MainActivity;
+import com.luofangyun.shangchao.activity.message.UserEnterActivity;
 import com.luofangyun.shangchao.base.BaseActivity;
 import com.luofangyun.shangchao.domain.Company;
 import com.luofangyun.shangchao.global.GlobalConstants;
@@ -36,7 +39,7 @@ public class CompanyAdd extends BaseActivity {
     private TextView apply;
     private String   companyNameText, companyPhoneText, companyMemoText, companyContactText;
     private Map<String, String> map;
-    private String       phoneNumber;
+    private String   phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +91,7 @@ public class CompanyAdd extends BaseActivity {
                     UiUtils.ToastUtils("备注不能为空");
                 }  else {
                     getServerCompany(phoneNumber, companyNameText, companyContactText, companyMemoText, companyPhoneText);
-                    finish();
+
 
                 }
                 break;
@@ -140,6 +143,10 @@ public class CompanyAdd extends BaseActivity {
         } else {
             String companycode = company.result.companycode;
             PrefUtils.putString(this, "companycode", companycode);
+         /*   Intent intent=new Intent(this, UserEnterActivity.class);
+            startActivity(intent);
+            MainActivity.handler.sendEmptyMessage(1);*/
+            finish();
         }
         return company;
     }

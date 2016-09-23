@@ -83,7 +83,6 @@ public class ContentFragment extends BaseFragment {
         //手动初始化第一个页面的数据
         mList.get(0).initData();
     }
-
     class ContentAdapter extends PagerAdapter {
         @Override
         public int getCount() {

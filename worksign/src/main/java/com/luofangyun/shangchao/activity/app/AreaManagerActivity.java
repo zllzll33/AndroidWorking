@@ -7,10 +7,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.CircleOptions;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.model.LatLng;
@@ -64,6 +67,12 @@ public class AreaManagerActivity extends BaseActivity {
                 .center(location).stroke(new Stroke(3, 0x784d73b3))
                 .radius(50);
         baiduMap.addOverlay(Circle);
+        BitmapDescriptor bitmap = BitmapDescriptorFactory
+                .fromResource(R.mipmap.location_mark);
+        OverlayOptions my_option = new MarkerOptions()
+                .position(location)
+                .icon(bitmap);
+        baiduMap.addOverlay(my_option);
         areaTv.setText(MainActivity.addrStr);
         areaSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -74,6 +83,12 @@ public class AreaManagerActivity extends BaseActivity {
                         .center(location).stroke(new Stroke(3, 0x784d73b3))
                         .radius(progress+50);
                 baiduMap.addOverlay(Circle);
+                BitmapDescriptor bitmap = BitmapDescriptorFactory
+                        .fromResource(R.mipmap.location_mark);
+                OverlayOptions my_option = new MarkerOptions()
+                        .position(location)
+                        .icon(bitmap);
+                baiduMap.addOverlay(my_option);
                 range=progress+50;
                 areaTv1.setText("滑动"+String.valueOf(range)+"米");
             }

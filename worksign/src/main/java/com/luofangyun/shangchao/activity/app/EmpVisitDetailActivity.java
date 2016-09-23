@@ -2,6 +2,7 @@ package com.luofangyun.shangchao.activity.app;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -14,7 +15,6 @@ import com.luofangyun.shangchao.global.GlobalConstants;
 import com.luofangyun.shangchao.nohttp.CallServer;
 import com.luofangyun.shangchao.nohttp.HttpListener;
 import com.luofangyun.shangchao.utils.MD5Encoder;
-import com.luofangyun.shangchao.utils.PrefUtils;
 import com.luofangyun.shangchao.utils.Sign;
 import com.luofangyun.shangchao.utils.UiUtils;
 import com.yolanda.nohttp.NoHttp;
@@ -22,6 +22,7 @@ import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Request;
 import com.yolanda.nohttp.rest.Response;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,7 @@ import java.util.Map;
  * 客户拜访详情和填写内容
  */
 public class EmpVisitDetailActivity extends BaseActivity{
-    private EditText time, name, address, cause;
+    private EditText timeTv, name, address, cause;
     private View view;
     private Map<String, String> map = new HashMap<>();
     private String addrStr;
@@ -44,7 +45,7 @@ public class EmpVisitDetailActivity extends BaseActivity{
     }
     private void initView() {
         address = (EditText) view.findViewById(R.id.address);
-        time = (EditText) view.findViewById(R.id.time);
+        timeTv = (EditText) view.findViewById(R.id.time);
         name = (EditText) view.findViewById(R.id.name);
         address = (EditText) view.findViewById(R.id.address);
         cause = (EditText) view.findViewById(R.id.cause);
@@ -67,7 +68,7 @@ public class EmpVisitDetailActivity extends BaseActivity{
         if (action.equals("EmpVisitDetailActivity")) {
             address.setText(TextUtils.isEmpty(getIntent().getStringExtra("visitaddress")) ? "" :
                     getIntent().getStringExtra("visitaddress"));
-            time.setText(TextUtils.isEmpty(getIntent().getStringExtra("visittime")) ? "" :
+            timeTv.setText(TextUtils.isEmpty(getIntent().getStringExtra("visittime")) ? "" :
                     getIntent().getStringExtra("visittime"));
             name.setText(TextUtils.isEmpty(getIntent().getStringExtra("custom")) ? "" : getIntent
                     ().getStringExtra("custom"));
@@ -75,14 +76,14 @@ public class EmpVisitDetailActivity extends BaseActivity{
                     getIntent().getStringExtra("visitsummary"));
         } else if (action.equals("EmpVisitWriteActivity")) {
             mLocationClient.start();
-            time.setText(MainActivity.addrStr);
-            address.setText(PrefUtils.getString(getApplication(), "addrStr", null));
             name.setFocusable(true);
             name.setFocusableInTouchMode(true);
             cause.setFocusable(true);
             cause.setFocusableInTouchMode(true);
             address.setText(addrStr);
-            time.setText(this.nowTime);
+            SimpleDateFormat sDateFormat    =   new    SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String    date    =    sDateFormat.format(new java.util.Date());
+            timeTv.setText(date);
             right.setVisibility(View.VISIBLE);
             right.setText("提交");
             right.setOnClickListener(new View.OnClickListener() {
@@ -90,13 +91,13 @@ public class EmpVisitDetailActivity extends BaseActivity{
                 public void onClick(View v) {
                     if (TextUtils.isEmpty(name.getText().toString().trim())) {
                         UiUtils.ToastUtils("姓名不能为空");
-                    } else if (TextUtils.isEmpty(time.getText().toString().trim())) {
+                    } else if (TextUtils.isEmpty(timeTv.getText().toString().trim())) {
                         UiUtils.ToastUtils("时间不能为空");
                     } else if (TextUtils.isEmpty(address.getText().toString().trim())) {
                         UiUtils.ToastUtils("地点不能为空");
                     } else {
                         getServerEmpEmpVisit();
-                        finish();
+
                     }
                 }
             });
@@ -116,7 +117,7 @@ public class EmpVisitDetailActivity extends BaseActivity{
             map.put("timestamp", time);
             map.put("telnum", UiUtils.getPhoneNumber());
             map.put("visitcode", "0");
-            map.put("visittime", time);
+            map.put("visittime", timeTv.getText().toString());
             map.put("visitsummary", cause.getText().toString().trim());
             map.put("custom", name.getText().toString().trim());
             map.put("visitx", String.valueOf(longitude));
@@ -125,6 +126,7 @@ public class EmpVisitDetailActivity extends BaseActivity{
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
             map.put("sign", encode);
+            Log.e("map",UiUtils.Map2JsonStr(map));
             request.add(map);
             CallServer.getRequestInstance().add(this, 1, request, httpListener, false, false);
         } catch (Exception e) {
@@ -134,7 +136,13 @@ public class EmpVisitDetailActivity extends BaseActivity{
     private HttpListener<String> httpListener = new HttpListener<String>() {
         @Override
         public void onSucceed(int what, Response<String> response) {
-            UiUtils.ToastUtils(new Gson().fromJson(response.get(), ApplyBean.class).summary);
+//            Log.e("拜访提交",response.get());
+            if(new Gson().fromJson(response.get(), ApplyBean.class).status.equals("00000"))
+            {
+                setResult(1);
+                finish();
+            }
+//            UiUtils.ToastUtils();
         }
 
         @Override

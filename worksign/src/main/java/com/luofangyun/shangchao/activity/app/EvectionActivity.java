@@ -95,13 +95,14 @@ public class EvectionActivity extends AppBaseActivity {
 
             @Override
             public void onLoadMore() {
-                if (j < empTravel3.result.totalpage) {
+                UiUtils.upDownRefurbish(myLeaveRlv);
+               /* if (j < empTravel3.result.totalpage) {
                     getMySelf("emp_travel_list.json", ++j, httpListener);
                     UiUtils.upDownRefurbish(myLeaveRlv);
                 } else {
                     UiUtils.ToastUtils("没有更多数据了");
                     UiUtils.upDownRefurbish(myLeaveRlv);
-                }
+                }*/
             }
         });
         leaveRlv.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
@@ -113,14 +114,15 @@ public class EvectionActivity extends AppBaseActivity {
 
             @Override
             public void onLoadMore() {
-                if (k < empTravel1.result.totalpage) {
+                UiUtils.upDownRefurbish(myLeaveRlv);
+               /* if (k < empTravel1.result.totalpage) {
                     getWaitExamine("emp_travel_list.json", ++k, httpListener);
                     UiUtils.upDownRefurbish(leaveRlv);
                 }
                 else {
                     UiUtils.upDownRefurbish(leaveRlv);
                     UiUtils.ToastUtils("没有更多数据了");
-                }
+                }*/
             }
         });
         examineAboptRlv.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView
@@ -132,14 +134,15 @@ public class EvectionActivity extends AppBaseActivity {
             }
             @Override
             public void onLoadMore() {
-                if (k < empTravel2.result.totalpage) {
+                UiUtils.upDownRefurbish(myLeaveRlv);
+              /*  if (k < empTravel2.result.totalpage) {
                     getExamine("emp_overtime_list.json", ++l, httpListener);
                     UiUtils.upDownRefurbish(examineAboptRlv);
                 }
                 else {
                     UiUtils.upDownRefurbish(examineAboptRlv);
                     UiUtils.ToastUtils("没有更多数据了");
-                }
+                }*/
             }
         });
     }
@@ -223,10 +226,10 @@ public class EvectionActivity extends AppBaseActivity {
             if (dataList.get(position).statu.equals("0")) {
                 holder.workState.setText("审批中");
             } else if (dataList.get(position).statu.equals("1")) {
-                holder.workState.setText("已审批");
+                holder.workState.setText("审批通过");
                 holder.workDaysTv.setVisibility(View.GONE);
             } else if (dataList.get(position).statu.equals("2")) {
-                holder.workState.setText("已审批");
+                holder.workState.setText("审批拒绝");
                 holder.workDaysTv.setVisibility(View.GONE);
             }
             holder.cancleTv.setVisibility(View.VISIBLE);

@@ -61,7 +61,6 @@ public class AttPeopActivity extends BaseActivity {
     private TextView                           attPeopChoice;
     private boolean                            isChecked;
     private int                                i, j;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +95,7 @@ public class AttPeopActivity extends BaseActivity {
         mTabLayout.setupWithViewPager(mViewPager);               //将TabLayout和ViewPager关联起来。
         mTabLayout.setTabsFromPagerAdapter(mAdapter);            //给Tabs设置适配器
         titleTv.setText("考勤人员");
-        right.setVisibility(View.VISIBLE);
+        right.setVisibility(View.GONE);
         right.setText("保存");
         getServerData1();
         attPeopRecy1.setLinearLayout();
@@ -220,7 +219,7 @@ public class AttPeopActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.att_peop_add) {        //添加
-                getDeleteServer(dataList2.get(getLayoutPosition()).empphone);
+                getDeleteServer(dataList1.get(getLayoutPosition()).empphone);
 
             }
         }
@@ -240,6 +239,7 @@ public class AttPeopActivity extends BaseActivity {
             String encode = MD5Encoder.encode(Sign.generateSign(map3) +
                     "12345678901234567890123456789011");
             map3.put("sign", encode);
+            Log.e("addmap",UiUtils.Map2JsonStr(map3));
             request3.add(map3);
             CallServer.getRequestInstance().add(this, 3, request3, httpListener, false, false);
         } catch (Exception e) {
@@ -318,7 +318,7 @@ public class AttPeopActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.att_peop_add) {                  //添加
-                getAddServer(dataList1.get(getLayoutPosition()).empphone);
+                getAddServer(dataList2.get(getLayoutPosition()).empphone);
             }
         }
     }
@@ -331,8 +331,7 @@ public class AttPeopActivity extends BaseActivity {
                     Log.e("未排班", "onSucceed: " + response.get());
                     attPeopBean1 = new Gson().fromJson(response.get(), AttPeopBean.class);
                     dataList1 = attPeopBean1.result.data;
-
-//                    myAdapter1.notifyDataSetChanged();
+                    myAdapter1.notifyDataSetChanged();
                     break;
                 case 2:
                     Log.e("已排班", "onSucceed: " + response.get());
@@ -342,26 +341,30 @@ public class AttPeopActivity extends BaseActivity {
                     myAdapter2.notifyDataSetChanged();
                     break;
                 case 3:
-                    ApplyBean applyBean1 = new Gson().fromJson(response.get(), ApplyBean.class);
+                    Log.e("考勤人员add",response.get());
+                    getServerData1();
+                    getServerData2();
+         /*           ApplyBean applyBean1 = new Gson().fromJson(response.get(), ApplyBean.class);
                     UiUtils.ToastUtils(applyBean1.summary);
                     new Handler().postDelayed(new Runnable(){
                         public void run() {
                             dataList1.remove(i);
                             myAdapter1.notifyDataSetChanged();
                         }
-                    }, 500);
+                    }, 500);*/
                     break;
                 case 4:
-                   /* getServerData1();
-                    getServerData2();*/
-                    ApplyBean applyBean2 = new Gson().fromJson(response.get(), ApplyBean.class);
+                    Log.e("考勤人员delete",response.get());
+                    getServerData1();
+                    getServerData2();
+                  /*  ApplyBean applyBean2 = new Gson().fromJson(response.get(), ApplyBean.class);
                     UiUtils.ToastUtils(applyBean2.summary);
                     new Handler().postDelayed(new Runnable(){
                         public void run() {
                             dataList2.remove(j);
                         }
                     }, 500);
-                    myAdapter2.notifyDataSetChanged();
+                    myAdapter2.notifyDataSetChanged();*/
                     break;
             }
         }

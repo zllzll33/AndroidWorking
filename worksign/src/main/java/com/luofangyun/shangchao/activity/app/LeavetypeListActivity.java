@@ -89,7 +89,7 @@ public class LeavetypeListActivity extends BaseActivity {
             finish();
         }
     };
-    private String           notifycode;
+    private String         notifycode;
     private WorkNotifyDetail workNotify1 , workNotify3, workNotify4, workNotify5,
             workNotify6, workNotify7;
     private WorkLeaveDetail workNotify2;
@@ -163,19 +163,24 @@ public class LeavetypeListActivity extends BaseActivity {
                             UiUtils.ToastUtils("开始时间不能为空");
                         } else if (TextUtils.isEmpty(leaveTypeEt3.getText().toString().trim())) {
                             UiUtils.ToastUtils("结束时间不能为空");
-                        } else if (TextUtils.isEmpty(leaveTypeEt4.getText().toString().trim())) {
-                            UiUtils.ToastUtils("请假天数不能为空");
-                        } else if (TextUtils.isEmpty(leaveTypeEt5.getText().toString().trim())) {
-                            UiUtils.ToastUtils("理由不能为空");
-                        } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                        }
+                        else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) < UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 UiUtils.refFormatNowDate("yyyy-MM-dd HH:mm"))) {
                             UiUtils.ToastUtils("开始时间不能比当前时间小");
                         } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) > UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 leaveTypeEt3.getText().toString().trim())) {
+                            Log.e("会议开始时间",String.valueOf(UiUtils.timeToMill("yyyy-MM-dd HH:mm",leaveTypeEt2.getText().toString().trim())));
+                            Log.e("会议结束时间",String.valueOf(UiUtils.timeToMill("yyyy-MM-dd HH:mm",leaveTypeEt3.getText().toString().trim())));
                             UiUtils.ToastUtils("开始时间不能大于结束时间");
-                        } else if (leaveTypeEt5.getText().toString().trim().length() > 40) {
+                        } else if (TextUtils.isEmpty(leaveTypeEt4.getText().toString().trim())) {
+                            Log.e("会议开始时间",String.valueOf(UiUtils.timeToMill("yyyy-MM-dd HH:mm",leaveTypeEt2.getText().toString().trim())));
+                            Log.e("会议结束时间",String.valueOf(UiUtils.timeToMill("yyyy-MM-dd HH:mm",leaveTypeEt3.getText().toString().trim())));
+                            UiUtils.ToastUtils("请假天数不能为空");
+                        } else if (TextUtils.isEmpty(leaveTypeEt5.getText().toString().trim())) {
+                            UiUtils.ToastUtils("理由不能为空");
+                        }else if (leaveTypeEt5.getText().toString().trim().length() > 40) {
                             UiUtils.ToastUtils("字数不能超过40个字");
                         } else {
                             getServerApplyLeave();
@@ -289,7 +294,10 @@ public class LeavetypeListActivity extends BaseActivity {
                     .equals("passedLeavedetail")) {
                 leavetypeLl.setVisibility(View.GONE);
                 if (action.equals("Leavewaitdetail")) {
+                    if(getIntent().getBooleanExtra("isMy",false)==false)
                     leavetypeLl.setVisibility(View.VISIBLE);
+                    else
+                        leavetypeLl.setVisibility(View.GONE);
                     accede.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -462,7 +470,6 @@ public class LeavetypeListActivity extends BaseActivity {
                     titleTv.setText("企业详细信息");
                 } else if (notifykind.equals("1")) {       //请假申请通知
                     getServerWorkData2();
-
                     titleTv.setText("请假详情");
                 } else if (notifykind.equals("2")) {       //外出申请通知
                     getServerWorkData3();
@@ -521,6 +528,7 @@ public class LeavetypeListActivity extends BaseActivity {
     private HttpListener<String> httpListener = new HttpListener<String>() {
         @Override
         public void onSucceed(int what, Response<String> response) {
+            if(action.equals("travelletail"))
             EvectionActivity.hander.sendEmptyMessage(1);
             switch (what) {
                 case 1:
@@ -533,6 +541,7 @@ public class LeavetypeListActivity extends BaseActivity {
                     String result2 = response.get();
                     System.out.println("请假申请result2=" + result2);
                     LeaveType leaveType2 = new Gson().fromJson(result2, LeaveType.class);
+                    setResult(1);
                     finish();
                     UiUtils.ToastUtils(leaveType2.summary);
                     break;
@@ -544,6 +553,7 @@ public class LeavetypeListActivity extends BaseActivity {
                     ApplyBean applyBean2 = new Gson().fromJson(response.get(), ApplyBean.class);
                     UiUtils.ToastUtils(applyBean2.summary);
                     if (applyBean2.status.equals("00000")) {
+                        EvectionActivity.hander.sendEmptyMessage(1);
                         finish();
                     }
                     break;
@@ -551,6 +561,7 @@ public class LeavetypeListActivity extends BaseActivity {
                     ApplyBean applyBean3 = new Gson().fromJson(response.get(), ApplyBean.class);
                     UiUtils.ToastUtils(applyBean3.summary);
                     if (applyBean3.status.equals("00000")) {
+                        setResult(1);
                         finish();
                     }
                     break;
@@ -558,6 +569,7 @@ public class LeavetypeListActivity extends BaseActivity {
                     ApplyBean applyBean1 = new Gson().fromJson(response.get(), ApplyBean.class);
                     UiUtils.ToastUtils(applyBean1.summary);
                     if (applyBean1.status.equals("00000")) {
+                        setResult(1);
                         finish();
                     }
                     break;
@@ -576,11 +588,11 @@ public class LeavetypeListActivity extends BaseActivity {
                     workNotify2 = new Gson().fromJson(response.get(), WorkLeaveDetail
                             .class);
                     Log.e("workNotify2", "onSucceed: " + response.get());
-                    leaveTypeEt1.setText(workNotify2.result.leavename);
+                 /*   leaveTypeEt1.setText(workNotify2.result.leavename);
                     leaveTypeEt2.setText(workNotify2.result.stattime);
                     leaveTypeEt3.setText(workNotify2.result.endtime);
                     leaveTypeEt4.setText(workNotify2.result.leavedays);
-                    leaveTypeEt5.setText(workNotify2.result.leavereason);
+                    leaveTypeEt5.setText(workNotify2.result.leavereason);*/
                     if (workNotify2.result.statu == 0) {
                         leaveTypeEt6.setText("审批中");
                     } else if (workNotify2.result.statu == 1) {
@@ -680,8 +692,8 @@ public class LeavetypeListActivity extends BaseActivity {
             workMessMap2.put("access_id", "1234567890");
             workMessMap2.put("timestamp", time);
             workMessMap2.put("telnum", UiUtils.getPhoneNumber());
-            workMessMap2.put("leavecode", notifycode);
-            workMessMap2.put("notifycode", "0");
+            workMessMap2.put("leavecode", "0");
+            workMessMap2.put("notifycode", notifycode);
             String encode = MD5Encoder.encode(Sign.generateSign(workMessMap2) +
                     "12345678901234567890123456789011");
             workMessMap2.put("sign", encode);
@@ -842,7 +854,7 @@ public class LeavetypeListActivity extends BaseActivity {
                         } else {
                             UiUtils.ToastUtils("提交成功");
                             getServerEmpOvertime();
-                            finish();
+
                         }
                     }
                 }
@@ -865,7 +877,7 @@ public class LeavetypeListActivity extends BaseActivity {
             map4.put("stattime", leaveTypeEt2.getText().toString().trim());
             map4.put("endtime", leaveTypeEt3.getText().toString().trim());
             map4.put("overdays", leaveTypeEt4.getText().toString().trim());
-            map4.put("overreason", "sdfsadfsadfsaf");
+            map4.put("overreason", leaveTypeEt5.getText().toString().trim());
             String encode = MD5Encoder.encode(Sign.generateSign(map4) +
                     "12345678901234567890123456789011");
             map4.put("sign", encode);

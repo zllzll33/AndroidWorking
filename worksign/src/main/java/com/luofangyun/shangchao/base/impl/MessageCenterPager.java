@@ -2,6 +2,8 @@ package com.luofangyun.shangchao.base.impl;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,12 +18,19 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
+import com.luofangyun.shangchao.activity.addresslist.CompanyApply;
 import com.luofangyun.shangchao.activity.app.LeavetypeListActivity;
 import com.luofangyun.shangchao.activity.message.ConfirmActivity;
+import com.luofangyun.shangchao.activity.message.JoinTeamActivty;
 import com.luofangyun.shangchao.activity.message.MessageSystem;
 import com.luofangyun.shangchao.activity.message.affichePartData;
 import com.luofangyun.shangchao.base.BasePager;
+import com.luofangyun.shangchao.domain.JoinTeamDetailBean;
+import com.luofangyun.shangchao.domain.LeaveDetailBean;
 import com.luofangyun.shangchao.domain.MessageCenter;
+import com.luofangyun.shangchao.domain.OutDetailBean;
+import com.luofangyun.shangchao.domain.OverTimeDetailBean;
+import com.luofangyun.shangchao.domain.TravellDetailBean;
 import com.luofangyun.shangchao.global.GlobalConstants;
 import com.luofangyun.shangchao.nohttp.CallServer;
 import com.luofangyun.shangchao.nohttp.HttpListener;
@@ -34,7 +43,6 @@ import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Request;
 import com.yolanda.nohttp.rest.Response;
 import com.zhy.autolayout.AutoRelativeLayout;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -62,11 +70,12 @@ public class MessageCenterPager extends BasePager {
 
     private MessageCenter centerWork, getAffiche, getSystem;
     private ArrayList<MessageCenter.Result.Json> data, systemData, afficheData;
-    private String notifycodeWork, notifycodeAffiche, notifycodeSystem;
+    private String notifycodeWork, notifycodeAffiche, notifycodeSystem,notifyCode;
     private MyAdapter3 myAdapter3;         // 系统消息
     private MyAdapter1 myAdapter1;         // 工作通知
     private MyAdapter2 myAdapter2;         // 公告
     private int i;
+    public static Handler handler;
     public MessageCenterPager(Activity activity) {
         super(activity);
     }
@@ -124,6 +133,13 @@ public class MessageCenterPager extends BasePager {
         mTabLayout.setTabsFromPagerAdapter(mAdapter);            //给Tabs设置适配器
         pagerSign.setOnClickListener(this);
         flContainer.addView(view);
+        handler=new Handler()
+        {
+            public void handleMessage(Message msg)
+            {
+                getServerWorkData1();
+            }
+        };
     }
 
     /**
@@ -139,13 +155,112 @@ public class MessageCenterPager extends BasePager {
             map1.put("timestamp", time);
             map1.put("telnum", UiUtils.getPhoneNumber());
             map1.put("pindex", String.valueOf(1));
-            map1.put("psize", String.valueOf(10));
+            map1.put("psize", String.valueOf(100));
             map1.put("flag", String.valueOf(0));
             String encode = MD5Encoder.encode(Sign.generateSign(map1) +
                     "12345678901234567890123456789011");
             map1.put("sign", encode);
             request1.add(map1);
             CallServer.getRequestInstance().add(mActivity, 0, request1, httpListener, false, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void getWorkJoinMessage(String notifycode) {
+        try {
+            Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
+                    "apply_detail.json", RequestMethod.POST);
+            String time = Long.toString(new Date().getTime());
+            Map<String,String> map=new HashMap<>();
+            map.put("access_id", "1234567890");
+            map.put("timestamp", time);
+            map.put("telnum", UiUtils.getPhoneNumber());
+            map.put("notifycode", notifycode);
+            String encode = MD5Encoder.encode(Sign.generateSign(map) +
+                    "12345678901234567890123456789011");
+            map.put("sign", encode);
+            request1.add(map);
+            CallServer.getRequestInstance().add(mActivity, 7, request1, httpListener, false, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void getWorkChuMessage(String notifycode) {
+        try {
+            Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
+                    "travel_detail.json", RequestMethod.POST);
+            String time = Long.toString(new Date().getTime());
+            Map<String,String> map=new HashMap<>();
+            map.put("access_id", "1234567890");
+            map.put("timestamp", time);
+            map.put("travelcode", "0");
+            map.put("telnum", UiUtils.getPhoneNumber());
+            map.put("notifycode", notifycode);
+            String encode = MD5Encoder.encode(Sign.generateSign(map) +
+                    "12345678901234567890123456789011");
+            map.put("sign", encode);
+            request1.add(map);
+            CallServer.getRequestInstance().add(mActivity, 8, request1, httpListener, false, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void getWorkOutMessage(String notifycode) {
+        try {
+            Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
+                    "out_detail.json", RequestMethod.POST);
+            String time = Long.toString(new Date().getTime());
+            Map<String,String> map=new HashMap<>();
+            map.put("access_id", "1234567890");
+            map.put("timestamp", time);
+            map.put("telnum", UiUtils.getPhoneNumber());
+            map.put("outcode", "0");
+            map.put("notifycode", notifycode);
+            String encode = MD5Encoder.encode(Sign.generateSign(map) +
+                    "12345678901234567890123456789011");
+            map.put("sign", encode);
+            request1.add(map);
+            CallServer.getRequestInstance().add(mActivity, 6, request1, httpListener, false, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void getWorkLeaveMessage(String notifycode) {
+        try {
+            Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
+                    "leave_detail.json", RequestMethod.POST);
+            String time = Long.toString(new Date().getTime());
+            Map<String,String> map=new HashMap<>();
+            map.put("access_id", "1234567890");
+            map.put("timestamp", time);
+            map.put("telnum", UiUtils.getPhoneNumber());
+            map.put("leavecode", "0");
+            map.put("notifycode", notifycode);
+            String encode = MD5Encoder.encode(Sign.generateSign(map) +
+                    "12345678901234567890123456789011");
+            map.put("sign", encode);
+            request1.add(map);
+            CallServer.getRequestInstance().add(mActivity, 4, request1, httpListener, false, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void getWorkOvertimeMessage(String notifycode) {
+        try {
+            Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
+                    "overtime_detail.json", RequestMethod.POST);
+            String time = Long.toString(new Date().getTime());
+            Map<String,String> map=new HashMap<>();
+            map.put("access_id", "1234567890");
+            map.put("timestamp", time);
+            map.put("telnum", UiUtils.getPhoneNumber());
+            map.put("overcode", "0");
+            map.put("notifycode", notifycode);
+            String encode = MD5Encoder.encode(Sign.generateSign(map) +
+                    "12345678901234567890123456789011");
+            map.put("sign", encode);
+            request1.add(map);
+            CallServer.getRequestInstance().add(mActivity, 5, request1, httpListener, false, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,7 +278,7 @@ public class MessageCenterPager extends BasePager {
             map2.put("timestamp", time);
             map2.put("telnum", UiUtils.getPhoneNumber());
             map2.put("pindex", String.valueOf(1));
-            map2.put("psize", String.valueOf(10));
+            map2.put("psize", String.valueOf(100));
             map2.put("flag", String.valueOf(2));
             String encode = MD5Encoder.encode(Sign.generateSign(map2) +
                     "12345678901234567890123456789011");
@@ -187,7 +302,7 @@ public class MessageCenterPager extends BasePager {
             map3.put("timestamp", time);
             map3.put("telnum", UiUtils.getPhoneNumber());
             map3.put("pindex", String.valueOf(1));
-            map3.put("psize", String.valueOf(10));
+            map3.put("psize", String.valueOf(100));
             map3.put("flag", String.valueOf(1));
             String encode = MD5Encoder.encode(Sign.generateSign(map3) +
                     "12345678901234567890123456789011");
@@ -222,6 +337,77 @@ public class MessageCenterPager extends BasePager {
                     System.out.println("企业公告result3=" + result3);
                     MessageCenter afficheData2 = getAfficheData2(result3);
                     myAdapter2.notifyDataSetChanged();
+                    break;
+                case 4:
+                    String result4 = response.get();
+                    Log.e("请假详情",result4);
+                    Gson gson=new Gson();
+                    LeaveDetailBean leaveDetailBean=gson.fromJson(result4,LeaveDetailBean.class);
+                    Intent intent = new Intent(mActivity, LeavetypeListActivity.class);
+                    intent.putExtra("leavename",leaveDetailBean.result.leavename);
+                    intent.putExtra("stattime", leaveDetailBean.result.stattime);
+                    intent.putExtra("endtime", leaveDetailBean.result.endtime);
+                    intent.putExtra("leavedays", leaveDetailBean.result.leavedays);
+                    intent.putExtra("statu", leaveDetailBean.result.statu + "");
+                    intent.putExtra("leavereason", leaveDetailBean.result.leavereason);
+                    intent.putExtra("leavecode", leaveDetailBean.result.leavecode);
+                    intent.setAction("Leavewaitdetail");
+                    mActivity.startActivity(intent);
+                    break;
+                case 5:
+                    String result5 = response.get();
+                    Gson gson1=new Gson();
+                    OverTimeDetailBean overTimeDetailBean=gson1.fromJson(result5,OverTimeDetailBean.class);
+                    Log.e("加班详情",result5);
+                    Intent intent1 = new Intent(mActivity, LeavetypeListActivity.class);
+                    intent1.putExtra("stattime",overTimeDetailBean.result.stattime);
+                    intent1.putExtra("endtime", overTimeDetailBean.result.endtime);
+                    intent1.putExtra("overdays", overTimeDetailBean.result.overdays);
+                    intent1.putExtra("statu", overTimeDetailBean.result.statu);
+                    intent1.putExtra("overreason", overTimeDetailBean.result.overreason);
+                    intent1.setAction("overletail");
+                    mActivity.startActivity(intent1);
+                    break;
+                case 6:
+                    String result6 = response.get();
+                    Log.e("外出详情",result6);
+                    Gson gson2=new Gson();
+                    OutDetailBean outDetailBean=gson2.fromJson(result6,OutDetailBean.class);
+                    Intent intent2 = new Intent(mActivity, LeavetypeListActivity.class);
+                    intent2.putExtra("stattime", outDetailBean.result.stattime);
+                    intent2.putExtra("endtime",outDetailBean.result.endtime);
+                    intent2.putExtra("outdays",outDetailBean.result.outdays);
+                    intent2.putExtra("statu", outDetailBean.result.statu + "");
+                    intent2.putExtra("outreason",outDetailBean.result.outreason);
+                    intent2.setAction("outetail");
+                   mActivity.startActivity(intent2);
+                    break;
+                case 7:
+                    String result7 = response.get();
+                    Log.e("加入团队详情",result7);
+                    Gson gson3=new Gson();
+                    JoinTeamDetailBean joinDetailBean=gson3.fromJson(result7,JoinTeamDetailBean.class);
+                    Intent intent3 = new Intent(mActivity, JoinTeamActivty.class);
+                    intent3.putExtra("join_name", joinDetailBean.result.empname);
+                    intent3.putExtra("join_phone", joinDetailBean.result.empphone);
+                    intent3.putExtra("join_note", joinDetailBean.result.remark);
+                    intent3.putExtra("notifyCode", notifyCode);
+                    mActivity.startActivity(intent3);
+                    break;
+                case 8:
+                    String result8 = response.get();
+                    Log.e("加入出差详情",result8);
+                    Gson gson4=new Gson();
+                    TravellDetailBean travellDetailBean=gson4.fromJson(result8,TravellDetailBean.class);
+                    Intent intent4 = new Intent(mActivity, LeavetypeListActivity.class);
+                    intent4.putExtra("traveladdress", travellDetailBean.result.traveladdress);
+                    intent4.putExtra("stattime", travellDetailBean.result.stattime);
+                    intent4.putExtra("endtime", travellDetailBean.result.endtime);
+                    intent4.putExtra("traveldays", travellDetailBean.result.traveldays);
+                    intent4.putExtra("statu", travellDetailBean.result.statu + "");
+                    intent4.putExtra("travelreason", travellDetailBean.result.travelreason);
+                    intent4.setAction("travelletail");
+                    mActivity.startActivity(intent4);
                     break;
             }
         }
@@ -287,23 +473,29 @@ public class MessageCenterPager extends BasePager {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView leftPic, rightPic;
         TextView leftText, rightTime;
-
         public MyViewHolder(View itemView) {
             super(itemView);
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     getServerWorkData1();
-                    myAdapter1.notifyDataSetChanged();
-                    Intent intent = new Intent(mActivity, LeavetypeListActivity.class);
-                    Log.e("notifycode", "onClick: " + data.get(getLayoutPosition()).notifycode);
-                    intent.putExtra("notifycode", data.get(getLayoutPosition()).notifycode);
-                    intent.putExtra("notifykind",data.get(getLayoutPosition()).notifykind);
-                    intent.setAction("MessageCenterPager");
-                    mActivity.startActivity(intent);
+                    notifyCode=data.get(getLayoutPosition()).notifycode;
+//                    if(data.get(getLayoutPosition()).notifytitle.contains("请假"))
+                    if(data.get(getLayoutPosition()).notifykind.contains("1"))
+                        getWorkLeaveMessage(data.get(getLayoutPosition()).notifycode);
+                   else if(data.get(getLayoutPosition()).notifykind.contains("4"))
+//                    else if(data.get(getLayoutPosition()).notifytitle.contains("加班"))
+                        getWorkOvertimeMessage(data.get(getLayoutPosition()).notifycode);
+//                    else if(data.get(getLayoutPosition()).notifytitle.contains("外出"))
+                    else if(data.get(getLayoutPosition()).notifykind.contains("2"))
+                    getWorkOutMessage(data.get(getLayoutPosition()).notifycode);
+//                    else if(data.get(getLayoutPosition()).notifytitle.contains("加入团队"))
+                    else if(data.get(getLayoutPosition()).notifykind.contains("5"))
+                        getWorkJoinMessage(data.get(getLayoutPosition()).notifycode);
+                    else if(data.get(getLayoutPosition()).notifykind.contains("3"))
+                        getWorkChuMessage(data.get(getLayoutPosition()).notifycode);
+
                 }
             });
             leftText = (TextView) itemView.findViewById(R.id.left_text);
@@ -399,13 +591,11 @@ public class MessageCenterPager extends BasePager {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     myAdapter1.notifyDataSetChanged();
                     Intent intent = new Intent(mActivity, MessageSystem.class);
                     System.out.println("点击了第" + getPosition() + "个Item");
-
-                    PrefUtils.putString(mActivity, "notifycodeSystem", notifycodeSystem);
-                    mActivity.startActivity(intent);
+                      PrefUtils.putString(mActivity, "notifycodeSystem", notifycodeSystem);
+                      mActivity.startActivity(intent);
                 }
             });
             systemLeftPic = (ImageView) itemView.findViewById(R.id.system_left_pic);
@@ -414,15 +604,12 @@ public class MessageCenterPager extends BasePager {
             systemRightPic = (ImageView) itemView.findViewById(R.id.system_right_pic);
         }
     }
-
     //ViewPager适配器
     class MyPagerAdapter extends PagerAdapter {
         List<View> mViewList;
-
         public MyPagerAdapter(List<View> mViewList) {
             this.mViewList = mViewList;
         }
-
         @Override
         public int getCount() {
             return mViewList.size();    //页卡数

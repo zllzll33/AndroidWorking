@@ -557,7 +557,7 @@ public class OutActivity extends BaseActivity {
             case R.id.right:
                 Intent intent = new Intent(this, LeavetypeListActivity.class);
                 intent.setAction("OutActivity");
-                startActivity(intent);
+                startActivityForResult(intent,1);
                 break;
             case R.id.my_leave_rb:
                 myAdapter.notifyDataSetChanged();
@@ -577,5 +577,12 @@ public class OutActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        getWaitExamine(k);  //待审核请求数据
+        getExamine(l);      //已审核请求数据
+        getMySelf(j);       //我发起的
     }
 }

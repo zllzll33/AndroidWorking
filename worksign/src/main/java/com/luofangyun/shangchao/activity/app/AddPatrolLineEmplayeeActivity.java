@@ -161,7 +161,6 @@ public class AddPatrolLineEmplayeeActivity  extends BaseActivity{
             });
             empname = (TextView) itemView.findViewById(R.id.name);
             deptname = (TextView) itemView.findViewById(R.id.deptname);
-
         }
     }
 

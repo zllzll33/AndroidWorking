@@ -38,10 +38,8 @@ public class AddBranchActivity extends BaseActivity {
     private TextView addBranchTv;
     private String companyname;
     private String addNewBranchName;
-    private Map<String, String> map = new HashMap<>();
+
     private String companycode,action,parentdept,parentname;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,26 +49,40 @@ public class AddBranchActivity extends BaseActivity {
     }
     private void initView() {
         branchCode="0";
+        parentdept="0";
         addBranchLl = (LinearLayout) view.findViewById(R.id.add_branch_ll);
         addBranchName = (EditText) view.findViewById(R.id.add_branch_name);
         addBranchTv = (TextView) view.findViewById(R.id.add_branch_tv);
-            companycode = PrefUtils.getString(this, "companycode", "");
+        companycode = PrefUtils.getString(this, "companycode", "");
         action=getIntent().getAction();
+//        addBranchLl.setOnClickListener(this);
         if(action.equals("editBranch")) {
-            titleTv.setText("编辑部门");
             Bundle bundle = getIntent().getBundleExtra("bundle");
             parentdept=bundle.getString("parentdept");
             parentname=bundle.getString("parentname");
-            branchCode=PrefUtils.getString(getApplicationContext(),"branchCode","");
-            branchName=PrefUtils.getString(getApplicationContext(),"branchname","");
-            addBranchName.setText(branchName);
+            boolean addNew=PrefUtils.getBoolean(getApplicationContext(),"addNewBr",false);
+            if(addNew) {
+                titleTv.setText("添加部门");
+                parentdept=PrefUtils.getString(getApplicationContext(),"branchCode","");
+                parentname=PrefUtils.getString(getApplicationContext(),"branchname","");
+                addBranchTv.setText(parentname);
+                addBranchLl.setClickable(false);
+        /*        addBranchName.setText(branchName);
+                String nowname=PrefUtils.getString(getApplicationContext(),"nowname","");
+                addBranchName.setText(nowname);*/
+            }
+            else {
+                titleTv.setText("编辑部门");
+                branchCode=PrefUtils.getString(getApplicationContext(),"branchCode","");
+                branchName=PrefUtils.getString(getApplicationContext(),"branchname","");
+                addBranchName.setText(branchName);
+            }
         }
         else if(action.equals("addBranch"))
         {
             titleTv.setText("添加部门");
         }
     }
-
     private void initData() {
         addNewBranchName = addBranchName.getText().toString().trim();           //新部门名称
         if (TextUtils.isEmpty(parentname)) {
@@ -78,16 +90,16 @@ public class AddBranchActivity extends BaseActivity {
         }else{
             addBranchTv.setText(parentname);
         }
-        addBranchLl.setOnClickListener(this);
+
         right.setVisibility(View.VISIBLE);
         right.setText("保存");
         flAddress.addView(view);
     }
-
     private void getServerData() {
         try {
             Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "dept_mng.json", RequestMethod.POST);
+            Map<String, String> map = new HashMap<>();
             String time = Long.toString(new Date().getTime());
             map.put("access_id", "1234567890");
             map.put("timestamp", time);
@@ -116,6 +128,7 @@ public class AddBranchActivity extends BaseActivity {
                    PrefUtils.putString(getApplication(), "addBranchName", addBranchName.getText().toString().trim());        //新部门的名称
                    Intent intent =new Intent(AddBranchActivity.this,CorporActivity.class);
                    startActivity(intent);
+                   finish();
                    break;
                default:
                    break;
@@ -137,10 +150,9 @@ public class AddBranchActivity extends BaseActivity {
                 break;
             case R.id.right:
                     getServerData();   //添加部门
-                    finish();
-
                 break;
             case R.id.add_branch_ll:
+                PrefUtils.putString(getApplicationContext(),"nowname",addBranchName.getText().toString().trim());
                 startActivityForResult(new Intent(this, CorporBranchActivity1.class), 1);
                 finish();
                 break;

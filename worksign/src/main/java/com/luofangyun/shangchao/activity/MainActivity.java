@@ -1,6 +1,8 @@
 package com.luofangyun.shangchao.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -30,6 +32,7 @@ public class MainActivity extends FragmentActivity {
     public static double latitude, longitude;
     public static String addrStr;
     public static String nowTime;
+    public static Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,12 @@ public class MainActivity extends FragmentActivity {
         mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);    //注册监听函数
         initLocation();
+        handler=new Handler(){
+            public void handleMessage(Message msg)
+            {
+                finish();
+            }
+        };
     }
     public void initLocation() {
         LocationClientOption option = new LocationClientOption();

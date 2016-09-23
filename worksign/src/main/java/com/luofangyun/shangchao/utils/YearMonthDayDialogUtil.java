@@ -37,7 +37,7 @@ public class YearMonthDayDialogUtil implements OnDateChangedListener,
     private PopupWindow popupWindow;
     private TextView confirm;
     private TextView cancel;
-
+    DataListener dataListener;
     /**
      * 日期时间弹出选择框构造函数
      */
@@ -61,8 +61,13 @@ public class YearMonthDayDialogUtil implements OnDateChangedListener,
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH), this);
     }
-
-
+public void setDataListener(DataListener dataListener)
+{
+    this.dataListener=dataListener;
+}
+public interface  DataListener{
+    public void OnData(String data);
+}
     /**
      * 弹出日期时间选择框方法
      * @param inputDate
@@ -81,6 +86,8 @@ public class YearMonthDayDialogUtil implements OnDateChangedListener,
                 .setPositiveButton("设置", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         inputDate.setText(dateTime);
+                        if(dataListener!=null)
+                            dataListener.OnData(dateTime);
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {

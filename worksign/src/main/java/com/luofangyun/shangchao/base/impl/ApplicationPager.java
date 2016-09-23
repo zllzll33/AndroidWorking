@@ -184,7 +184,7 @@ public class ApplicationPager extends BasePager {
                             mActivity.startActivity(new Intent(mActivity, LabelActiviity.class));
                             break;
                         case 1:
-                            mActivity.startActivity(new Intent(mActivity, AttAreaActivity.class));
+                            mActivity.startActivity(new Intent(mActivity, AttSettingctivity.class));
                             break;
                         case 2:
                             mActivity.startActivity(new Intent(mActivity, MeetingActivity.class));

@@ -40,7 +40,7 @@ public class UserEnterActivity extends Activity implements View.OnClickListener 
     private UerEnBean           uerEnBean;
     private String              encode;
     private String status;
-    private String statusData;
+    private String statusData,pw;
     private String enterPhoneNumber;
     private String enterPassWord;
     private LinearLayout titleLlBack;
@@ -80,9 +80,9 @@ public class UserEnterActivity extends Activity implements View.OnClickListener 
     /**
      * 获取网络数据
      */
-
     private void getServerData(String phone, String passWord) {
         try {
+            pw=passWord;
             Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "user_login.json", RequestMethod.POST);
             String time = Long.toString(new Date().getTime());
@@ -130,23 +130,24 @@ public class UserEnterActivity extends Activity implements View.OnClickListener 
         System.out.println("userLogBean" + uerEnBean);
         statusData = uerEnBean.status;
         if (statusData.equals("00000")) {
+            PrefUtils.putString(getApplication(), "sw",pw);
+            PrefUtils.putString(getApplication(), "phoneNumber", uerEnBean.result.empphone);        //手机号
+                PrefUtils.putString(getApplication(), "empphoto", uerEnBean.result.empphoto);           //头像地址
+                PrefUtils.putString(getApplication(), "companyname", uerEnBean.result.companyname);     //企业名称
+                PrefUtils.putString(getApplication(), "deptname", uerEnBean.result.deptname);           //部门名称
+                PrefUtils.putString(getApplication(), "emppost", uerEnBean.result.emppost);             //职位名称
+                PrefUtils.putString(getApplication(), "empsex", uerEnBean.result.empsex);               //性别
+                PrefUtils.putString(getApplication(), "empbirthday", uerEnBean.result.empbirthday);     //生日
+                PrefUtils.putString(getApplication(), "empaddress", uerEnBean.result.empaddress);       //地址
+                PrefUtils.putString(getApplication(), "deptcode", uerEnBean.result.deptcode);    //部门编码
+                PrefUtils.putString(getApplication(), "companycode", uerEnBean.result.companycode);     //企业编码
+                PrefUtils.putString(getApplication(), "empcode", uerEnBean.result.empcode);             //员工编码
+                PrefUtils.putBoolean(getApplication(),"loginstaus",true);
+                PrefUtils.putInt(getApplication(),"ismng",uerEnBean.result.ismng);
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
-        if (uerEnBean.result != null) {
-            PrefUtils.putString(getApplication(), "phoneNumber", uerEnBean.result.empphone);        //手机号
-            PrefUtils.putString(getApplication(), "empphoto", uerEnBean.result.empphoto);           //头像地址
-            PrefUtils.putString(getApplication(), "companyname", uerEnBean.result.companyname);     //企业名称
-            PrefUtils.putString(getApplication(), "deptname", uerEnBean.result.deptname);           //部门名称
-            PrefUtils.putString(getApplication(), "emppost", uerEnBean.result.emppost);             //职位名称
-            PrefUtils.putString(getApplication(), "empsex", uerEnBean.result.empsex);               //性别
-            PrefUtils.putString(getApplication(), "empbirthday", uerEnBean.result.empbirthday);     //生日
-            PrefUtils.putString(getApplication(), "empaddress", uerEnBean.result.empaddress);       //地址
-            PrefUtils.putString(getApplication(), "deptcode", uerEnBean.result.deptcode);    //部门编码
-            PrefUtils.putString(getApplication(), "companycode", uerEnBean.result.companycode);     //企业编码
-            PrefUtils.putString(getApplication(), "empcode", uerEnBean.result.empcode);             //员工编码
-            PrefUtils.putBoolean(getApplication(),"loginstaus",true);
-        }
+
         return uerEnBean;
     }
 

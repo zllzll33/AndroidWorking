@@ -2,6 +2,8 @@ package com.luofangyun.shangchao.activity.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,11 +44,18 @@ public class BlueLabelActivity extends BaseActivity {
     private Label lable;
     private ArrayList<Label.Result.Json> dataList;
     private int j;
+    public static Handler handler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = UiUtils.inflateView(R.layout.blue_label);
+        handler=new Handler(){
+            public void handleMessage(Message msg)
+            {
+                getServerData();
+            }
+        };
         initView();
         initData();
     }
@@ -59,11 +68,12 @@ public class BlueLabelActivity extends BaseActivity {
         right.setOnClickListener(this);
         right.setText("添加");
         titleTv.setText("蓝牙标签管理");
-        getServerData();
         blueLabelRlv.setLayoutManager(new LinearLayoutManager(this));
         myAdapter = new MyAdapter();
         blueLabelRlv.setAdapter(myAdapter);
         flAddress.addView(view);
+        UiUtils.ToastUtils("请开启蓝牙");
+        getServerData();
     }
 
     private void getServerDeleteData(int i) {
@@ -94,7 +104,7 @@ public class BlueLabelActivity extends BaseActivity {
             map.put("timestamp", time);
             map.put("telnum", UiUtils.getPhoneNumber());
             map.put("pindex", String.valueOf(1));
-            map.put("psize", String.valueOf(10));
+            map.put("psize", String.valueOf(200));
             map.put("labeltype", String.valueOf(1));
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
@@ -146,7 +156,6 @@ public class BlueLabelActivity extends BaseActivity {
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
-
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             MyViewHolder myViewHolder = new MyViewHolder(LayoutInflater.from(getApplication())

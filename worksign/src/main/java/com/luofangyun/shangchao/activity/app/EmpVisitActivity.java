@@ -76,13 +76,14 @@ public class EmpVisitActivity extends BaseActivity {
             }
             @Override
             public void onLoadMore() {
-                if (j < empVisit.result.totalpage) {
+                UiUtils.upDownRefurbish(visitEmp);
+               /* if (j < empVisit.result.totalpage) {
                     //getServerData(j);
                   UiUtils.upDownRefurbish(visitEmp);
                 } else {
                     UiUtils.ToastUtils("没有更多数据了");
                     UiUtils.upDownRefurbish(visitEmp);
-                }
+                }*/
             }
         });
     }
@@ -94,8 +95,8 @@ public class EmpVisitActivity extends BaseActivity {
             map.put("access_id", "1234567890");
             map.put("timestamp", time);
             map.put("telnum", UiUtils.getPhoneNumber());
-            map.put("pindex", String.valueOf(j++));
-            map.put("psize", String.valueOf(100));
+            map.put("pindex", String.valueOf(1));
+            map.put("psize", String.valueOf(200));
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
             map.put("sign", encode);
@@ -186,10 +187,15 @@ public class EmpVisitActivity extends BaseActivity {
             case R.id.right:
                 Intent intent = new Intent(this, EmpVisitDetailActivity.class);
                 intent.setAction("EmpVisitWriteActivity");
-                startActivity(intent);
+                startActivityForResult(intent,1);
                 break;
             default:
                 break;
         }
+    }
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        getServerData(1);
     }
 }

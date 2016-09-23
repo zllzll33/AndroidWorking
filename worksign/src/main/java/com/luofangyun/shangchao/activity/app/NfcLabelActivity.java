@@ -2,6 +2,8 @@ package com.luofangyun.shangchao.activity.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,11 +47,20 @@ public class NfcLabelActivity extends BaseActivity {
     private Map<String, String> map  = new HashMap<>();
     private Map<String, String> map1 = new HashMap<>();
     private ApplyBean applyBean;
+    public static Handler handler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = UiUtils.inflateView(R.layout.nfc_label);
+        handler=new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                getServerData();
+            }
+        };
         initView();
         initData();
     }
@@ -220,7 +231,13 @@ public class NfcLabelActivity extends BaseActivity {
         if (resultCode == 10) {
             String stringExtra = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
             System.out.println("扫描的结果为:" + stringExtra);
+            int start = stringExtra.indexOf("=");
+            String nfcid = stringExtra.substring(start + 1, stringExtra.length());
+            Intent intent=new Intent(NfcLabelActivity.this,AddNFCTagActivity.class);
+            intent.putExtra("nfcid",nfcid);
+            startActivity(intent);
             Log.e("扫描的结果为=====", stringExtra);
         }
+
     }
 }

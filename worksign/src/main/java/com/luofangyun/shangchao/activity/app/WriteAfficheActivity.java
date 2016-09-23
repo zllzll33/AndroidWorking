@@ -51,7 +51,7 @@ public class WriteAfficheActivity extends BaseActivity {
     private TextView  writeTv;
     private EditText  title, writeContent;
     private Map<String, String> map = new HashMap<>();
-    private String imagePath;
+    private String imagePath="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class WriteAfficheActivity extends BaseActivity {
     private void initData() {
         right.setText("发送");
         right.setVisibility(View.VISIBLE);
-        titleTv.setText("公告");
+        titleTv.setText("发公告");
         writeTv.setOnClickListener(this);
         flAddress.addView(view);
     }
@@ -86,14 +86,13 @@ public class WriteAfficheActivity extends BaseActivity {
             case R.id.right:
                 if (TextUtils.isEmpty(title.toString().trim())) {
                     UiUtils.ToastUtils("标题不能为空");
-                } else {
-                    UiUtils.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            getServerData();
-                        }
-                    });
-                    finish();
+                }
+                else if (imagePath.isEmpty())
+                    UiUtils.ToastUtils("请选择图片");
+                else if (TextUtils.isEmpty(writeContent.toString().trim()))
+                    UiUtils.ToastUtils("内容不能为空");
+                else {
+                    getServerData();
                 }
                 break;
             default:
@@ -128,13 +127,14 @@ public class WriteAfficheActivity extends BaseActivity {
         public void onSucceed(int what, Response<String> response) {
             Log.e("----------", "onSucceed: " + response.get());
             UiUtils.ToastUtils(new Gson().fromJson(response.get(), ApplyBean.class).summary);
+            setResult(1);
+            finish();
         }
         @Override
         public void onFailed(int what, String url, Object tag, CharSequence message, int
                 responseCode, long networkMillis) {
         }
     };
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {

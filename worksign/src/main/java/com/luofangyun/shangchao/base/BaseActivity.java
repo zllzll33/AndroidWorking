@@ -18,6 +18,7 @@ import com.baidu.location.Poi;
 import com.luofangyun.shangchao.R;
 import com.zhy.autolayout.AutoFrameLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -159,7 +160,10 @@ public class BaseActivity extends Activity implements View.OnClickListener {
                 longitude = location.getLongitude();
                 latitude = location.getLatitude();
                 addrStr = location.getAddrStr();
-                nowTime = location.getTime();
+//                nowTime = location.getTime();
+                 SimpleDateFormat sDateFormat    =   new    SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String    date    =    sDateFormat.format(new java.util.Date());
+                nowTime=date;
             }
         }
     }

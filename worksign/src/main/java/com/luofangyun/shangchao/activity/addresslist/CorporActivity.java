@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
+import com.luofangyun.shangchao.activity.message.ConfirmActivity;
 import com.luofangyun.shangchao.base.BaseActivity;
 import com.luofangyun.shangchao.domain.ApplyBean;
 import com.luofangyun.shangchao.domain.Corpor;
@@ -60,6 +61,7 @@ public class CorporActivity extends BaseActivity {
     private int i;
     private TextView one;
     public static Handler handler;
+    LinearLayout ll_pop;
     boolean isBigBranch=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,10 @@ public class CorporActivity extends BaseActivity {
             case R.id.title_iv_right:
                 View view = UiUtils.getPopuwindow(R.layout.corpor_drop_down, titleBackground,
                         screenWidth, 0);
+                ll_pop=(LinearLayout) view.findViewById(R.id.ll_pop);
+                int ismng=PrefUtils.getInt(getApplicationContext(),"ismng",0);
+                        if(ismng==0)
+                            ll_pop.setVisibility(View.GONE);
                 addEmpl = (TextView) view.findViewById(R.id.add_empl);
                 addBranch = (TextView) view.findViewById(R.id.add_branch);
                 message = (TextView) view.findViewById(R.id.message);
@@ -130,9 +136,21 @@ public class CorporActivity extends BaseActivity {
                 UiUtils.popupWindow.dismiss();
                 break;
             case R.id.add_branch:         //添加部门
-                Intent  intent=new Intent(this, AddBranchActivity.class);
-                intent.setAction("addBranch");
-                startActivityForResult(intent, 2);
+                if(isBigBranch==true) {
+                    Intent intent = new Intent(this, AddBranchActivity.class);
+                    intent.setAction("addBranch");
+                    startActivityForResult(intent, 2);
+                }
+                else
+                {
+                    Intent intent = new Intent(getApplication(), AddBranchActivity.class);
+                    intent.setAction("editBranch");
+                    Bundle bundle=new Bundle();
+                    bundle.putBoolean("addNewBr",true);
+                    intent.putExtra("bundle",bundle);
+                    startActivity(intent);
+                }
+                finish();
                 UiUtils.popupWindow.dismiss();
                 break;
             case R.id.message:            //编辑部门信息
@@ -164,6 +182,8 @@ public class CorporActivity extends BaseActivity {
                 UiUtils.popupWindow.dismiss();
                 break;
             case R.id.invite:             //邀请同事
+                Intent intent1=new Intent(this,AddressListActivity.class);
+                startActivity(intent1);
                 UiUtils.popupWindow.dismiss();
                 break;
             case R.id.one:
@@ -301,7 +321,11 @@ public class CorporActivity extends BaseActivity {
         @Override
         public void onBindViewHolder(MyViewHolder3 holder, int position) {
              holder.corpor_tv2.setText(branchName);
+             Log.e("2级","2级");
+            PrefUtils.putString(getApplicationContext(),"branchCode",branchCode);
+             PrefUtils.putString(getApplicationContext(),"branchname",branchName);
              isBigBranch=false;
+
         }
         @Override
         public int getItemCount() {
@@ -316,6 +340,7 @@ public class CorporActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     getServerNextData(dataList.get(getLayoutPosition()).deptcode);
+
                    // myAdapter1.notifyDataSetChanged();
                 }
             });

@@ -7,6 +7,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,8 +79,7 @@ public class AttAreaActivity extends BaseActivity {
     private Map<String, String> mapSystem = new HashMap<>();
     private Map<String, String> mapSystem1 = new HashMap<>();
     private SystemTime systemTime1, systemTime2;
-    private String     attAreaChangeate;
-    private String dateTime2;
+    private String dateTime2, dateTime3;
     private String curdate1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +109,6 @@ public class AttAreaActivity extends BaseActivity {
     private void initData() {
         getSystemTime();   //yyyy-mm
         getSystemTime1();  //yyyy-mm-dd
-        String attAreaChangeate2 = PrefUtils.getString(this, "attAreaChangeate2", UiUtils
-                .refFormatNowDate("yyyy-MM-dd"));
-        attAreaChangeate = attAreaDate.getText().toString().trim();
         now = Calendar.getInstance();
         nowTimeText = UiUtils.refFormatNowDate("yyyy-MM-dd");
         Date date = new Date();
@@ -122,9 +119,6 @@ public class AttAreaActivity extends BaseActivity {
         map1 = new HashMap<>();
         map2 = new HashMap<>();
         map3 = new HashMap<>();
-        UiUtils.getFontBehand(month);
-        getServerData2(attAreaChangeate2);
-        getServerData1();
         attAreaRlv.setLinearLayout();
         myAdapter = new MyAdapter();
         attAreaRlv.setAdapter(myAdapter);
@@ -142,7 +136,7 @@ public class AttAreaActivity extends BaseActivity {
         mTabLayout.setupWithViewPager(mViewPager);               //将TabLayout和ViewPager关联起来。
         mTabLayout.setTabsFromPagerAdapter(mAdapter);            //给Tabs设置适配器
         titleTv.setText("考勤");
-        right.setVisibility(View.VISIBLE);
+        right.setVisibility(View.GONE);
         right.setText("设置班段");
         attAreaRlv.setOnPullLoadMoreListener(listener);
         flAddress.addView(view);
@@ -188,19 +182,18 @@ public class AttAreaActivity extends BaseActivity {
             .PullLoadMoreListener() {
         @Override
         public void onRefresh() {
-            getServerData1();
+//            getServerData1();
             UiUtils.upDownRefurbish(attAreaRlv);
         }
         @Override
         public void onLoadMore() {
-            getServerData1();
+//            getServerData1();
             UiUtils.upDownRefurbish(attAreaRlv);
         }
     };
 
     private void getServerData1() {
         try {
-
             Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "att_record_list.json", RequestMethod.POST);
             String time = Long.toString(new Date().getTime());
@@ -208,12 +201,13 @@ public class AttAreaActivity extends BaseActivity {
             map1.put("timestamp", time);
             map1.put("telnum", UiUtils.getPhoneNumber());
             map1.put("pindex", String.valueOf(1));
-            map1.put("psize", String.valueOf(20));
+            map1.put("psize", String.valueOf(200));
             map1.put("startdate", UiUtils.firstday);
             map1.put("enddate", UiUtils.lastday);
             String encode = MD5Encoder.encode(Sign.generateSign(map1) +
                     "12345678901234567890123456789011");
             map1.put("sign", encode);
+//            Log.e("map",UiUtils.Map2JsonStr(map1));
             request1.add(map1);
             CallServer.getRequestInstance().add(this, 1, request1, httpListener, false, false);
         } catch (Exception e) {
@@ -236,6 +230,7 @@ public class AttAreaActivity extends BaseActivity {
             String encode = MD5Encoder.encode(Sign.generateSign(map2) +
                     "12345678901234567890123456789011");
             map2.put("sign", encode);
+            Log.e("map2",UiUtils.Map2JsonStr(map2));
             request2.add(map2);
             CallServer.getRequestInstance().add(this, 2, request2, httpListener, false, false);
         } catch (Exception e) {
@@ -264,6 +259,10 @@ public class AttAreaActivity extends BaseActivity {
                     curdate1 = systemTime1.result.curdate;
                     maxdate1 = systemTime1.result.maxdate;
                     mindate1 = systemTime1.result.mindate;
+                    dateTime2=curdate1;
+                    attAreaDate.setText(dateTime2);
+                    UiUtils.getFontBehand(month);
+                    getServerData1();
                     break;
                 case 4:
                     System.out.println("系统时间数据2=" + response.get());
@@ -271,6 +270,9 @@ public class AttAreaActivity extends BaseActivity {
                     maxdate2 = systemTime2.result.maxdate;
                     mindate2 = systemTime2.result.mindate;
                     curdate2 = systemTime2.result.curdate;
+                    dateTime3=curdate2;
+                    attAreaDate2.setText(dateTime3);
+                    getServerData2(dateTime3);
                     break;
             }
         }
@@ -280,7 +282,6 @@ public class AttAreaActivity extends BaseActivity {
 
         }
     };
-
     private AttAreaBean processData(String result2) {
         Gson gson = new Gson();
         AttAreaBean attAreaBean = gson.fromJson(result2, AttAreaBean.class);
@@ -462,46 +463,53 @@ public class AttAreaActivity extends BaseActivity {
                 startActivity(new Intent(getApplication(), ClassActivity.class));
                 break;
             case R.id.left_choice:
-                dateTime2 = UiUtils.getDateTime(Calendar.MONTH, j--, "yyyy-MM");
-                if (UiUtils.timeToMill("yyyy-MM", dateTime2) >= UiUtils.timeToMill("yyyy-MM", mindate1)) {
+                if (!dateTime2.equals(mindate1))
+                {
+                    j--;
+                    dateTime2 = UiUtils.getDateTime(Calendar.MONTH, j, "yyyy-MM");
+                    Log.e("dateTime2-",dateTime2);
                     month--;
+                    UiUtils.getFontBehand(j);
                     getServerData1();
                     attAreaDate.setText(dateTime2);
                 }  else {
-                    UiUtils.ToastUtils("没有了,不能查询更久以前的数据了");
+                    UiUtils.ToastUtils("没有更多数据可以查询");
                 }
                 break;
             case R.id.right_choice:
-                dateTime2 =  UiUtils.getDateTime(Calendar.MONTH, j++, "yyyy-MM");
-                if (UiUtils.timeToMill("yyyy-MM", dateTime2) <= UiUtils.timeToMill("yyyy-MM", maxdate1)) {
+                if (!dateTime2.equals(maxdate1))
+                {
+                    j++;
+                    dateTime2 =  UiUtils.getDateTime(Calendar.MONTH, j, "yyyy-MM");
+                    Log.e("dateTime2+",dateTime2);
                     month++;
+                    UiUtils.getFontBehand(j);
                     getServerData1();
                     attAreaDate.setText(dateTime2);
                 } else {
-                    UiUtils.ToastUtils("没有更新的数据可以查看了");
+                    UiUtils.ToastUtils("没有更多数据可以查询");
                 }
                 break;
             case R.id.left_choice2:
-                String dateTime3 = UiUtils.getDateTime(Calendar.DATE, i--, "yyyy-MM-dd");
-                if (UiUtils.timeToMill("yyyy-MM-dd", dateTime3) >= UiUtils.timeToMill("yyyy-MM-dd", mindate2)) {
+
+                if (!dateTime3.equals(mindate2)) {
+                    i--;
+                    dateTime3 = UiUtils.getDateTime(Calendar.DATE,i , "yyyy-MM-dd");
                     getServerData2(dateTime3);
                     attAreaDate2.setText(dateTime3);
-                    PrefUtils.putString(this, "attAreaChangeate2", attAreaDate2.getText().toString()
-                            .trim());
                 } else {
                     UiUtils.ToastUtils("没有更多数据可以查询");
                 }
                 break;
             case R.id.right_choice2:
-                if (UiUtils.timeToMill("yyyy-MM-dd", curdate2) > UiUtils.timeToMill("yyyy-MM-dd",
-                        maxdate2)) {
-                    return;
+                if (!dateTime3.equals(maxdate2)) {
+                    i++;
+                    dateTime3 = UiUtils.getDateTime(Calendar.DATE,i , "yyyy-MM-dd");
+                    getServerData2(dateTime3);
+                    attAreaDate2.setText(dateTime3);
                 }
-                getServerData2(curdate2);
-                attAreaDate2.setText(curdate2);
-                PrefUtils.putString(this, "attAreaChangeate2", attAreaDate2.getText().toString()
-                        .trim());
-
+              else
+                    UiUtils.ToastUtils("没有更多数据可以查询");
                 break;
         }
     }

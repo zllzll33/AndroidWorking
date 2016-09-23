@@ -121,9 +121,8 @@ public class MyCaptureActivity extends CaptureActivity implements View.OnClickLi
 	@Override
 	public void handleDecode(Result result, Bitmap barcode)
 	{
-
 		final String resultString = result.getText();
-		Log.e("scan",resultString) ;
+		Log.e("scan",resultString);
 		if (resultString.equals(""))
 		{
 			Toast.makeText(MyCaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
@@ -133,11 +132,11 @@ public class MyCaptureActivity extends CaptureActivity implements View.OnClickLi
 			intent.putExtra(EXTRA_RESULT_SUCCESS_STRING, resultString);
 			if (mFinishActivityWhenScanFinish == 1)
 			{
+
 				setResult(RESULT_CODE_SCAN_SUCCESS, intent);
 				finish();
 				return;
 			}
-
 			AlertDialog resutlDialog = new AlertDialog.Builder(MyCaptureActivity.this).create();
 			resutlDialog.setTitle("扫描结果");
 			resutlDialog.setMessage(resultString);

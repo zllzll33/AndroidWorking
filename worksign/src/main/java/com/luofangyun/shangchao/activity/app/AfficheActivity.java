@@ -58,7 +58,6 @@ public class AfficheActivity extends BaseActivity {
     private void initView() {
         afficheRecy = (PullLoadMoreRecyclerView) view.findViewById(R.id.affiche_recy);
     }
-
     private void initData() {
         getServerData();
         afficheRecy.setLinearLayout();
@@ -75,10 +74,9 @@ public class AfficheActivity extends BaseActivity {
         afficheRecy.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-                getServerData();
+//                getServerData();
                 UiUtils.upDownRefurbish(afficheRecy);
             }
-
             @Override
             public void onLoadMore() {
                 UiUtils.upDownRefurbish(afficheRecy);
@@ -96,7 +94,7 @@ public class AfficheActivity extends BaseActivity {
             map.put("timestamp", time);
             map.put("telnum", UiUtils.getPhoneNumber());
             map.put("pindex", String.valueOf(1));
-            map.put("psize", String.valueOf(20));
+            map.put("psize", String.valueOf(200));
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
             map.put("sign", encode);

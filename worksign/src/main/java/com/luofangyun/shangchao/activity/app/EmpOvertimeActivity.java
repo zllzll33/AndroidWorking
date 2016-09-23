@@ -181,13 +181,13 @@ public class EmpOvertimeActivity extends AppBaseActivity {
             holder.workDays.setText(dataList.get(position).overdays);
             String statu = dataList.get(position).statu;
             if (statu.equals("0")) {
-                holder.workState.setText("待审批");
+                holder.workState.setText("审批中");
                 holder.cancleTv.setVisibility(View.VISIBLE);
             } else if (statu.equals("1")) {
-                holder.workState.setText("已审批");
+                holder.workState.setText("审批通过");
                 holder.cancleTv.setVisibility(View.GONE);
             } else if (statu.equals("2")) {
-                holder.workState.setText("已审批");
+                holder.workState.setText("审批拒绝");
                 holder.cancleTv.setVisibility(View.GONE);
             }
             holder.starttime.setText(dataList.get(position).stattime);
@@ -378,7 +378,14 @@ public class EmpOvertimeActivity extends AppBaseActivity {
         if (v.getId() == R.id.right) {
             Intent intent = new Intent(getApplication(), LeavetypeListActivity.class);
             intent.setAction("EmpOvertimeActivity");
-            startActivity(intent);
+            startActivityForResult(intent,1);
         }
+    }
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        getMySelf("emp_overtime_list.json", j, httpListener);       //我发起的
+        getWaitExamine("emp_overtime_list.json", k, httpListener);  //待审核请求数据
+        getExamine("emp_overtime_list.json", l, httpListener);      //已审核请求数据
     }
 }

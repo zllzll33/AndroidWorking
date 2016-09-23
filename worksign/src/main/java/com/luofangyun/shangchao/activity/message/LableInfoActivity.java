@@ -110,12 +110,11 @@ public class LableInfoActivity extends BaseActivity {
         mTabLayout.setupWithViewPager(mViewPager);               //将TabLayout和ViewPager关联起来。
         mTabLayout.setTabsFromPagerAdapter(mAdapter);            //给Tabs设置适配器
         titleTv.setText("考勤标签");
-        right.setVisibility(View.VISIBLE);
+        right.setVisibility(View.GONE);
         right.setText("保存");
         upDownRefurbish();
         flAddress.addView(view);
     }
-
     private void upDownRefurbish() {
         lableRecy1.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
@@ -133,7 +132,6 @@ public class LableInfoActivity extends BaseActivity {
             public void onRefresh() {
                 UiUtils.upDownRefurbish(lableRecy2);
             }
-
             @Override
             public void onLoadMore() {
                 UiUtils.upDownRefurbish(lableRecy2);
@@ -152,7 +150,7 @@ public class LableInfoActivity extends BaseActivity {
             map.put("timecode", timecode);
             map.put("opflag", String.valueOf(1));
             map.put("pindex", String.valueOf(1));
-            map.put("psize", String.valueOf(20));
+            map.put("psize", String.valueOf(200));
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
             map.put("sign", encode);
@@ -174,7 +172,7 @@ public class LableInfoActivity extends BaseActivity {
             map.put("timecode", timecode);
             map.put("opflag", String.valueOf(2));
             map.put("pindex", String.valueOf(1));
-            map.put("psize", String.valueOf(20));
+            map.put("psize", String.valueOf(200));
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
             map.put("sign", encode);
@@ -194,18 +192,18 @@ public class LableInfoActivity extends BaseActivity {
             map3.put("timestamp", time);
             map3.put("telnum", UiUtils.getPhoneNumber());
             map3.put("timecode", timecode);
-            map3.put("opflag", String.valueOf(0));
+            map3.put("opflag", "0");
             map3.put("labels", labelsName);
             String encode = MD5Encoder.encode(Sign.generateSign(map3) +
                     "12345678901234567890123456789011");
             map3.put("sign", encode);
+            Log.e("考勤标签add",UiUtils.Map2JsonStr(map3));
             request3.add(map3);
             CallServer.getRequestInstance().add(this, 3, request3, httpListener, false, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     private void getDeleteServer(String labelsName) {
         try {
             Request<String> request4 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
@@ -240,23 +238,28 @@ public class LableInfoActivity extends BaseActivity {
                 case 2:
                     Log.e("i == 2", "onSucceed: " + response.get());
                     lableInfo2 = new Gson().fromJson(response.get(), LableInfo.class);   //未选
-
                     dataList2 = lableInfo2.result.data;
                     myAdapter2.notifyDataSetChanged();
                     break;
                 case 3:
-                    applyBean1 = new Gson().fromJson(response.get(), ApplyBean.class);
+                    Log.e("add",response.get());
+                    getServerData1();
+                    getServerData2();
+                  /*  applyBean1 = new Gson().fromJson(response.get(), ApplyBean.class);
                     dataList1.remove(k);
                     UiUtils.ToastUtils(applyBean1.summary);
                     myAdapter1.notifyDataSetChanged();
-                    myAdapter2.notifyDataSetChanged();
+                    myAdapter2.notifyDataSetChanged();*/
                     break;
                 case 4:
-                    applyBean2 = new Gson().fromJson(response.get(), ApplyBean.class);
+                    Log.e("delete",response.get());
+                    getServerData1();
+                    getServerData2();
+                /*    applyBean2 = new Gson().fromJson(response.get(), ApplyBean.class);
                     UiUtils.ToastUtils(applyBean2.summary);
                     dataList2.remove(l);
                     myAdapter1.notifyDataSetChanged();
-                    myAdapter2.notifyDataSetChanged();
+                    myAdapter2.notifyDataSetChanged();*/
                     break;
             }
         }
@@ -317,7 +320,7 @@ public class LableInfoActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.lable_add) {
-                getDeleteServer(dataList1.get(getLayoutPosition()).labelname);
+                getDeleteServer(dataList1.get(getLayoutPosition()).labelcode);
             }
         }
     }
@@ -373,7 +376,7 @@ public class LableInfoActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.lable_add) {
-                getAddServer(dataList2.get(getLayoutPosition()).labelname);
+                getAddServer(dataList2.get(getLayoutPosition()).labelcode);
             }
         }
     }

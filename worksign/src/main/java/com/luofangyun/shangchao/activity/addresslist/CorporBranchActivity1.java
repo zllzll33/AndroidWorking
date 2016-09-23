@@ -50,7 +50,7 @@ public class CorporBranchActivity1 extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setResult(1);
+
         view = View.inflate(this, R.layout.activity_corpor, null);
         initView();
         initData();
@@ -147,8 +147,10 @@ public class CorporBranchActivity1 extends BaseActivity {
                     intent.setAction("editBranch");
                     Bundle bundle=new Bundle();
                     bundle.putString("parentdept", dataList.get(getPosition()).deptcode);
+                    bundle.putBoolean("addNewBr",true);
                     bundle.putString("parentname", dataList.get(getPosition()).deptname);
                     intent.putExtra("bundle",bundle);
+                    setResult(1);
                     startActivity(intent);
                     finish();
                 }

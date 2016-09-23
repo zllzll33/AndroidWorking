@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.luofangyun.shangchao.R;
+import com.luofangyun.shangchao.activity.message.ConfirmActivity;
 import com.luofangyun.shangchao.base.BaseActivity;
 import com.luofangyun.shangchao.utils.UiUtils;
 import com.yunliwuli.beacon.kit.data.BluetoothDeviceAndRssi;
@@ -25,11 +27,13 @@ public class BlueListActivitiy extends BaseActivity {
     private ArrayList<BluetoothDeviceAndRssi> deviceList = new ArrayList<>();
     private RecyclerView listRecy;
     private MyAdapter    myAdapter;
-
+     String action;
+    YlwlManager ylwlmanager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = UiUtils.inflateView(R.layout.activity_blue_list_activitiy);
+        action=getIntent().getAction();
         initView();
         initData();
     }
@@ -39,7 +43,8 @@ public class BlueListActivitiy extends BaseActivity {
     }
 
     private void initData() {
-        final YlwlManager ylwlmanager = YlwlManager.getInstance(this);
+        ylwlmanager = YlwlManager.getInstance(this);
+
         /**
          * 设置启用云服务 (上传传感器数据，如电量、rssi等)。如果不设置，默认为关闭状态。
          **/
@@ -60,20 +65,19 @@ public class BlueListActivitiy extends BaseActivity {
                  * 传多个beacon过来   已经做好了排序  ，  距离      连接状态(BluetoothDeviceAndRssi
                  * isConn方法) 也随时改变
                  */
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
                         deviceList = beacons;
-                        Collections.sort(deviceList);
-                        //距离排序
-                        System.out.println("uuid=" + deviceList.get(0).getUuid());
-                        System.out.println("蓝牙名称=" + deviceList.get(0)
-                                .getBluetoothdevice().getName());
-                        listRecy.setLayoutManager(new LinearLayoutManager(getApplication()));
-                        myAdapter = new MyAdapter();
-                        listRecy.setAdapter(myAdapter);
-                    }
-                });
+                        if(deviceList.size()>0) {
+                            Collections.sort(deviceList);
+                            //距离排序
+                            System.out.println("uuid=" + deviceList.get(0).getUuid());
+                            System.out.println("蓝牙名称=" + deviceList.get(0)
+                                    .getBluetoothdevice().getName());
+                            listRecy.setLayoutManager(new LinearLayoutManager(getApplication()));
+                            myAdapter = new MyAdapter();
+                            listRecy.setAdapter(myAdapter);
+                        }
+
+
             }
 
             @Override
@@ -107,7 +111,6 @@ public class BlueListActivitiy extends BaseActivity {
         public void onBindViewHolder(MyViewHolder holder, int position) {
             holder.blue_list_name.setText(deviceList.get(position).getBluetoothdevice().getName());
         }
-
         @Override
         public int getItemCount() {
             return deviceList.size();
@@ -122,13 +125,39 @@ public class BlueListActivitiy extends BaseActivity {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(new Intent(getApplication(), BlueManagerActivitiy
-                            .class));
-                    intent.putExtra("number", deviceList.get(getLayoutPosition()).getName());
-                    startActivity(intent);
+                    if(action==null) {
+                        Intent intent = new Intent(new Intent(getApplication(), BlueManagerActivitiy
+                                .class));
+                        intent.putExtra("number", deviceList.get(getLayoutPosition()).getName());
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if(action.equals("PatrolRecordDetailActivity"))
+                    {
+                        String blueNum=deviceList.get(getLayoutPosition()).getName();
+                        Intent intent=new Intent(BlueListActivitiy.this, PatrolRecordPunchActivty.class);
+                        intent.putExtra("blueNum",blueNum);
+                        startActivity(intent);
+                        Log.e("PatrolRecord","Patrol");
+                        finish();
+                    }
+                    else if(action.equals("chooseBlue"))
+                    {
+                        String blueNum=deviceList.get(getLayoutPosition()).getName();
+                         Intent intent=new Intent();
+                        intent.putExtra("blueNum",blueNum);
+                        setResult(1,intent);
+                        finish();
+                    }
                 }
             });
             blue_list_name = (TextView) itemView.findViewById(R.id.blue_list_name);
         }
+    }
+    @Override
+    protected void onDestroy() {
+        ylwlmanager.unbindService();
+        super.onDestroy();
+
     }
 }

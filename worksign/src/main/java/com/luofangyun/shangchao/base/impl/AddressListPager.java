@@ -9,6 +9,7 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,7 @@ public class AddressListPager extends BasePager implements View.OnClickListener 
            public void handleMessage(Message msg)
            {
                getserverTelData();
+               getServerData();
            }
         };
         companyname = PrefUtils.getString(mActivity, "companyname", null);        //企业名称

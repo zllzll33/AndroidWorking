@@ -25,7 +25,6 @@
         android:textOn=""
         android:textOff=""
         android:background="@drawable/button_select"/>
-
     <!--<com.luofang.worksign.ui.ToggleView
         android:id="@+id/toggleView"
         android:layout_width="5dp"

@@ -67,7 +67,7 @@ public class MeetDetailActivity extends BaseActivity {
         meetText6 = (TextView) view.findViewById(R.id.meet_text6);
         meetRightText6 = (TextView) view.findViewById(R.id.meet_right_text6);
         addTv = (TextView) view.findViewById(R.id.add_tv);
-
+        addTv.setOnClickListener(this);
     }
 
     private void initData() {
@@ -86,7 +86,7 @@ public class MeetDetailActivity extends BaseActivity {
             titleTv.setText("会议详情");
             getAction();
         } else if (action.equals("MeetingActivity3")) {
-            titleTv.setText("");
+            titleTv.setText("添加会议");
             meetEt1.setFocusable(true);
             meetEt1.setFocusableInTouchMode(true);
             meetEt2.setFocusable(true);
@@ -131,7 +131,11 @@ public class MeetDetailActivity extends BaseActivity {
                     UiUtils.ToastUtils("开始时间不能为空");
                 } else if (TextUtils.isEmpty(meetEt5.getText().toString().trim())) {
                     UiUtils.ToastUtils("结束时间不能为空");
-                } else if (TextUtils.isEmpty(meetRightText6.getText().toString())) {
+                }
+                else if(UiUtils.timeToMill("yyyy-MM-dd HH:mm",meetEt4.getText().toString().trim())>=UiUtils.timeToMill("yyyy-MM-dd HH:mm",meetEt5.getText().toString().trim()))
+                {
+                    UiUtils.ToastUtils("开始时间不能大于结束时间");
+                }else if (TextUtils.isEmpty(meetRightText6.getText().toString())) {
                     UiUtils.ToastUtils("会议标签不能为空");
                 }
               else {
@@ -162,6 +166,10 @@ public class MeetDetailActivity extends BaseActivity {
                 intent.putExtra("meetEt5", TextUtils.isEmpty(meetEt5.getText().toString().trim())
                         ? "" : meetEt5.getText().toString().trim());
                 startActivityForResult(intent, MeetDetailActivity);
+                break;
+            case R.id.add_tv:
+             Intent intent1=new Intent(this,MeetingPeopleActivity.class);
+                startActivity(intent1);
                 break;
         }
     }
@@ -217,7 +225,6 @@ public class MeetDetailActivity extends BaseActivity {
         @Override
         public void onFailed(int what, String url, Object tag, CharSequence message, int
                 responseCode, long networkMillis) {
-
         }
     };
 }

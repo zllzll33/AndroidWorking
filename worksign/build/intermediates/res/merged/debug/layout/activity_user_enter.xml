@@ -22,7 +22,7 @@
             android:id="@+id/et_urer_num"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="13738007371"
+            android:text=""
             android:inputType="number"/>
     </LinearLayout>
 
@@ -41,7 +41,7 @@
             android:id="@+id/et_urer_password"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="123456"
+            android:text=""
             android:inputType="textPassword"/>
     </com.zhy.autolayout.AutoLinearLayout>
 

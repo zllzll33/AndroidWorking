@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,9 +74,9 @@ public class LeaveActivity extends BaseActivity {
         map1 = new HashMap<>();
         map2 = new HashMap<>();
         map3 = new HashMap<>();
-        getWaitExamine(k);  //待审核请求数据
-        getExamine(l);      //已审核请求数据
-        getMySelf(j);       //我发起的
+        getWaitExamine();  //待审核请求数据
+        getExamine();      //已审核请求数据
+        getMySelf();       //我发起的
         initView();
         initData();
     }
@@ -99,7 +100,6 @@ public class LeaveActivity extends BaseActivity {
         myLeaveRb.setOnClickListener(this);
         leaveExamineRb.setOnClickListener(this);
         titleTv.setText("请假");
-
         myLeaveRlv.setLinearLayout();
          myAdapter = new MyAdapter();
          myLeaveRlv.setAdapter(myAdapter);
@@ -129,18 +129,36 @@ public class LeaveActivity extends BaseActivity {
         upDownRefurbish();
         flAddress.addView(view);
     }
-
+  private void cancle(String leavecode)
+  {
+      try {
+          Request<String> request = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
+                  "leave_cancel.json", RequestMethod.POST);
+          String time = Long.toString(new Date().getTime());
+          map.put("access_id", "1234567890");
+          map.put("timestamp", time);
+          map.put("telnum", UiUtils.getPhoneNumber());
+          map.put("leavecode", leavecode);
+          String encode = MD5Encoder.encode(Sign.generateSign(map) +
+                  "12345678901234567890123456789011");
+          map.put("sign", encode);
+          request.add(map);
+          CallServer.getRequestInstance().add(this, 4, request, httpListener, false, false);
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
     private void upDownRefurbish() {
         leaveRlv.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-                getWaitExamine(k);
+//                getWaitExamine();
                 UiUtils.upDownRefurbish(leaveRlv);
             }
 
             @Override
             public void onLoadMore() {
-                getWaitExamine(k);
+//                getWaitExamine();
                 UiUtils.upDownRefurbish(leaveRlv);
             }
         });
@@ -148,7 +166,7 @@ public class LeaveActivity extends BaseActivity {
                 .PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-                getExamine(l);
+//                getExamine();
                 UiUtils.upDownRefurbish(examineAboptRlv);
             }
 
@@ -160,13 +178,13 @@ public class LeaveActivity extends BaseActivity {
         myLeaveRlv.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-                getMySelf(j);
+//                getMySelf();
                 UiUtils.upDownRefurbish(myLeaveRlv);
             }
 
             @Override
             public void onLoadMore() {
-                getMySelf(j);
+//                getMySelf();
                 UiUtils.upDownRefurbish(myLeaveRlv);
             }
         });
@@ -175,7 +193,7 @@ public class LeaveActivity extends BaseActivity {
     /**
      * 我发起的
      */
-    private void getMySelf(int j) {
+    private void getMySelf() {
         try {
             Request<String> request = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "emp_leave_list.json", RequestMethod.POST);
@@ -183,8 +201,8 @@ public class LeaveActivity extends BaseActivity {
             map.put("access_id", "1234567890");
             map.put("timestamp", time);
             map.put("telnum", UiUtils.getPhoneNumber());
-            map.put("pindex", String.valueOf(j));
-            map.put("psize", String.valueOf(20));
+            map.put("pindex", String.valueOf(1));
+            map.put("psize", String.valueOf(200));
             map.put("flag", String.valueOf(0));
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
@@ -196,7 +214,7 @@ public class LeaveActivity extends BaseActivity {
         }
     }
 
-    public void getWaitExamine(int k) {
+    public void getWaitExamine() {
         try {
             Request<String> request = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "emp_leave_list.json", RequestMethod.POST);
@@ -204,8 +222,8 @@ public class LeaveActivity extends BaseActivity {
             map1.put("access_id", "1234567890");
             map1.put("timestamp", time);
             map1.put("telnum", UiUtils.getPhoneNumber());
-            map1.put("pindex", String.valueOf(k));
-            map1.put("psize", String.valueOf(20));
+            map1.put("pindex", String.valueOf(1));
+            map1.put("psize", String.valueOf(200));
             map1.put("flag", String.valueOf(1));
             String encode = MD5Encoder.encode(Sign.generateSign(map1) +
                     "12345678901234567890123456789011");
@@ -217,7 +235,7 @@ public class LeaveActivity extends BaseActivity {
         }
     }
 
-    public void getExamine(int l) {
+    public void getExamine() {
         try {
             Request<String> request = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "emp_leave_list.json", RequestMethod.POST);
@@ -225,8 +243,8 @@ public class LeaveActivity extends BaseActivity {
             map2.put("access_id", "1234567890");
             map2.put("timestamp", time);
             map2.put("telnum", UiUtils.getPhoneNumber());
-            map2.put("pindex", String.valueOf(l));
-            map2.put("psize", String.valueOf(20));
+            map2.put("pindex", String.valueOf(1));
+            map2.put("psize", String.valueOf(200));
             map2.put("flag", String.valueOf(2));
             String encode = MD5Encoder.encode(Sign.generateSign(map2) +
                     "12345678901234567890123456789011");
@@ -237,7 +255,6 @@ public class LeaveActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
-
     private HttpListener<String> httpListener = new HttpListener<String>() {
         @Override
         public void onSucceed(int what, Response<String> response) {
@@ -266,6 +283,12 @@ public class LeaveActivity extends BaseActivity {
                     UiUtils.ToastUtils(new Gson().fromJson(result3, ApplyBean.class).summary);
                     dataList.remove(i);
                     myAdapter.notifyDataSetChanged();
+                    break;
+                case 4:
+//                    Log.e("cancel_result",response.get());
+                    getWaitExamine();  //待审核请求数据
+                    getExamine();      //已审核请求数据
+                    getMySelf();       //我发起的
                     break;
             }
         }
@@ -314,8 +337,10 @@ public class LeaveActivity extends BaseActivity {
                 holder.leave_examine.setText("审批中");
             } else if (dataList.get(position).statu == 1) {
                 holder.leave_examine.setText("审批通过");
+                holder.cancle_tv.setVisibility(View.GONE);
             } else if (dataList.get(position).statu == 2) {
                 holder.leave_examine.setText("审批拒绝");
+                holder.cancle_tv.setVisibility(View.GONE);
             }
             holder.leave_starttime.setText(dataList.get(position).stattime);
             holder.leave_endtime.setText(dataList.get(position).endtime);
@@ -333,7 +358,7 @@ public class LeaveActivity extends BaseActivity {
             return 0;
         }
     }
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder {
         TextView leave_message,leave_days,leave_starttime,leave_endtime,cancle_tv,leave_examine;
         ImageView leave_rigth;
         public MyViewHolder(View itemView) {
@@ -345,7 +370,31 @@ public class LeaveActivity extends BaseActivity {
             leave_rigth = (ImageView) itemView.findViewById(R.id.leave_rigth);
             cancle_tv = (TextView) itemView.findViewById(R.id.cancle_tv);
             leave_examine = (TextView) itemView.findViewById(R.id.leave_examine);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplication(), LeavetypeListActivity.class);
+                    intent.putExtra("leavename", dataList.get(getLayoutPosition()).leavename);
+                    intent.putExtra("stattime", dataList.get(getLayoutPosition()).stattime);
+                    intent.putExtra("endtime", dataList.get(getLayoutPosition()).endtime);
+                    intent.putExtra("leavedays", dataList.get(getLayoutPosition()).leavedays);
+                    intent.putExtra("statu", dataList.get(getLayoutPosition()).statu + "");
+                    intent.putExtra("leavereason", dataList.get(getLayoutPosition()).leavereason);
+                    intent.putExtra("leavecode", dataList.get(getLayoutPosition()).leavecode);
+                    intent.putExtra("isMy", true);
+                    intent.setAction("Leavewaitdetail");
+                    startActivity(intent);
+                }
+            });
+            cancle_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Log.e("请假撤回",dataList.get(getLayoutPosition()).leavecode);
+                    cancle(dataList.get(getLayoutPosition()).leavecode);
+                }
+            });
         }
+
     }
 
     private class MyAdapter1 extends RecyclerView.Adapter<MyViewHolder1> {
@@ -361,6 +410,8 @@ public class LeaveActivity extends BaseActivity {
             holder.leave_examine1.setText("审批中");
             holder.leave_starttime1.setText(dataList1.get(position).stattime);
             holder.leave_endtime1.setText(dataList1.get(position).endtime);
+            holder.cancle_tv.setVisibility(View.GONE);
+
         }
         @Override
         public int getItemCount() {
@@ -370,8 +421,8 @@ public class LeaveActivity extends BaseActivity {
             return 0;
         }
     }
-    class MyViewHolder1 extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView leave_message1, leave_days1, leave_examine1, leave_starttime1, leave_endtime1;
+    class MyViewHolder1 extends RecyclerView.ViewHolder {
+        TextView leave_message1, leave_days1, leave_examine1, leave_starttime1, leave_endtime1,cancle_tv;
         ImageView leave_rigth1;
         public MyViewHolder1(View itemView) {
             super(itemView);
@@ -381,24 +432,30 @@ public class LeaveActivity extends BaseActivity {
             leave_starttime1 = (TextView) itemView.findViewById(R.id.leave_starttime);
             leave_endtime1 = (TextView) itemView.findViewById(R.id.leave_endtime);
             leave_rigth1 = (ImageView) itemView.findViewById(R.id.leave_rigth);
-            leave_rigth1.setOnClickListener(this);
+            cancle_tv = (TextView) itemView.findViewById(R.id.cancle_tv);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplication(), LeavetypeListActivity.class);
+                    intent.putExtra("leavename", dataList1.get(getLayoutPosition()).leavename);
+                    intent.putExtra("stattime", dataList1.get(getLayoutPosition()).stattime);
+                    intent.putExtra("endtime", dataList1.get(getLayoutPosition()).endtime);
+                    intent.putExtra("leavedays", dataList1.get(getLayoutPosition()).leavedays);
+                    intent.putExtra("statu", dataList1.get(getLayoutPosition()).statu + "");
+                    intent.putExtra("leavereason", dataList1.get(getLayoutPosition()).leavereason);
+                    intent.putExtra("leavecode", dataList1.get(getLayoutPosition()).leavecode);
+                    intent.setAction("Leavewaitdetail");
+                    startActivity(intent);
+                }
+            });
+            cancle_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cancle(dataList1.get(getLayoutPosition()).leavecode);
+                }
+            });
         }
-        @Override
-        public void onClick(View v) {
-            if (v.getId() == R.id.leave_rigth) {
-                Intent intent = new Intent(getApplication(), LeavetypeListActivity.class);
-                intent.putExtra("leavename", dataList1.get(getLayoutPosition()).leavename);
-                intent.putExtra("stattime", dataList1.get(getLayoutPosition()).stattime);
-                intent.putExtra("endtime", dataList1.get(getLayoutPosition()).endtime);
-                intent.putExtra("leavedays", dataList1.get(getLayoutPosition()).leavedays);
-                intent.putExtra("statu", dataList1.get(getLayoutPosition()).statu + "");
-                intent.putExtra("leavereason", dataList1.get(getLayoutPosition()).leavereason);
-                intent.putExtra("leavecode", dataList1.get(getLayoutPosition()).leavecode);
-                intent.setAction("Leavewaitdetail");
-                startActivity(intent);
-            }
 
-        }
     }
     private class MyAdapter2 extends RecyclerView.Adapter<MyViewHolder2> {
         @Override
@@ -440,6 +497,21 @@ public class LeaveActivity extends BaseActivity {
             leaveStarttime = (TextView) itemView.findViewById(R.id.leave_starttime);
             leaveEndtime = (TextView) itemView.findViewById(R.id.leave_endtime);
             leaveRigth = (ImageView) itemView.findViewById(R.id.leave_rigth);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplication(), LeavetypeListActivity.class);
+                    intent.putExtra("leavename", dataList2.get(getLayoutPosition()).leavename);
+                    intent.putExtra("stattime", dataList2.get(getLayoutPosition()).stattime);
+                    intent.putExtra("endtime", dataList2.get(getLayoutPosition()).endtime);
+                    intent.putExtra("leavedays", dataList2.get(getLayoutPosition()).leavedays);
+                    intent.putExtra("statu", dataList2.get(getLayoutPosition()).statu + "");
+                    intent.putExtra("leavereason", dataList2.get(getLayoutPosition()).leavereason);
+                    intent.putExtra("leavecode", dataList2.get(getLayoutPosition()).leavecode);
+                    intent.setAction("Leavewaitdetail");
+                    startActivity(intent);
+                }
+            });
         }
     }
     private void getDeleteServerData(String code) {
@@ -503,7 +575,7 @@ public class LeaveActivity extends BaseActivity {
             case R.id.right:
                 Intent intent = new Intent(this, LeavetypeListActivity.class);
                 intent.setAction("LeaveActivity");
-                startActivity(intent);
+                startActivityForResult(intent,1);
                 break;
             case R.id.my_leave_rb:
                 mTabLayout.setVisibility(View.GONE);
@@ -520,5 +592,12 @@ public class LeaveActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+        getWaitExamine();  //待审核请求数据
+        getExamine();      //已审核请求数据
+        getMySelf();       //我发起的
     }
 }

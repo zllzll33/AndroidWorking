@@ -55,7 +55,6 @@
             android:textColor="@color/black"
             android:hint="请输入姓名"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

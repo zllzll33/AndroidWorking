@@ -19,7 +19,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
 import com.luofangyun.shangchao.activity.MainActivity;
+import com.luofangyun.shangchao.activity.MyCaptureActivity;
 import com.luofangyun.shangchao.activity.app.AttAreaActivity;
+import com.luofangyun.shangchao.activity.app.BlueListActivitiy;
 import com.luofangyun.shangchao.base.BaseActivity;
 import com.luofangyun.shangchao.domain.ApplyBean;
 import com.luofangyun.shangchao.domain.WorkTimeBean;
@@ -57,10 +59,11 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
     private Map<String, String> map = new HashMap<>();
     private String address;
     private LocationManager locationManager;
-    private String locationProvider;
+    private String locationProvider,action;
     private Location location;
     private double longitude;
     private double latitude;
+    boolean isNotCard=false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,8 +106,8 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
         instead = (TextView) view.findViewById(R.id.instead);
         view.findViewById(R.id.rl_confirm).setOnClickListener(this);
         instead.setOnClickListener(this);
+        confirmTv.setOnClickListener(this);
         getWorktime();
-
     }
    private void getWorktime()
    {
@@ -112,12 +115,11 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
        Date d1=new Date(longtime);
        String attdate=format.format(d1);
-       Log.e("attdate",attdate);
        try {
            Request<String> request = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                    "att_schedu_info.json", RequestMethod.POST);
            String time = Long.toString(new Date().getTime());
-           map.put("access_id", "1234567890");
+           map.put("access_id","1234567890");
            map.put("timestamp", time);
            map.put("telnum", UiUtils.getPhoneNumber());
            map.put("attdate", attdate);
@@ -132,29 +134,26 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
    }
     private void initData() {
         showLocationText();
-        System.out.println("经度：" + longitude);
-        System.out.println("纬度：" + latitude);
-        String labelTvText = PrefUtils.getString(this, "labelText", null);
-        String confirmNameText = PrefUtils.getString(this, "confirmNameText", null);
-        String confirmTimeText = PrefUtils.getString(this, "confirmTimeText", null);
-        if (TextUtils.isEmpty(labelTvText)) {
-            labelTv.setText("NFC标签");
-        } else {
-            labelTv.setText(labelTvText);
-        }
-
-        if (TextUtils.isEmpty(confirmNameText)) {
-            confirmName.setText("");
-        } else {
-            confirmName.setText(confirmNameText);
-        }
-
-        if (TextUtils.isEmpty(confirmTimeText)) {
-            confirmTime.setText("");
-        } else {
-            confirmTime.setText(confirmTimeText);
-        }
+            String confirmNameText = PrefUtils.getString(this, "confirmNameText", null);
+            if (TextUtils.isEmpty(confirmNameText)) {
+                labelTv.setText("GPS标签:");
+                confirmName.setText(MainActivity.addrStr);
+            } else {
+                labelTv.setText(confirmNameText);
+                if (confirmNameText.contains("GPS")) {
+                    labelTv.setText("GPS标签:");
+                    confirmName.setText(MainActivity.addrStr);
+                } else if (confirmNameText.contains("NFC")) {
+                    Intent intent = new Intent(ConfirmActivity.this, MyCaptureActivity.class);
+                    startActivityForResult(intent, 1);
+                } else if (confirmNameText.contains("蓝牙")) {
+                    Intent intent1 = new Intent(ConfirmActivity.this, BlueListActivitiy.class);
+                    intent1.setAction("chooseBlue");
+                    startActivityForResult(intent1, 2);
+                }
+            }
         nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        confirmTime.setText(nowTime);
         handler = new android.os.Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -165,7 +164,6 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
         titleTv.setText("打卡");
         flAddress.addView(view);
     }
-
     private void showLocationText() {
         //获取地理位置管理器
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -178,7 +176,7 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
             //如果是Network
             locationProvider = LocationManager.NETWORK_PROVIDER;
         }else {
-            Toast.makeText(this, "没有可用的位置提供器", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "没有可用的位置提供器", Toast.LENGTH_SHORT).show();
             return ;
         }
         //获取Location
@@ -231,25 +229,28 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
             locationManager.removeUpdates(locationListener);
         }
     }
-
     @Override
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.rl_confirm:
-                if (labelTv.getText().toString().trim().equals("GPS标签：")) {
-                    confirmName.setText(address);
+                if(isNotCard==true)
+                {
+                    UiUtils.ToastUtils("没有排班，暂不用打卡");
+                    return;
+                }
+                if (labelTv.getText().toString().trim().contains("GPS")) {
                     confirmTime.setText(nowTime);
-                    getServerData(longitude + "," + latitude, 3);
+                    getServerData("("+String.valueOf(MainActivity.longitude) + "," + String.valueOf(MainActivity.latitude)+")", 3);
                     PrefUtils.putString(this, "confirmNameText", confirmName.getText().toString().trim());
                     PrefUtils.putString(this, "confirmTimeText", confirmTime.getText().toString().trim());
                     System.out.println("我被点击了……");
-                } else if (labelTv.getText().toString().trim().equals("NFC标签：")) {
-                    getServerData(longitude + "," + latitude, 1);
+                } else if (labelTv.getText().toString().trim().contains("NFC")) {
+                    getServerData(confirmName.getText().toString(), 1);
                     PrefUtils.putString(this, "confirmNameText", confirmName.getText().toString().trim());
                     PrefUtils.putString(this, "confirmTimeText", confirmTime.getText().toString().trim());
-                } else if (labelTv.getText().toString().trim().equals("蓝牙标签：")) {
-                    getServerData(longitude + "," + latitude, 2);
+                } else if (labelTv.getText().toString().trim().contains("蓝牙")) {
+                    getServerData(confirmName.getText().toString(), 2);
                     PrefUtils.putString(this, "confirmNameText", confirmName.getText().toString().trim());
                     PrefUtils.putString(this, "confirmTimeText", confirmTime.getText().toString().trim());
                 }
@@ -263,6 +264,8 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                 cardSet.findViewById(R.id.card_gps).setOnClickListener(this);
                 break;
             case R.id.myinfo_cancel:
+                UiUtils.parentpopupWindow.dismiss();
+                break;
             case R.id.window_rl:
                 UiUtils.parentpopupWindow.dismiss();
                 break;
@@ -272,7 +275,10 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                 PrefUtils.putString(this, "confirmTimeText", "");
                 confirmName.setText("");
                 confirmTime.setText("");
+                confirmTime.setText(nowTime);
                 PrefUtils.putString(this, "labelText", labelTv.getText().toString().trim());
+                Intent intent=new Intent(ConfirmActivity.this, MyCaptureActivity.class);
+                startActivityForResult(intent,1);
                 UiUtils.parentpopupWindow.dismiss();
                 break;
             case R.id.card_bule:
@@ -282,13 +288,15 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                 confirmTime.setText("");
                 labelTv.setText("蓝牙标签：");
                 PrefUtils.putString(this, "labelText", labelTv.getText().toString().trim());
+                Intent intent1=new Intent(ConfirmActivity.this, BlueListActivitiy.class);
+                intent1.setAction("chooseBlue");
+                startActivityForResult(intent1,2);
                 UiUtils.parentpopupWindow.dismiss();
                 break;
             case R.id.card_gps:
                 PrefUtils.putString(this, "confirmNameText", "");
-                PrefUtils.putString(this, "confirmTimeText", "");
                 confirmName.setText(MainActivity.addrStr);
-                confirmTime.setText("");
+                confirmTime.setText(nowTime);
                 labelTv.setText("GPS标签：");
                 PrefUtils.putString(this, "labelText", labelTv.getText().toString().trim());
                 UiUtils.parentpopupWindow.dismiss();
@@ -300,7 +308,27 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                 break;
         }
     }
-
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data)
+    {
+       if(requestCode==1) {
+           if (data != null) {
+               String scan = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
+               int start = scan.indexOf("=");
+               String nfcid = scan.substring(start + 1, scan.length());
+               confirmName.setText(nfcid);
+           }
+       }
+        else if(requestCode==2)
+       {
+           if (data != null) {
+               String blueNum = data.getStringExtra("blueNum");
+               String Num = blueNum.substring(blueNum.length()-5, blueNum.length());
+               confirmName.setText(Num);
+           }
+       }
+//        Log.e("nfcid",nfcid);
+    }
     private void getServerData(String data, int i) {
         try {
             Request<String> request = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
@@ -315,6 +343,7 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
             map.put("sign", encode);
+//            Log.e("打卡",UiUtils.Map2JsonStr(map));
             request.add(map);
             CallServer.getRequestInstance().add(this, 1, request, httpListener, false, false);
         } catch (Exception e) {
@@ -327,22 +356,26 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
         @Override
         public void onSucceed(int what, Response<String> response) {
             String result = response.get();
-            Log.e("打卡",result);
+//            Log.e("打卡",result);
             switch (what)
             {
                 case 1:
-
                     System.out.println("打卡信息=" + result);
                     applyBean = new Gson().fromJson(result, ApplyBean.class);
                     UiUtils.ToastUtils(applyBean.summary);
                     break;
                 case 2:
                    WorkTimeBean workTimeBean = new Gson().fromJson(result, WorkTimeBean.class);
+                    if(workTimeBean.status.equals("00000")) {
                     onDutyTime.setText(workTimeBean.result.sbtime);
                     offDuty.setText(workTimeBean.result.xbtime);
+                    }
+                    else {
+                        UiUtils.ToastUtils("没有排班，暂不用打卡");
+                        isNotCard=true;
+                    }
                     break;
             }
-
         }
         @Override
         public void onFailed(int what, String url, Object tag, CharSequence message, int

@@ -25,7 +25,8 @@
             android:layout_height="50dp"
             android:textSize="15dp"
             android:hint="请输入公告标题"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/dark_gray"/>
     </LinearLayout>
 
     <TextView style="@style/long_line"/>
@@ -71,7 +72,8 @@
         android:gravity="top"
         android:textSize="15dp"
         android:hint="请输入详细的公告内容"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_gray"/>
     <TextView style="@style/long_line"/>
 
 </LinearLayout>

@@ -156,8 +156,11 @@ public class NewAddActivity extends BaseActivity {
                 case 0:
                     System.out.println("添加的数据为=" + response.get());
                     attTimeBean = new Gson().fromJson(response.get(), AttTimeBean.class);
-                    UiUtils.ToastUtils(attTimeBean.summary);
+                    if(attTimeBean.status.equals("00000"))
+                    UiUtils.ToastUtils("请设置标签和人员");
                     Log.e("增加的数据为:", attTimeBean.result.timecode);
+                    setResult(1);
+//                    finish();
                     break;
                 case 1:
                     break;

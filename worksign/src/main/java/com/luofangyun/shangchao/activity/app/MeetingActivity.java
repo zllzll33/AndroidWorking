@@ -59,9 +59,7 @@ public class MeetingActivity extends BaseActivity {
         view1 = View.inflate(this, R.layout.activity_meeting1, null);
         view2 = View.inflate(this, R.layout.activity_meeting2, null);
         phoneNumber = PrefUtils.getString(this, "phoneNumber", null);
-        //找到相关的控件
         initView();
-        //加载数据
         initData();
     }
 
@@ -220,7 +218,6 @@ public class MeetingActivity extends BaseActivity {
                     .inflate(R.layout.meeting_item1, parent, false));
             return myViewHolder1;
         }
-
         @Override
         public void onBindViewHolder(MyViewHolder1 holder, int position) {
             holder.meetTitle1.setText("会议主题：" + meetingBean1.result.data.get(position).meetname);
@@ -263,6 +260,8 @@ public class MeetingActivity extends BaseActivity {
                     intent.putExtra("endtime",meetingBean1.result.data.get(getLayoutPosition()).endtime);
                     intent.putExtra("labelname",meetingBean1.result.data.get(getLayoutPosition()).labelname);
                     intent.putExtra("meetstatu",meetingBean1.result.data.get(getLayoutPosition()).statu + "");
+                    MeetingPeopleActivity.meetcode=meetingBean1.result.data.get(getLayoutPosition()).meetcode;
+                    MeetingPeopleActivity.meetstatu="0";
                     intent.setAction("MeetingActivity1");
                     startActivity(intent);
                 }
@@ -284,7 +283,6 @@ public class MeetingActivity extends BaseActivity {
                     .inflate(R.layout.meeting_item2, parent, false));
             return myViewHolder2;
         }
-
         @Override
         public void onBindViewHolder(MyViewHolder2 holder, int position) {
             holder.meetTitle2.setText("会议主题：" + meetingBean2.result.data.get(position).meetname);
@@ -320,6 +318,8 @@ public class MeetingActivity extends BaseActivity {
                     intent1.putExtra("endtime",meetingBean2.result.data.get(getLayoutPosition()).endtime);
                     intent1.putExtra("labelname",meetingBean2.result.data.get(getLayoutPosition()).labelname);
                     intent1.putExtra("statu",meetingBean2.result.data.get(getLayoutPosition()).statu + "");
+                    MeetingPeopleActivity.meetcode=meetingBean1.result.data.get(getLayoutPosition()).meetcode;
+                    MeetingPeopleActivity.meetstatu="1";
                     intent1.setAction("MeetingActivity2");
                     startActivity(intent1);
                 }

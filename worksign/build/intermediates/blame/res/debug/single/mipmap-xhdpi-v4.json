@@ -160,6 +160,10 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-xhdpi\\my_blue.png"
     },
     {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\location_mark.png",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-xhdpi\\location_mark.png"
+    },
+    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\kaoqin.png",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-xhdpi\\kaoqin.png"
     },

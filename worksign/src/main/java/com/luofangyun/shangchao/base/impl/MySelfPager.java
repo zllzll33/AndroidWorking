@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,6 +36,7 @@ import com.luofangyun.shangchao.utils.MD5Encoder;
 import com.luofangyun.shangchao.utils.PrefUtils;
 import com.luofangyun.shangchao.utils.Sign;
 import com.luofangyun.shangchao.utils.UiUtils;
+import com.luofangyun.shangchao.wxapi.ZWXShare;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.CacheMode;
@@ -61,11 +64,12 @@ public class MySelfPager extends BasePager {
     private ImageView mySelfIcon;
     private String username;
     private TextView mySelfTv;
-
+    View cardSet;
+   public static  Handler handler;
+    private String title="上朝",content="提高办公水平,同事沟通,值得你拥有",url="http://139.196.151.162:8888/help/index.jsp";
     public MySelfPager(Activity activity) {
         super(activity);
     }
-
     @Override
     public void initData() {
         getPersonalData();
@@ -85,6 +89,14 @@ public class MySelfPager extends BasePager {
         mySelfRlv.addItemDecoration(new SpacesItemDecoration(UiUtils.dip2px(10)));
         mySelfRlv.setAdapter(myAdapter);
         flContainer.addView(view);
+        handler=new Handler()
+        {
+            public void handleMessage(Message msg)
+            {
+                getPersonalData();
+            }
+        };
+
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
@@ -139,7 +151,33 @@ public class MySelfPager extends BasePager {
                             mActivity.startActivity(new Intent(mActivity, CompanyInfoActivity.class));
                             break;
                         case 1:
-                            UiUtils.ToastUtils("待开发");
+                            cardSet = UiUtils.getParentPopuwindow(mActivity, R.layout.pop_share);
+                            cardSet.findViewById(R.id.myinfo_cancel).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    UiUtils.parentpopupWindow.dismiss();
+                                }
+                            });
+                            cardSet.findViewById(R.id.window_rl).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    UiUtils.parentpopupWindow.dismiss();
+                                }
+                            });
+                            cardSet.findViewById(R.id.friend).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    UiUtils.parentpopupWindow.dismiss();
+                                    ZWXShare.getInstance().shareWX(title,content,R.mipmap.sharelogo,url);
+                                }
+                            });
+                            cardSet.findViewById(R.id.circle).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    UiUtils.parentpopupWindow.dismiss();
+                                    ZWXShare.getInstance().shareCircle(title,content,R.mipmap.sharelogo,url);
+                                }
+                            });
                             break;
                         case 2:
                             mActivity.startActivity(new Intent(mActivity, HelpActivity.class));
@@ -164,7 +202,8 @@ public class MySelfPager extends BasePager {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.my_self_pic:
-                mActivity.startActivity(new Intent(mActivity, PersonalDataActivity.class));
+
+                mActivity.startActivityForResult(new Intent(mActivity, PersonalDataActivity.class),1);
                 break;
             default:
                 break;

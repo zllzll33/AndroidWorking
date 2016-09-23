@@ -192,6 +192,20 @@
 
         <activity android:name="com.luofangyun.shangchao.activity.MainActivity" >
         </activity>
+        <activity android:name="com.luofangyun.shangchao.activity.app.PatrolRecordPunchActivty" >
+        </activity>
+        <activity android:name="com.luofangyun.shangchao.activity.app.PatrolRecordDetailActivity" >
+        </activity>
+        <activity android:name="com.luofangyun.shangchao.activity.app.SetPatrolPeopleActivity" >
+        </activity>
+        <activity android:name="com.luofangyun.shangchao.activity.app.SetPatrolLineActivity" >
+        </activity>
+        <activity android:name="com.luofangyun.shangchao.activity.message.JoinTeamActivty" >
+        </activity>
+        <activity android:name="com.luofangyun.shangchao.activity.app.MeetingPeopleActivity" >
+        </activity>
+        <activity android:name="com.luofangyun.shangchao.activity.app.AddNFCTagActivity" >
+        </activity>
         <activity android:name="com.luofangyun.shangchao.activity.app.AddPatrolPointActivity" >
         </activity>
         <activity android:name="com.luofangyun.shangchao.activity.addresslist.AddressListActivity" >

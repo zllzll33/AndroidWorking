@@ -5645,9 +5645,9 @@
                     "position": {
                         "startLine": 193,
                         "startColumn": 4,
-                        "startOffset": 8411,
+                        "startOffset": 8402,
                         "endColumn": 89,
-                        "endOffset": 8496
+                        "endOffset": 8487
                     }
                 }
             },
@@ -5685,9 +5685,9 @@
                     "position": {
                         "startLine": 195,
                         "startColumn": 4,
-                        "startOffset": 8504,
+                        "startOffset": 8495,
                         "endColumn": 79,
-                        "endOffset": 8579
+                        "endOffset": 8570
                     }
                 }
             },
@@ -10783,10 +10783,10 @@
                     "position": {
                         "startLine": 158,
                         "startColumn": 4,
-                        "startOffset": 6860,
+                        "startOffset": 6851,
                         "endLine": 161,
                         "endColumn": 12,
-                        "endOffset": 7050
+                        "endOffset": 7041
                     }
                 }
             },
@@ -12459,7 +12459,7 @@
                     "startOffset": 145897,
                     "endLine": 1859,
                     "endColumn": 12,
-                    "endOffset": 146218
+                    "endOffset": 146209
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12469,7 +12469,7 @@
                         "startOffset": 6002,
                         "endLine": 144,
                         "endColumn": 12,
-                        "endOffset": 6329
+                        "endOffset": 6320
                     }
                 }
             },
@@ -12477,10 +12477,10 @@
                 "to": {
                     "startLine": 1860,
                     "startColumn": 4,
-                    "startOffset": 146223,
+                    "startOffset": 146214,
                     "endLine": 1871,
                     "endColumn": 12,
-                    "endOffset": 146841
+                    "endOffset": 146832
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12498,10 +12498,10 @@
                 "to": {
                     "startLine": 1872,
                     "startColumn": 4,
-                    "startOffset": 146846,
+                    "startOffset": 146837,
                     "endLine": 1878,
                     "endColumn": 12,
-                    "endOffset": 147180
+                    "endOffset": 147171
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12519,20 +12519,20 @@
                 "to": {
                     "startLine": 1879,
                     "startColumn": 4,
-                    "startOffset": 147185,
+                    "startOffset": 147176,
                     "endLine": 1889,
                     "endColumn": 12,
-                    "endOffset": 147729
+                    "endOffset": 147720
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 181,
                         "startColumn": 4,
-                        "startOffset": 7849,
+                        "startOffset": 7840,
                         "endLine": 191,
                         "endColumn": 12,
-                        "endOffset": 8403
+                        "endOffset": 8394
                     }
                 }
             },
@@ -12540,20 +12540,20 @@
                 "to": {
                     "startLine": 1890,
                     "startColumn": 4,
-                    "startOffset": 147734,
+                    "startOffset": 147725,
                     "endLine": 1897,
                     "endColumn": 12,
-                    "endOffset": 148121
+                    "endOffset": 148112
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 172,
                         "startColumn": 4,
-                        "startOffset": 7447,
+                        "startOffset": 7438,
                         "endLine": 179,
                         "endColumn": 12,
-                        "endOffset": 7841
+                        "endOffset": 7832
                     }
                 }
             },
@@ -12561,10 +12561,10 @@
                 "to": {
                     "startLine": 1898,
                     "startColumn": 4,
-                    "startOffset": 148126,
+                    "startOffset": 148117,
                     "endLine": 1905,
                     "endColumn": 12,
-                    "endOffset": 148500
+                    "endOffset": 148491
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12582,10 +12582,10 @@
                 "to": {
                     "startLine": 1906,
                     "startColumn": 4,
-                    "startOffset": 148505,
+                    "startOffset": 148496,
                     "endLine": 1911,
                     "endColumn": 12,
-                    "endOffset": 148775
+                    "endOffset": 148766
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12603,10 +12603,10 @@
                 "to": {
                     "startLine": 1912,
                     "startColumn": 4,
-                    "startOffset": 148780,
+                    "startOffset": 148771,
                     "endLine": 1916,
                     "endColumn": 12,
-                    "endOffset": 148992
+                    "endOffset": 148983
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12624,10 +12624,10 @@
                 "to": {
                     "startLine": 1917,
                     "startColumn": 4,
-                    "startOffset": 148997,
+                    "startOffset": 148988,
                     "endLine": 1922,
                     "endColumn": 12,
-                    "endOffset": 149256
+                    "endOffset": 149247
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12645,10 +12645,10 @@
                 "to": {
                     "startLine": 1923,
                     "startColumn": 4,
-                    "startOffset": 149261,
+                    "startOffset": 149252,
                     "endLine": 1928,
                     "endColumn": 12,
-                    "endOffset": 149530
+                    "endOffset": 149521
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12666,20 +12666,20 @@
                 "to": {
                     "startLine": 1929,
                     "startColumn": 4,
-                    "startOffset": 149535,
+                    "startOffset": 149526,
                     "endLine": 1934,
                     "endColumn": 12,
-                    "endOffset": 149804
+                    "endOffset": 149795
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 152,
                         "startColumn": 4,
-                        "startOffset": 6580,
+                        "startOffset": 6571,
                         "endLine": 157,
                         "endColumn": 12,
-                        "endOffset": 6854
+                        "endOffset": 6845
                     }
                 }
             },
@@ -12687,20 +12687,20 @@
                 "to": {
                     "startLine": 1935,
                     "startColumn": 4,
-                    "startOffset": 149809,
+                    "startOffset": 149800,
                     "endLine": 1939,
                     "endColumn": 12,
-                    "endOffset": 150040
+                    "endOffset": 150031
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 146,
                         "startColumn": 4,
-                        "startOffset": 6337,
+                        "startOffset": 6328,
                         "endLine": 150,
                         "endColumn": 12,
-                        "endOffset": 6572
+                        "endOffset": 6563
                     }
                 }
             },
@@ -12708,10 +12708,10 @@
                 "to": {
                     "startLine": 1940,
                     "startColumn": 4,
-                    "startOffset": 150045,
+                    "startOffset": 150036,
                     "endLine": 1946,
                     "endColumn": 12,
-                    "endOffset": 150377
+                    "endOffset": 150368
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12729,10 +12729,10 @@
                 "to": {
                     "startLine": 1947,
                     "startColumn": 4,
-                    "startOffset": 150382,
+                    "startOffset": 150373,
                     "endLine": 1953,
                     "endColumn": 12,
-                    "endOffset": 150707
+                    "endOffset": 150698
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12750,20 +12750,20 @@
                 "to": {
                     "startLine": 1954,
                     "startColumn": 4,
-                    "startOffset": 150712,
+                    "startOffset": 150703,
                     "endLine": 1961,
                     "endColumn": 12,
-                    "endOffset": 151086
+                    "endOffset": 151077
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
                     "position": {
                         "startLine": 163,
                         "startColumn": 4,
-                        "startOffset": 7058,
+                        "startOffset": 7049,
                         "endLine": 170,
                         "endColumn": 12,
-                        "endOffset": 7439
+                        "endOffset": 7430
                     }
                 }
             },
@@ -12771,10 +12771,10 @@
                 "to": {
                     "startLine": 1962,
                     "startColumn": 4,
-                    "startOffset": 151091,
+                    "startOffset": 151082,
                     "endLine": 1968,
                     "endColumn": 12,
-                    "endOffset": 151422
+                    "endOffset": 151413
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",
@@ -12792,10 +12792,10 @@
                 "to": {
                     "startLine": 1969,
                     "startColumn": 4,
-                    "startOffset": 151427,
+                    "startOffset": 151418,
                     "endLine": 1974,
                     "endColumn": 12,
-                    "endOffset": 151715
+                    "endOffset": 151706
                 },
                 "from": {
                     "file": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\values\\styles.xml",

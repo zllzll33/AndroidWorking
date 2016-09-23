@@ -20,7 +20,6 @@
             android:text="请假类型"
             android:textColor="@color/colorPrimary"
             android:textSize="18dp"/>
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/type_rlv"
             android:layout_width="match_parent"

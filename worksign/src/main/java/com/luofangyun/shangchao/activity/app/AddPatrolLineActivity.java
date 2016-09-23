@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
 import com.luofangyun.shangchao.base.BaseActivity;
+import com.luofangyun.shangchao.domain.ApplyBean;
 import com.luofangyun.shangchao.domain.PatrolLine;
 import com.luofangyun.shangchao.global.GlobalConstants;
 import com.luofangyun.shangchao.nohttp.CallServer;
@@ -35,7 +38,8 @@ public class AddPatrolLineActivity extends  BaseActivity {
     View view;
     String action,empname,linecode,starttime,endtime,contactsname,linename;
     EditText add_line_name,time_begin,time_end;
-    TextView contacts;
+    TextView contacts,patrol_place,patrol_people;
+    LinearLayout ll_patrol_set;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +49,15 @@ public class AddPatrolLineActivity extends  BaseActivity {
     }
     private  void initView()
     {
+        ll_patrol_set=(LinearLayout)view.findViewById(R.id.ll_patrol_set) ;
         contacts=(TextView)view.findViewById(R.id.contacts);
+        patrol_place=(TextView)view.findViewById(R.id.patrol_place);
+        patrol_people=(TextView)view.findViewById(R.id.patrol_people);
         add_line_name=(EditText)view.findViewById(R.id.add_line_name) ;
         time_begin=(EditText)view.findViewById(R.id.time_begin) ;
         time_end=(EditText)view.findViewById(R.id.time_end) ;
+        patrol_place.setOnClickListener(this);
+        patrol_people.setOnClickListener(this);
         time_begin.setOnClickListener(this);
         time_end.setOnClickListener(this);
         contacts.setOnClickListener(this);
@@ -74,6 +83,7 @@ public class AddPatrolLineActivity extends  BaseActivity {
             add_line_name.setText(linename);
             time_begin.setText(starttime.substring(11,16));
             time_end.setText(endtime.substring(11,16));
+            ll_patrol_set.setVisibility(View.VISIBLE);
         }
     }
     private  void initData()
@@ -112,6 +122,16 @@ public class AddPatrolLineActivity extends  BaseActivity {
             case R.id.contacts:
                 Intent intent=new Intent(AddPatrolLineActivity.this,AddPatrolLineEmplayeeActivity.class);
                 startActivityForResult(intent,1);
+                break;
+            case R.id.patrol_place:
+               Intent intent1=new Intent(AddPatrolLineActivity.this,SetPatrolLineActivity.class);
+                intent1.putExtra("linecode",linecode);
+                startActivity(intent1);
+                break;
+            case R.id.patrol_people:
+                Intent intent2=new Intent(AddPatrolLineActivity.this,SetPatrolPeopleActivity.class);
+                intent2.putExtra("linecode",linecode);
+                startActivity(intent2);
                 break;
         }
     }
@@ -164,9 +184,9 @@ public class AddPatrolLineActivity extends  BaseActivity {
     public HttpListener<String> httpListener = new HttpListener<String>() {
         @Override
         public void onSucceed(int what, Response<String> response) {
-            Log.e("addLine",response.get());
-            setResult(1);
-            finish();
+            Log.e("addLine", response.get());
+                     ll_patrol_set.setVisibility(View.VISIBLE);
+                     setResult(1);
         }
 
         @Override

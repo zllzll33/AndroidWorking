@@ -27,6 +27,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         phoneNumber = PrefUtils.getString(this, "phoneNumber", null);
         super.onCreate();
+        mInstance=this;
        /**
          * 个推初始化
          */

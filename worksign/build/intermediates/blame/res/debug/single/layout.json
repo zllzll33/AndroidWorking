@@ -208,6 +208,10 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\list_item.xml"
     },
     {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\act_add_nfc_tag.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\act_add_nfc_tag.xml"
+    },
+    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\activity_affiche_next.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\activity_affiche_next.xml"
     },
@@ -246,6 +250,10 @@
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\layout\\design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\act_set_patrol_line.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\act_set_patrol_line.xml"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
@@ -364,6 +372,10 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\activity_indivi_info.xml"
     },
     {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\act_join_team.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\act_join_team.xml"
+    },
+    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\itme1.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\itme1.xml"
     },
@@ -434,6 +446,10 @@
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_content.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\fragment_content.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\act_patrol_record_detail.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\act_patrol_record_detail.xml"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\activity_meeting.xml",
@@ -528,6 +544,10 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.3.0\\res\\layout\\design_layout_tab_text.xml"
     },
     {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\act_sys_message_detail.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\act_sys_message_detail.xml"
+    },
+    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\app_work_item1.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\app_work_item1.xml"
     },
@@ -602,6 +622,10 @@
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\blue_manager.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\blue_manager.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\item_meeting_people.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\item_meeting_people.xml"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
@@ -736,12 +760,20 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\activity_patrol_line.xml"
     },
     {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\act_patrol_record_punch.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\act_patrol_record_punch.xml"
+    },
+    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\meeting_item1.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\meeting_item1.xml"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\app_work_item.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\app_work_item.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\pop_share.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\pop_share.xml"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\item_listview_layout.xml",
@@ -824,6 +856,10 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_part_time.xml"
     },
     {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\act_patrol_record.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\act_patrol_record.xml"
+    },
+    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
@@ -878,6 +914,10 @@
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\message_work_item.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\message_work_item.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\act_meeting_people.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\layout\\act_meeting_people.xml"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar_include.xml",

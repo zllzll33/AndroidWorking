@@ -64,6 +64,10 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\ch.xml"
     },
     {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_solid.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_solid.xml"
+    },
+    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\round_gray_empt_rectangle.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\round_gray_empt_rectangle.xml"
     },
@@ -118,6 +122,10 @@
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_stroke.xml",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable\\shape_stroke.xml"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",

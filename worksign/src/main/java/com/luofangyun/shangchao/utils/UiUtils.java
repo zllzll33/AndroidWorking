@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -345,11 +346,13 @@ public class UiUtils {
         cale.add(Calendar.MONTH, i);
         cale.set(Calendar.DAY_OF_MONTH, 1);
         firstday = format.format(cale.getTime());
+        Log.e("firstday",firstday);
         // 获取前月的最后一天
         cale = Calendar.getInstance();
         cale.add(Calendar.MONTH, i + 1);
         cale.set(Calendar.DAY_OF_MONTH, 0);
         lastday = format.format(cale.getTime());
+        Log.e("lastday",lastday);
     }
     /**
      *
