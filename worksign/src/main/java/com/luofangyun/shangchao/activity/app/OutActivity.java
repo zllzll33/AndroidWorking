@@ -86,16 +86,15 @@ public class OutActivity extends BaseActivity {
         map1 = new HashMap<>();
         map2 = new HashMap<>();
         map3 = new HashMap<>();
-        getWaitExamine(k);  //待审核请求数据
-        getExamine(l);      //已审核请求数据
-        getMySelf(j);       //我发起的
+        getWaitExamine();  //待审核请求数据
+        getExamine();      //已审核请求数据
+        getMySelf();       //我发起的
         myLeaveRb.setOnClickListener(this);
         leaveExamineRb.setOnClickListener(this);
         right.setText("写申请");
         titleTv.setText("外出");
         myLeaveRb.setText("我的外出");
         leaveExamineRb.setText("我的审批");
-
         myLeaveRlv.setLinearLayout();
         myAdapter = new MyAdapter();
         myLeaveRlv.setAdapter(myAdapter);
@@ -131,26 +130,26 @@ public class OutActivity extends BaseActivity {
         myLeaveRlv.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-                getMySelf(j);
+//                getMySelf(j);
                 UiUtils.upDownRefurbish(myLeaveRlv);
             }
 
             @Override
             public void onLoadMore() {
-                getMySelf(j);
+//                getMySelf(j);
                 UiUtils.upDownRefurbish(myLeaveRlv);
             }
         });
         leaveRlv.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-                getWaitExamine(k);
+//                getWaitExamine(k);
                 UiUtils.upDownRefurbish(leaveRlv);
             }
 
             @Override
             public void onLoadMore() {
-                getWaitExamine(k);
+//                getWaitExamine(k);
                 UiUtils.upDownRefurbish(leaveRlv);
             }
         });
@@ -159,13 +158,13 @@ public class OutActivity extends BaseActivity {
 
             @Override
             public void onRefresh() {
-                getMySelf(j);
+//                getMySelf(j);
                 UiUtils.upDownRefurbish(examineAboptRlv);
             }
 
             @Override
             public void onLoadMore() {
-                getMySelf(j);
+//                getMySelf(j);
                 UiUtils.upDownRefurbish(examineAboptRlv);
             }
         });
@@ -175,7 +174,7 @@ public class OutActivity extends BaseActivity {
     /**
      * 我发起的
      */
-    private void getMySelf(int j) {
+    private void getMySelf() {
         try {
             Request<String> request1 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "emp_out_list.json", RequestMethod.POST);
@@ -183,8 +182,8 @@ public class OutActivity extends BaseActivity {
             map.put("access_id", "1234567890");
             map.put("timestamp", time);
             map.put("telnum", UiUtils.getPhoneNumber());
-            map.put("pindex", String.valueOf(j));
-            map.put("psize", String.valueOf(10));
+            map.put("pindex", String.valueOf(1));
+            map.put("psize", String.valueOf(200));
             map.put("flag", String.valueOf(0));
             String encode = MD5Encoder.encode(Sign.generateSign(map) +
                     "12345678901234567890123456789011");
@@ -195,8 +194,7 @@ public class OutActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
-
-    public void getWaitExamine(int k) {
+    public void getWaitExamine() {
         try {
             Request<String> request2 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "emp_out_list.json", RequestMethod.POST);
@@ -204,8 +202,8 @@ public class OutActivity extends BaseActivity {
             map1.put("access_id", "1234567890");
             map1.put("timestamp", time);
             map1.put("telnum", UiUtils.getPhoneNumber());
-            map1.put("pindex", String.valueOf(k));
-            map1.put("psize", String.valueOf(10));
+            map1.put("pindex", String.valueOf(1));
+            map1.put("psize", String.valueOf(200));
             map1.put("flag", String.valueOf(1));
             String encode = MD5Encoder.encode(Sign.generateSign(map1) +
                     "12345678901234567890123456789011");
@@ -217,7 +215,7 @@ public class OutActivity extends BaseActivity {
         }
     }
 
-    public void getExamine(int l) {
+    public void getExamine() {
         try {
             Request<String> request3 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL +
                     "emp_out_list.json", RequestMethod.POST);
@@ -226,7 +224,7 @@ public class OutActivity extends BaseActivity {
             map2.put("timestamp", time);
             map2.put("telnum", UiUtils.getPhoneNumber());
             map2.put("pindex", String.valueOf(l));
-            map2.put("psize", String.valueOf(10));
+            map2.put("psize", String.valueOf(200));
             map2.put("flag", String.valueOf(2));
             String encode = MD5Encoder.encode(Sign.generateSign(map2) +
                     "12345678901234567890123456789011");
@@ -263,9 +261,15 @@ public class OutActivity extends BaseActivity {
                 case 3:
                     String result3 = response.get();
                     applyBean = new Gson().fromJson(result3, ApplyBean.class);
-                    dataList.remove(i);
+                    if(applyBean.status.equals("00000"))
+                    {
+                        getWaitExamine();  //待审核请求数据
+                        getExamine();      //已审核请求数据
+                        getMySelf();       //我发起的
+                    }
+                 /*   dataList.remove(i);
                     myAdapter.notifyDataSetChanged();
-                    UiUtils.ToastUtils(applyBean.summary);
+                    UiUtils.ToastUtils(applyBean.summary);*/
                 default:
                     break;
             }
@@ -320,8 +324,10 @@ public class OutActivity extends BaseActivity {
                 holder.workState.setText("审批中");
             } else if (statu == 1) {
                 holder.workState.setText("审批通过");
+                holder.cancleTv.setVisibility(View.GONE);
             } else if (statu == 2) {
                 holder.workState.setText("审批拒绝");
+                holder.cancleTv.setVisibility(View.GONE);
             }
             holder.starttime.setText(dataList.get(position).stattime);
             holder.endtime.setText(dataList.get(position).endtime);
@@ -368,7 +374,6 @@ public class OutActivity extends BaseActivity {
             cancleTv = (TextView) itemView.findViewById(R.id.cancle_tv);
             cancleTv.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.cancle_tv) {
@@ -445,7 +450,7 @@ public class OutActivity extends BaseActivity {
                     intent.putExtra("outreason", dataList1.get(getLayoutPosition()).outreason);
                     intent.putExtra("outcode", dataList1.get(getLayoutPosition()).outcode);
                     intent.setAction("waitoutetail");
-                    startActivity(intent);
+                    startActivityForResult(intent,1);
                 }
             });
             workDaysTv = (TextView) itemView.findViewById(R.id.work_days_tv);
@@ -581,8 +586,8 @@ public class OutActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data)
     {
-        getWaitExamine(k);  //待审核请求数据
-        getExamine(l);      //已审核请求数据
-        getMySelf(j);       //我发起的
+        getWaitExamine();  //待审核请求数据
+        getExamine();      //已审核请求数据
+        getMySelf();       //我发起的
     }
 }

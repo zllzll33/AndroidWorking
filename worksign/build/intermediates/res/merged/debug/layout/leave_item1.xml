@@ -102,8 +102,6 @@
             android:textColor="@color/black"
             android:textSize="12dp"/>
     </LinearLayout>
-
-
     <ImageView
         android:id="@+id/leave_rigth"
         android:layout_width="15dp"

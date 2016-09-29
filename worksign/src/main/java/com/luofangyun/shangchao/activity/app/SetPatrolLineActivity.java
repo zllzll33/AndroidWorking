@@ -59,7 +59,7 @@ public class SetPatrolLineActivity extends BaseActivity {
         view1 = View.inflate(this, R.layout.lable_info1, null);
         view2 = View.inflate(this, R.layout.lable_info2, null);
         flAddress.addView(view);
-        titleTv.setText("设置巡检路线");
+        titleTv.setText("设置巡检点");
         initView();
 
         lableRecy1.setLinearLayout();
@@ -70,7 +70,6 @@ public class SetPatrolLineActivity extends BaseActivity {
         lableRecy2.setAdapter(myAdapter2);
         getServerData1();
         getServerData2();
-
     }
     private void initView() {
         linecode=getIntent().getStringExtra("linecode");
@@ -166,13 +165,13 @@ public class SetPatrolLineActivity extends BaseActivity {
         public void onSucceed(int what, Response<String> response) {
             switch (what) {
                 case 1:
-//                    Log.e("巡检已选", "onSucceed: " + response.get());
+                    Log.e("巡检已选", "onSucceed: " + response.get());
                     setPatrolLineBean1 = new Gson().fromJson(response.get(), SetPatrolLineBean.class);
                     dataList1 = setPatrolLineBean1.result.data;
                     myAdapter1.notifyDataSetChanged();
                     break;
                 case 2:
-//                    Log.e("巡检未选", "onSucceed: " + response.get());
+                    Log.e("巡检未选", "onSucceed: " + response.get());
                     setPatrolLineBean2 = new Gson().fromJson(response.get(), SetPatrolLineBean.class);
                     dataList2 = setPatrolLineBean2.result.data;
                     myAdapter2.notifyDataSetChanged();

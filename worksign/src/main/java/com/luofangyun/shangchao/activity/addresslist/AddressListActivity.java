@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,17 +100,34 @@ public class AddressListActivity extends BaseActivity {
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
             holder.listTv1.setText(dateList.get(position).empname);
-            holder.listTv2.setText(dateList.get(position).empphone);
-            Log.e("list_phone",dateList.get(position).empphone);
+            Log.e("list_name",dateList.get(position).empname);
+                try{
+                holder.listTv2.setText(dateList.get(position).empphone);
+                Log.e("list_phone",dateList.get(position).empphone);
+            }catch (Exception e)
+            {
+//                UiUtils.ToastUtils(dateList.get(position).empname+"该用户未添加号码");
+            }
+
             holder.index=position;
             holder.ll_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                     Intent intent = new Intent(Intent.ACTION_DIAL);
-                     Uri data = Uri.parse("tel:"+dateList.get(holder.index).empphone);
-                    intent.setData(data);
-                     startActivity(intent);
-                    savePhone(dateList.get(holder.index).empphone);
+                    try{
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        String tel=dateList.get(holder.index).empphone;
+                        if(TextUtils.isEmpty(tel))
+                            UiUtils.ToastUtils("该用户未添加号码");
+                        else {
+                            Uri data = Uri.parse("tel:" + tel);
+                            intent.setData(data);
+                            startActivity(intent);
+                            savePhone(dateList.get(holder.index).empphone);
+                        }
+                    }catch (Exception e)
+                    {
+                    UiUtils.ToastUtils("该用户未添加号码");
+                    }
                 }
             });
         }

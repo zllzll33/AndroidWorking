@@ -17,6 +17,7 @@ import com.luofangyun.shangchao.global.GlobalConstants;
 import com.luofangyun.shangchao.nohttp.CallServer;
 import com.luofangyun.shangchao.nohttp.HttpListener;
 import com.luofangyun.shangchao.utils.DateTimePickDialogUtil;
+import com.luofangyun.shangchao.utils.HourMinuteDialogUtil;
 import com.luofangyun.shangchao.utils.MD5Encoder;
 import com.luofangyun.shangchao.utils.PrefUtils;
 import com.luofangyun.shangchao.utils.Sign;
@@ -108,16 +109,20 @@ public class AddPatrolLineActivity extends  BaseActivity {
                 }
                 break;
             case R.id.time_begin:
-                DateTimePickDialogUtil dateTimePicKDialog1 = new DateTimePickDialogUtil(
+                /*DateTimePickDialogUtil dateTimePicKDialog1 = new DateTimePickDialogUtil(
                         this, "");
                 dateTimePicKDialog1.isTime=true;
-                dateTimePicKDialog1.dateTimePicKDialog(time_begin);
+                dateTimePicKDialog1.dateTimePicKDialog(time_begin);*/
+                HourMinuteDialogUtil hourMinute = new HourMinuteDialogUtil(this, "");
+                hourMinute.dateTimePicKDialog(time_begin);
                 break;
             case R.id.time_end:
-                DateTimePickDialogUtil dateTimePicKDialog2 = new DateTimePickDialogUtil(
+         /*       DateTimePickDialogUtil dateTimePicKDialog2 = new DateTimePickDialogUtil(
                         this, "");
                 dateTimePicKDialog2.isTime=true;
-                dateTimePicKDialog2.dateTimePicKDialog(time_end);
+                dateTimePicKDialog2.dateTimePicKDialog(time_end);*/
+                HourMinuteDialogUtil hourMinute1 = new HourMinuteDialogUtil(this, "");
+                hourMinute1.dateTimePicKDialog(time_end);
                 break;
             case R.id.contacts:
                 Intent intent=new Intent(AddPatrolLineActivity.this,AddPatrolLineEmplayeeActivity.class);

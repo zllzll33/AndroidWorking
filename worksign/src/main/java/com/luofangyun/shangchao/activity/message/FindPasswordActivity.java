@@ -2,6 +2,7 @@ package com.luofangyun.shangchao.activity.message;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
+import com.luofangyun.shangchao.domain.ApplyBean;
 import com.luofangyun.shangchao.domain.Personal;
 import com.luofangyun.shangchao.domain.VerificationCode;
 import com.luofangyun.shangchao.global.GlobalConstants;
@@ -38,7 +40,7 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
     private String          phoneNum;
     private Request<String> request1, request2;
     private Map<String, String> map1, map2;
-    private String vercode;
+    private static String vercode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +76,7 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void initData() {
-        phoneNum = findPasswordEtPhone.getText().toString().trim();   //手机号
+
         map1 = new HashMap<>();
         titleLlBack.setVisibility(View.VISIBLE);       //显示返回的按钮
         titleTv.setText("找回密码");
@@ -84,6 +86,7 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.find_password_tv_send_verification_code:
+                phoneNum = findPasswordEtPhone.getText().toString().trim();   //手机号
                 if (phoneNum.isEmpty()) {
                     UiUtils.ToastUtils("手机号码不给为空");
                 } else if (phoneNum.length() != 11) {
@@ -97,6 +100,7 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
                 String passWord = findPasswordEtPassword.getText().toString().trim();
                 String passWordCon = findPasswordEtPasswordConfirmation.getText().toString().trim();
                 String VerCode = findPasswordEtVerificationCode.getText().toString().trim();
+                phoneNum = findPasswordEtPhone.getText().toString().trim();   //手机号
                 if (phoneNum.isEmpty()) {
                     UiUtils.ToastUtils("手机号不能为空");
                 } else if (passWord.isEmpty()) {
@@ -105,11 +109,10 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
                     UiUtils.ToastUtils("密码不能为空");
                 } else if (VerCode.isEmpty()) {
                     UiUtils.ToastUtils("验证码不能为空");
-                } else if (!VerCode.equals(vercode)) {
+                } /*else if (!VerCode.equals(vercode)) {
                     UiUtils.ToastUtils("验证码错误，请重新输入");
-                } else {
+                } */else {
                     requestResServerData(phoneNum, passWord, VerCode);
-                    NumberSend.Send(this, "重置成功");
                 }
                 break;
             case R.id.title_ll_back:
@@ -123,16 +126,18 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
     private void requestResServerData(String telnum, String newpwd, String vercode) {
         try {
             request2 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL + "password_reset" +
-                    ".json");
+                    ".json", RequestMethod.POST);
             String time = Long.toString(new Date().getTime());
+            map2=new HashMap<>();
             map2.put("access_id", "1234567890");
             map2.put("timestamp", time);
             map2.put("telnum", telnum);
-            map2.put("newpwd", newpwd);
+            map2.put("newpwd", MD5Encoder.encode(newpwd));
             map2.put("vercode", vercode);
             String encode = MD5Encoder.encode(Sign.generateSign(map2) +
                     "12345678901234567890123456789011");
             map2.put("sign", encode);
+            Log.e("map",UiUtils.Map2JsonStr(map2));
             request2.add(map2);
             CallServer.getRequestInstance().add(this, 1, request2, httpListener, false, false);
         } catch (Exception e) {
@@ -167,6 +172,7 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
         @Override
         public void onSucceed(int what, Response<String> response) {
             switch (what) {
+
                 case 0:
                     String result = response.get();
                     System.out.println("修改密码返回的数据result=" + result);
@@ -175,7 +181,14 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
                 case 1:
                     String resultPassWord = response.get();
                     System.out.println("resultPassWord=" + resultPassWord);
-                    processpassWordData(resultPassWord);
+                    ApplyBean personal=new Gson().fromJson(resultPassWord,ApplyBean.class);
+                    if(personal.status.equals("00000"))
+                    {
+                        UiUtils.ToastUtils("修改密码成功");
+                        finish();
+                    }
+                    else
+                    UiUtils.ToastUtils(personal.summary);
                     break;
                 default:
                     break;
@@ -197,6 +210,8 @@ public class FindPasswordActivity extends AppCompatActivity implements View.OnCl
     private VerificationCode processData(String result) {
         Gson gson = new Gson();
         VerificationCode verificationCode = gson.fromJson(result, VerificationCode.class);
+//        Log.e("vercode",verificationCode.result.vercode);
+        vercode=verificationCode.result.vercode;
         return verificationCode;
     }
 }

@@ -23,10 +23,11 @@ import com.luofangyun.shangchao.domain.Corpor;
 import com.luofangyun.shangchao.global.GlobalConstants;
 import com.luofangyun.shangchao.nohttp.CallServer;
 import com.luofangyun.shangchao.nohttp.HttpListener;
+import com.luofangyun.shangchao.ui.SwipeLayout;
 import com.luofangyun.shangchao.utils.MD5Encoder;
 import com.luofangyun.shangchao.utils.PrefUtils;
 import com.luofangyun.shangchao.utils.Sign;
-import com.luofangyun.shangchao.utils.SwipeLayout;
+
 import com.luofangyun.shangchao.utils.UiUtils;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.RequestMethod;
@@ -63,6 +64,7 @@ public class CorporActivity extends BaseActivity {
     public static Handler handler;
     LinearLayout ll_pop;
     boolean isBigBranch=true;
+    int deletenum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +94,7 @@ public class CorporActivity extends BaseActivity {
         corporRlv.setLayoutManager(new LinearLayoutManager(this));
         myAdapter = new MyAdapter();
         corporRlv.setAdapter(myAdapter);
-        corporRlv.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        /*corporRlv.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
@@ -106,7 +108,7 @@ public class CorporActivity extends BaseActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
             }
-        });
+        });*/
         titleIvRight.setVisibility(View.VISIBLE);
         flAddress.addView(view);
     }
@@ -154,16 +156,17 @@ public class CorporActivity extends BaseActivity {
                 UiUtils.popupWindow.dismiss();
                 break;
             case R.id.message:            //编辑部门信息
-                if(isBigBranch==true) {
+        /*        if(isBigBranch==true) {
                     Intent  intent2=new Intent(this, AddBranchActivity.class);
                     intent2.setAction("addBranch");
                     startActivityForResult(intent2, 2);
                 }
-                else
+                else*/
                 {
                     Intent  intent1=new Intent(this, AddBranchActivity.class);
                     intent1.setAction("editBranch");
                     Bundle bundle=new Bundle();
+                    bundle.putBoolean("addNewBr",false);
                     PrefUtils.putString(getApplicationContext(),"branchCode",branchCode);
                     PrefUtils.putString(getApplicationContext(),"branchname",branchName);
                     if(parentCode==null)
@@ -277,12 +280,15 @@ public class CorporActivity extends BaseActivity {
                     String result = response.get();
                     System.out.println("获取部门信息=" + result);
                     Corpor corpor = processData(result);
-                    myAdapter.notifyDataSetChanged();
+                    myAdapter = new MyAdapter();
+                    corporRlv.setAdapter(myAdapter);
+//                    myAdapter.notifyDataSetChanged();
                     break;
                 case 1:
-                    String result1 = response.get();
+                    getServerData();
+ /*                   String result1 = response.get();
                     processDeleteData(result1);
-                    System.out.println("删除result1=" + result1);
+                    System.out.println("删除result1=" + result1);*/
                     break;
                 case 2:
                     corpor1 = new Gson().fromJson(response.get(), Corpor.class);
@@ -311,6 +317,13 @@ public class CorporActivity extends BaseActivity {
     private void processDeleteData(String result1) {
         Gson gson = new Gson();
         applyBean = gson.fromJson(result1, ApplyBean.class);
+       /*     if (applyBean.status.equals("00000")) {
+                dataList.remove(deletenum);
+                myAdapter.notifyDataSetChanged();
+//                myAdapter.notifyItemRemoved(deletenum);
+            } else {
+                UiUtils.ToastUtils(applyBean.summary);
+            }*/
     }
     private class MyAdapter1 extends RecyclerView.Adapter<MyViewHolder3>{
 
@@ -321,7 +334,6 @@ public class CorporActivity extends BaseActivity {
         @Override
         public void onBindViewHolder(MyViewHolder3 holder, int position) {
              holder.corpor_tv2.setText(branchName);
-             Log.e("2级","2级");
             PrefUtils.putString(getApplicationContext(),"branchCode",branchCode);
              PrefUtils.putString(getApplicationContext(),"branchname",branchName);
              isBigBranch=false;
@@ -340,7 +352,6 @@ public class CorporActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     getServerNextData(dataList.get(getLayoutPosition()).deptcode);
-
                    // myAdapter1.notifyDataSetChanged();
                 }
             });
@@ -363,7 +374,6 @@ public class CorporActivity extends BaseActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             if (holder instanceof MyViewHolder1) {
                 ((MyViewHolder1) holder).corporTv.setText(dataList.get(position).deptname);
-                ((MyViewHolder1) holder).swipeLayout.setSwipeListener(listener);
             } else if (holder instanceof MyViewHolder2) {
                 ((MyViewHolder2) holder).brancheTv.setText(empsList.get(position - dataList.size
                         ()).empname);
@@ -402,7 +412,17 @@ public class CorporActivity extends BaseActivity {
         SwipeLayout swipeLayout;
         public MyViewHolder1(View inflate) {
             super(inflate);
-            inflate.setOnClickListener(new View.OnClickListener() {
+            addressEmptFl1 = (LinearLayout) inflate.findViewById(R.id.address_empt_fl1);
+            corporIv = (ImageView) inflate.findViewById(R.id.corpor_iv);
+            corporTv = (TextView) inflate.findViewById(R.id.corpor_tv);
+            corporRightIv = (ImageView) inflate.findViewById(R.id.corpor_right_iv);
+            corporDelete = (TextView) inflate.findViewById(R.id.corpor_delete);
+            swipeLayout = (SwipeLayout) inflate.findViewById(R.id.swipelayout);
+            LinearLayout ll_delete=(LinearLayout)inflate.findViewById(R.id.ll_delete);
+            swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
+            swipeLayout.addDrag(SwipeLayout.DragEdge.Right,ll_delete);
+            swipeLayout.close();
+            swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     getServerNextData(dataList.get(getLayoutPosition()).deptcode);
@@ -414,35 +434,31 @@ public class CorporActivity extends BaseActivity {
                     parentCode=dataList.get(getLayoutPosition()).parentdept;
                     branchHor.setAdapter(myAdapter1);
                 }
-            });
-            addressEmptFl1 = (LinearLayout) inflate.findViewById(R.id.address_empt_fl1);
-            corporIv = (ImageView) inflate.findViewById(R.id.corpor_iv);
-            corporTv = (TextView) inflate.findViewById(R.id.corpor_tv);
-            corporRightIv = (ImageView) inflate.findViewById(R.id.corpor_right_iv);
-            corporDelete = (TextView) inflate.findViewById(R.id.corpor_delete);
-            swipeLayout = (SwipeLayout) inflate.findViewById(R.id.swipelayout);
+
+        });
+
+
             corporDelete.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.corpor_delete:
                     getServerDeleteData(dataList.get(getPosition()).deptcode);
-                    if (applyBean != null) {
+                    deletenum=getPosition();
+                   /* if (applyBean != null) {
                         if (applyBean.status.equals("00000")) {
                             myAdapter.notifyItemRemoved(getPosition());
                         } else {
                             UiUtils.ToastUtils(applyBean.summary);
                         }
-                    }
+                    }*/
                     break;
             }
         }
     }
     private class MyViewHolder2 extends RecyclerView.ViewHolder {
         TextView brancheTv;
-
         public MyViewHolder2(View inflate) {
             super(inflate);
             inflate.setOnClickListener(new View.OnClickListener() {
@@ -460,34 +476,5 @@ public class CorporActivity extends BaseActivity {
             brancheTv = (TextView) inflate.findViewById(R.id.branche_tv);
         }
     }
-
     private ArrayList<SwipeLayout> openedSwipeLayout = new ArrayList<SwipeLayout>();
-
-    private SwipeLayout.SwipeListener listener = new SwipeLayout.SwipeListener() {
-
-        @Override
-        public void onOpened(SwipeLayout layout) {
-            openedSwipeLayout.add(layout);
-        }
-
-        @Override
-        public void onDraging(SwipeLayout layout) {
-            layout.setOnClickListener(null);
-        }
-
-        @Override
-        public void onClosed(SwipeLayout layout) {
-            openedSwipeLayout.remove(layout);
-        }
-
-        @Override
-        public void onStartOpen(SwipeLayout layout) {
-            for (int i = 0; i < openedSwipeLayout.size(); i++) {
-                openedSwipeLayout.get(i).close();
-            }
-        }
-        @Override
-        public void onStartClose(SwipeLayout layout) {
-        }
-    };
 }

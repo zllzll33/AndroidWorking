@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.luofangyun.shangchao.R;
+import com.luofangyun.shangchao.activity.MainActivity;
 import com.luofangyun.shangchao.activity.message.UserEnterActivity;
 import com.luofangyun.shangchao.base.BaseActivity;
 import com.luofangyun.shangchao.utils.DataCleanManager;
@@ -29,6 +30,7 @@ public class SystemSettingActivity extends BaseActivity {
     private RecyclerView systemRlv;
     private TextView systemTv;
     private MyAdapter    myAdapter;
+    long mExitTime = 0;
     private String[] names = {"修改密码", "清理缓存"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +63,11 @@ public class SystemSettingActivity extends BaseActivity {
                    startActivity(new Intent(SystemSettingActivity.this, UserEnterActivity.class));
                    PrefUtils.putBoolean(getApplication(),"loginstaus",false);
                    finish();
+                   MainActivity.handler.sendEmptyMessage(1);
                }
            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                @Override
                public void onClick(DialogInterface dialog, int which) {
-
                }
            }).show();
 

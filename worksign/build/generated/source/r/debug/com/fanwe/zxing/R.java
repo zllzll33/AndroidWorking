@@ -23,11 +23,11 @@ public final class R {
 		public static final int qrcode_scan_line = 0x7f02007a;
 	}
 	public static final class id {
-		public static final int act_capture_ll_bottom = 0x7f0d0090;
-		public static final int act_capture_ll_title = 0x7f0d008f;
-		public static final int act_capture_sv_preview_view = 0x7f0d008d;
-		public static final int act_capture_vv_viewfinder_view = 0x7f0d008e;
-		public static final int action_settings = 0x7f0d02a1;
+		public static final int act_capture_ll_bottom = 0x7f0d0092;
+		public static final int act_capture_ll_title = 0x7f0d0091;
+		public static final int act_capture_sv_preview_view = 0x7f0d008f;
+		public static final int act_capture_vv_viewfinder_view = 0x7f0d0090;
+		public static final int action_settings = 0x7f0d02a4;
 	}
 	public static final class layout {
 		public static final int act_capture = 0x7f04001f;

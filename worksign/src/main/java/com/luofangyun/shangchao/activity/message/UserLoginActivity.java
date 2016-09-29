@@ -41,7 +41,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     private String           passWord;
     private Map<String, String> map1, map2;
     private String              passWordCon;
-    private String              vercode;
+    private String              vercode="";
     private View view;
 
     @Override
@@ -97,9 +97,10 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                 String verEdiCode = VerEdiCode.getText().toString().trim();            //验证码
                 passWord = loginEtPassword.getText().toString().trim();                 //密码
                 passWordCon = loginEtPasswordConfirmation.getText().toString().trim();  //重新输入密码
+                phoneNum = loginEtUserNum.getText().toString().trim();   //手机号
+                passWord = loginEtPassword.getText().toString().trim();  //密码
                 try {
-                    requestLoginServerData(phoneNum, passWord);
-                    if (TextUtils.isEmpty(phoneNum)) {
+                    if (phoneNum.isEmpty()) {
                         UiUtils.ToastUtils("手机号不能为空");
                     } else if (TextUtils.isEmpty(passWord)) {
                         UiUtils.ToastUtils("密码不能为空");
@@ -114,14 +115,13 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                     } else if (passWord.length() < 6 || passWord.length() > 16) {
                         UiUtils.ToastUtils("密码不能少于6位并且不能大于16位");
                     } else {
-                        if (!verEdiCode.equals(vercode)) {
-                            UiUtils.ToastUtils("验证码不正确，请重新输入");
-                        } else {
-                            Intent intent = new Intent(UserLoginActivity.this, RegistSucess.class);
-                            PrefUtils.putString(this, "phoneNum", phoneNum);
-                            PrefUtils.putString(this, "passWord", passWord);
-                            startActivity(intent);
+                        requestLoginServerData(phoneNum, passWord);
+                      /*  if (!verEdiCode.equals(vercode)) {
+                            UiUtils.ToastUtils("验证码不正确");
                         }
+                        else {
+                            requestLoginServerData(phoneNum, passWord);
+                        }*/
                     }
                     System.out.println("立即注册");
                 } catch (Exception e) {
@@ -141,14 +141,12 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         try {
             request2 = NoHttp.createStringRequest(GlobalConstants.SERVER_URL + "user_reg" +
                     ".json", RequestMethod.POST);
-            phoneNum = loginEtUserNum.getText().toString().trim();   //手机号
-            passWord = loginEtPassword.getText().toString().trim();  //密码
             String time = Long.toString(new Date().getTime());
             map2.put("access_id", "1234567890");
             map2.put("timestamp", time);
             map2.put("telnum", telnum);
             map2.put("password", MD5Encoder.encode(passWord));
-            map2.put("vercode", vercode);
+            map2.put("vercode", VerEdiCode.getText().toString().trim());
             String encode = MD5Encoder.encode(Sign.generateSign(map2) +
                     "12345678901234567890123456789011");
             map2.put("sign", encode);
@@ -192,8 +190,20 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                     break;
                 case 1:
                     String loginResult = response.get();
+                    System.out.println("loginBean" + loginResult);
                     LoginBean loginBean = processLoginData(loginResult);
-                    System.out.println("loginBean" + loginBean);
+                    if(loginBean.status.equals("00000"))
+                    {
+                        UiUtils.ToastUtils("注册成功");
+                        Intent intent = new Intent(UserLoginActivity.this, RegistSucess.class);
+                        PrefUtils.putString(UserLoginActivity.this, "phoneNum", phoneNum);
+                        PrefUtils.putString(UserLoginActivity.this, "passWord", passWord);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        UiUtils.ToastUtils(loginBean.summary);
+                    }
                     break;
             }
         }
@@ -219,6 +229,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         //通过json和对象类,生成一个对象
         verCode = gson.fromJson(json, VerificationCode.class);
         System.out.println();
+        vercode=verCode.result.vercode;
         return verCode;
     }
 }

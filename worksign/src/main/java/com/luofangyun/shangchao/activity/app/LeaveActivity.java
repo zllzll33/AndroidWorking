@@ -335,6 +335,7 @@ public class LeaveActivity extends BaseActivity {
             holder.leave_days.setText(dataList.get(position).leavedays);
             if (dataList.get(position).statu == 0) {
                 holder.leave_examine.setText("审批中");
+                holder.cancle_tv.setVisibility(View.VISIBLE);
             } else if (dataList.get(position).statu == 1) {
                 holder.leave_examine.setText("审批通过");
                 holder.cancle_tv.setVisibility(View.GONE);
@@ -407,7 +408,7 @@ public class LeaveActivity extends BaseActivity {
         public void onBindViewHolder(MyViewHolder1 holder, int position) {
             holder.leave_message1.setText(dataList1.get(position).leavename);
             holder.leave_days1.setText(dataList1.get(position).leavedays);
-            holder.leave_examine1.setText("审批中");
+            holder.leave_examine1.setText("待审核");
             holder.leave_starttime1.setText(dataList1.get(position).stattime);
             holder.leave_endtime1.setText(dataList1.get(position).endtime);
             holder.cancle_tv.setVisibility(View.GONE);
@@ -445,7 +446,7 @@ public class LeaveActivity extends BaseActivity {
                     intent.putExtra("leavereason", dataList1.get(getLayoutPosition()).leavereason);
                     intent.putExtra("leavecode", dataList1.get(getLayoutPosition()).leavecode);
                     intent.setAction("Leavewaitdetail");
-                    startActivity(intent);
+                    startActivityForResult(intent,1);
                 }
             });
             cancle_tv.setOnClickListener(new View.OnClickListener() {

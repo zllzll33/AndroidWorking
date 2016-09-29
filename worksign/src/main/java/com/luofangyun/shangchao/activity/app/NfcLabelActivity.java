@@ -1,9 +1,17 @@
 package com.luofangyun.shangchao.activity.app;
 
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
+import android.nfc.tech.MifareClassic;
+import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -48,6 +56,8 @@ public class NfcLabelActivity extends BaseActivity {
     private Map<String, String> map1 = new HashMap<>();
     private ApplyBean applyBean;
     public static Handler handler;
+    private NfcAdapter nfcAdapter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +73,7 @@ public class NfcLabelActivity extends BaseActivity {
         };
         initView();
         initData();
+
     }
 
     private void initView() {
@@ -79,6 +90,7 @@ public class NfcLabelActivity extends BaseActivity {
         myAdapter = new MyAdapter();
         nfcLabelRlv.setAdapter(myAdapter);
         flAddress.addView(view);
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
     }
 
     public void getServerData() {
@@ -215,14 +227,26 @@ public class NfcLabelActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.right:
-                //TODO:NFC跳转需要做判断
-             //   startActivity(new Intent(this, NfcManagerActivity.class));
-                startActivityForResult(new Intent(this, MyCaptureActivity.class), 10);
+
+                if (nfcAdapter == null) {
+                    UiUtils.ToastUtils("此设备不支持NFC");
+                    return;
+                }else if (!nfcAdapter.isEnabled()) {
+                    UiUtils.ToastUtils("请打开NFC");
+                    startActivity(new Intent("android.settings.NFC_SETTINGS"));
+                    return;
+                }else {
+                    Intent intent=new Intent(NfcLabelActivity.this,AddNFCTagActivity.class);
+                    startActivity(intent);
+                }
+
                 break;
             default:
                 break;
         }
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -233,9 +257,7 @@ public class NfcLabelActivity extends BaseActivity {
             System.out.println("扫描的结果为:" + stringExtra);
             int start = stringExtra.indexOf("=");
             String nfcid = stringExtra.substring(start + 1, stringExtra.length());
-            Intent intent=new Intent(NfcLabelActivity.this,AddNFCTagActivity.class);
-            intent.putExtra("nfcid",nfcid);
-            startActivity(intent);
+
             Log.e("扫描的结果为=====", stringExtra);
         }
 

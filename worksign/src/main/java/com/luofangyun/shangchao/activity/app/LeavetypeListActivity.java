@@ -76,7 +76,7 @@ public class LeavetypeListActivity extends BaseActivity {
     private BroadcastReceiver broadcastReceiver;
     public static String LOCATION_BCR = "location_bcr";
     private String              address;    //获取地址
-    private int                 id;
+    private int                 id,leaveId;
     private DatePickerPopWindow dppw, dppw1;
     private Handler handler = new Handler() {
         @Override
@@ -302,14 +302,14 @@ public class LeavetypeListActivity extends BaseActivity {
                         @Override
                         public void onClick(View v) {
                             getApprovalServer(0, getIntent().getStringExtra("leavecode"), 1);
-                            finish();
+
                         }
                     });
                     negate.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             getApprovalServer(0, getIntent().getStringExtra("leavecode"), 0);
-                            finish();
+
                         }
                     });
                 }
@@ -576,6 +576,10 @@ public class LeavetypeListActivity extends BaseActivity {
                 case 7:
                     ApplyBean applyBean = new Gson().fromJson(response.get(), ApplyBean.class);
                     UiUtils.ToastUtils(applyBean.summary);
+                    if(applyBean.status.equals("00000")) {
+                        setResult(1);
+                        finish();
+                    }
                     break;
                 case 8:
                     System.out.println("详细信息为：" + response.get());
@@ -781,7 +785,6 @@ public class LeavetypeListActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
                                 UiUtils.parentpopupWindow.dismiss();
-
                             }
                         });
                         typeTvConfirm.setOnClickListener(new View.OnClickListener() {
@@ -949,7 +952,7 @@ public class LeavetypeListActivity extends BaseActivity {
             map1.put("access_id", "1234567890");
             map1.put("timestamp", time);
             map1.put("telnum", UiUtils.getPhoneNumber());
-            map1.put("leavetype", String.valueOf(id));
+            map1.put("leavetype", String.valueOf(leaveId));
             map1.put("stattime", leaveTypeEt2.getText().toString().trim());
             map1.put("endtime", leaveTypeEt3.getText().toString().trim());
             map1.put("leavedays", leaveTypeEt4.getText().toString().trim());
@@ -1028,14 +1031,13 @@ public class LeavetypeListActivity extends BaseActivity {
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
-
                 private int id;
-
                 @Override
                 public void onClick(View v) {
                     String leavename = dataList.get(getLayoutPosition()).leavename;
                     leaveTypeEt1.setText(TextUtils.isEmpty(leavename) ? "" : leavename);
                     id = dataList.get(getLayoutPosition()).id;
+                    leaveId=dataList.get(getLayoutPosition()).id;
                     UiUtils.parentpopupWindow.dismiss();
                 }
             });

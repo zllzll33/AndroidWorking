@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -63,7 +65,7 @@ public class PersonalDataActivity extends BaseActivity {
     private TextView perConfirm, perCancel, perEmpsex, perArea, perPhone, perName, man,
             women, bigIcon, insteadIcon, saveIcon;
     private AlertDialog dialog, birDialog, addressDialog;
-    private String berEtnameText, empphoto, telnum, empaddress, empbirthday, username,
+    private String berEtnameText, empphoto, telnum, empaddress="", empbirthday, username,
             empsex, empphone, personName, manText;
     private EditText perEtName, birEtname, addressName, perDate;
     private ImageView personalPic;
@@ -79,6 +81,7 @@ public class PersonalDataActivity extends BaseActivity {
     private LinearLayout    address, headPic, genderll, personal2, birthday;
     private LinearLayout        phone;
     private DatePickerPopWindow timePopuwindow;
+    CharSequence  text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,6 +181,26 @@ public class PersonalDataActivity extends BaseActivity {
             case R.id.personal2:
                 this.dialog = UiUtils.getDialog(this, R.layout.per_name_dialog);
                 perEtName = (EditText) this.dialog.findViewById(R.id.per_et_name);
+            /*    perEtName.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        text=s.toString();
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                           if(text.length()>=15)
+                           {
+                               UiUtils.ToastUtils("字数小于15个");
+                               perEtName.setText(text);
+                           }
+                    }
+                });*/
                 perConfirm = (TextView) this.dialog.findViewById(R.id.per_confirm);
                 perCancel = (TextView) this.dialog.findViewById(R.id.per_cancel);
                 perConfirm.setOnClickListener(this);
@@ -211,6 +234,7 @@ public class PersonalDataActivity extends BaseActivity {
             case R.id.address:
                 addressDialog = UiUtils.getDialog(this, R.layout.address_empt_dialog);
                 addressName = (EditText) addressDialog.findViewById(R.id.address_et_name);
+                addressName.setText(empaddress);
                 addressCancel = (TextView) addressDialog.findViewById(R.id.address_cancel);
                 addressConfirm = (TextView) addressDialog.findViewById(R.id.address_confirm);
                 addressCancel.setOnClickListener(this);

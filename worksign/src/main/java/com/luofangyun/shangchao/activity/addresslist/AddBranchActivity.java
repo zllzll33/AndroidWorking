@@ -60,7 +60,7 @@ public class AddBranchActivity extends BaseActivity {
             Bundle bundle = getIntent().getBundleExtra("bundle");
             parentdept=bundle.getString("parentdept");
             parentname=bundle.getString("parentname");
-            boolean addNew=PrefUtils.getBoolean(getApplicationContext(),"addNewBr",false);
+            boolean addNew=bundle.getBoolean("addNewBr");
             if(addNew) {
                 titleTv.setText("添加部门");
                 parentdept=PrefUtils.getString(getApplicationContext(),"branchCode","");
@@ -152,7 +152,7 @@ public class AddBranchActivity extends BaseActivity {
                     getServerData();   //添加部门
                 break;
             case R.id.add_branch_ll:
-                PrefUtils.putString(getApplicationContext(),"nowname",addBranchName.getText().toString().trim());
+//                PrefUtils.putString(getApplicationContext(),"nowname",addBranchName.getText().toString().trim());
                 startActivityForResult(new Intent(this, CorporBranchActivity1.class), 1);
                 finish();
                 break;

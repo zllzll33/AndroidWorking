@@ -139,7 +139,7 @@
             android:layout_height="40dp"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:text="设置巡检路线"
+            android:text="设置巡检点"
             android:textSize="17sp"
             android:background="@drawable/shape_stroke"/>
         <TextView

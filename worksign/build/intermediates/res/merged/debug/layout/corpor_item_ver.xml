@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.luofangyun.shangchao.utils.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.luofangyun.shangchao.ui.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
                                             android:layout_width="match_parent"
                                             android:layout_height="40dp"
                                             android:id="@+id/swipelayout"
+    app:clickToClose="true"
                                         >
+    <LinearLayout
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:id="@+id/ll_delete">
+        <TextView
+            android:id="@+id/corpor_delete"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:textColor="@color/white"
+            android:background="#f00"
+            android:gravity="center"
+            android:text="删除"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/address_empt_fl1"
         android:layout_width="match_parent"
@@ -34,18 +50,6 @@
             android:layout_height="20dp"
             android:background="@mipmap/to_right"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/corpor_delete"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:textColor="@color/white"
-            android:background="#f00"
-            android:gravity="center"
-            android:text="删除"/>
-    </LinearLayout>
 
-</com.luofangyun.shangchao.utils.SwipeLayout>
+
+</com.luofangyun.shangchao.ui.SwipeLayout>

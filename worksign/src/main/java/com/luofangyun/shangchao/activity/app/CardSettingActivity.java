@@ -1,6 +1,7 @@
 package com.luofangyun.shangchao.activity.app;
 
 import android.content.Intent;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +33,7 @@ public class CardSettingActivity extends BaseActivity {
     private RecyclerView cardSet;
     private MyAdapter    myAdapter;
     private String[] names = {"NFC打卡", "蓝牙打卡", "GPS打卡"};
+    private NfcAdapter nfcAdapter;
     private List<Card> cards=new ArrayList<>();
     public class Card{
         public Card(String name,boolean isOpen)
@@ -41,7 +43,6 @@ public class CardSettingActivity extends BaseActivity {
         }
         private String name;
         private boolean isOpen;
-
         public String getName() {
             return name;
         }
@@ -94,6 +95,7 @@ public class CardSettingActivity extends BaseActivity {
         cardSet.setAdapter(myAdapter);
         titleTv.setText("打卡设置");
         flAddress.addView(view);
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyViewholder> {
@@ -138,16 +140,38 @@ public class CardSettingActivity extends BaseActivity {
                 public void onClick(View v) {
 //                    Log.e("positon", String.valueOf(getLayoutPosition()));
                     if(cards.get(getLayoutPosition()).isOpen==false) {
-                        for (int i = 0; i < cards.size(); i++) {
+                   /*     for (int i = 0; i < cards.size(); i++) {
                             cards.get(i).setOpen(false);
-                        }
-                        cards.get(getLayoutPosition()).setOpen(true);
+                        }*/
+//                        cards.get(getLayoutPosition()).setOpen(true);
                         if(getLayoutPosition()==0)
-                        PrefUtils.putString(CardSettingActivity.this, "confirmNameText", "NFC");
-                        else if(getLayoutPosition()==1)
+                        {
+                            if (nfcAdapter == null) {
+                                UiUtils.ToastUtils("此设备不支持NFC");
+                                return;
+                            }else {
+                                PrefUtils.putString(CardSettingActivity.this, "confirmNameText", "NFC");
+                                for (int i = 0; i < cards.size(); i++) {
+                                    cards.get(i).setOpen(false);
+                                }
+                                cards.get(getLayoutPosition()).setOpen(true);
+                            }
+//
+                        }
+                        else if(getLayoutPosition()==1) {
                             PrefUtils.putString(CardSettingActivity.this, "confirmNameText", "蓝牙");
-                        else if(getLayoutPosition()==2)
+                            for (int i = 0; i < cards.size(); i++) {
+                                cards.get(i).setOpen(false);
+                            }
+                            cards.get(getLayoutPosition()).setOpen(true);
+                        }
+                        else if(getLayoutPosition()==2) {
                             PrefUtils.putString(CardSettingActivity.this, "confirmNameText", "GPS");
+                            for (int i = 0; i < cards.size(); i++) {
+                                cards.get(i).setOpen(false);
+                            }
+                            cards.get(getLayoutPosition()).setOpen(true);
+                        }
                         myAdapter.notifyDataSetChanged();
                     }
                 }

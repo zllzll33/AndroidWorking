@@ -84,12 +84,10 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="8dp">
-
             <TextView
                 android:id="@+id/leavetype_text3"
                 style="@style/three_text"
                 android:text="结束时间"/>
-
             <EditText
                 android:id="@+id/leavetype_et3"
                 android:layout_width="0dp"

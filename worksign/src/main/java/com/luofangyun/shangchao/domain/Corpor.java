@@ -24,6 +24,7 @@ public class Corpor {
             public String updateuser;
             public String companyid;
             public String updatetime;
+            public boolean isOpen=false;
         }
         public class Emps {
             public String updateuser;

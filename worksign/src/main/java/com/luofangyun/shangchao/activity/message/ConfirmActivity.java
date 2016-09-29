@@ -1,5 +1,6 @@
 package com.luofangyun.shangchao.activity.message;
 
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +8,14 @@ import android.content.IntentFilter;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
+import android.nfc.tech.MifareClassic;
+import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -64,6 +71,11 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
     private double longitude;
     private double latitude;
     boolean isNotCard=false;
+    private NfcAdapter nfcAdapter;
+   String rfid;
+    PendingIntent pendingIntent;
+    private IntentFilter[] mFilters;
+    private String[][] mTechLists;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +106,6 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
             }
         };
     }
-
     private void initView() {
         confirmTime = (TextView) view.findViewById(R.id.confirm_time);
         confirmTv = (TextView) view.findViewById(R.id.confirm_tv);
@@ -163,6 +174,23 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
         new Thread(this).start();
         titleTv.setText("打卡");
         flAddress.addView(view);
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        if (nfcAdapter == null) {
+            return;
+        }else if (!nfcAdapter.isEnabled()) {
+            UiUtils.ToastUtils("请打开NFC");
+            startActivity(new Intent("android.settings.NFC_SETTINGS"));
+            return;
+        }else {
+            pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,
+                    getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+            IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
+            ndef.addCategory("*/*");
+            mFilters = new IntentFilter[]{ndef};// 过滤器
+            mTechLists = new String[][]{
+                    new String[]{MifareClassic.class.getName()},
+                    new String[]{NfcA.class.getName()}};// 允许扫描的标签类型
+        }
     }
     private void showLocationText() {
         //获取地理位置管理器
@@ -246,6 +274,10 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                     PrefUtils.putString(this, "confirmTimeText", confirmTime.getText().toString().trim());
                     System.out.println("我被点击了……");
                 } else if (labelTv.getText().toString().trim().contains("NFC")) {
+                    if(TextUtils.isEmpty(confirmName.getText().toString()))
+                    {
+                        UiUtils.ToastUtils("请感应NFC卡");
+                    }
                     getServerData(confirmName.getText().toString(), 1);
                     PrefUtils.putString(this, "confirmNameText", confirmName.getText().toString().trim());
                     PrefUtils.putString(this, "confirmTimeText", confirmTime.getText().toString().trim());
@@ -262,6 +294,10 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                 cardSet.findViewById(R.id.card_nfc).setOnClickListener(this);
                 cardSet.findViewById(R.id.card_bule).setOnClickListener(this);
                 cardSet.findViewById(R.id.card_gps).setOnClickListener(this);
+                if(nfcAdapter==null)
+                    cardSet.findViewById(R.id.card_nfc).setVisibility(View.GONE);
+                else
+                    cardSet.findViewById(R.id.card_nfc).setVisibility(View.VISIBLE);
                 break;
             case R.id.myinfo_cancel:
                 UiUtils.parentpopupWindow.dismiss();
@@ -277,8 +313,9 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                 confirmTime.setText("");
                 confirmTime.setText(nowTime);
                 PrefUtils.putString(this, "labelText", labelTv.getText().toString().trim());
-                Intent intent=new Intent(ConfirmActivity.this, MyCaptureActivity.class);
-                startActivityForResult(intent,1);
+                UiUtils.ToastUtils("请感应NFC卡");
+          /*      Intent intent=new Intent(ConfirmActivity.this, MyCaptureActivity.class);
+                startActivityForResult(intent,1);*/
                 UiUtils.parentpopupWindow.dismiss();
                 break;
             case R.id.card_bule:
@@ -307,6 +344,63 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
             default:
                 break;
         }
+    }
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        nfcAdapter.enableForegroundDispatch(this, pendingIntent, mFilters,
+                mTechLists);
+
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        // TODO Auto-generated method stub
+        super.onNewIntent(intent);
+        if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
+            String result = processIntent(intent);
+//            Log.e("nfcresult", result);
+
+        }
+        if (nfcAdapter != null && nfcAdapter.isEnabled())
+        {
+            // 获取标签卡id
+            byte[] byteArrayExtra = intent.getByteArrayExtra(
+                    NfcAdapter.EXTRA_ID);
+
+            if(byteArrayExtra == null)
+                return;
+            rfid = byteArrayToHexString(byteArrayExtra);
+            confirmName.setText(rfid);
+//            Log.e("rfid", rfid);
+            UiUtils.ToastUtils("感应成功");
+        }
+    }
+    private String processIntent(Intent intent) {
+        Parcelable[] rawmsgs = intent
+                .getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+        NdefMessage msg = (NdefMessage) rawmsgs[0];
+        NdefRecord[] records = msg.getRecords();
+        String resultStr = new String(records[0].getPayload());
+        return resultStr;
+    }
+    private String byteArrayToHexString(byte[] inarray)
+    { // converts byte arrays to string
+        int i, j, in;
+        String[] hex =
+                { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D",
+                        "E", "F" };
+        String out = "";
+
+        for (j = 0; j < inarray.length; ++j)
+        {
+            in = (int) inarray[j] & 0xff;
+            i = (in >> 4) & 0x0f;
+            out += hex[i];
+            i = in & 0x0f;
+            out += hex[i];
+        }
+        return out;
     }
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data)

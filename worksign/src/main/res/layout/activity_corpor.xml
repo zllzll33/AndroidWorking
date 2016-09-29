@@ -27,7 +27,6 @@
             android:layout_toRightOf="@+id/one">
         </android.support.v7.widget.RecyclerView>
     </RelativeLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/corpor_rlv"
         android:layout_width="match_parent"

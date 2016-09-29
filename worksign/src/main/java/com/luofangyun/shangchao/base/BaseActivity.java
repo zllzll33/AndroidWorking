@@ -1,6 +1,9 @@
 package com.luofangyun.shangchao.base;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -16,6 +19,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 import com.luofangyun.shangchao.R;
+import com.luofangyun.shangchao.utils.UiUtils;
 import com.zhy.autolayout.AutoFrameLayout;
 
 import java.text.SimpleDateFormat;

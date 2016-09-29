@@ -20,6 +20,7 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
         android:layout_marginTop="90px"
+
         />
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"

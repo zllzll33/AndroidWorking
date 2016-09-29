@@ -108,12 +108,12 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-mdpi\\nfc.png"
     },
     {
-        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\blue_gray.png",
-        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-mdpi\\blue_gray.png"
-    },
-    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\more.png",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-mdpi\\more.png"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\blue_gray.png",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-mdpi\\blue_gray.png"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\inspection.png",

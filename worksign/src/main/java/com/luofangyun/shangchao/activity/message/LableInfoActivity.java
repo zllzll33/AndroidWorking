@@ -197,7 +197,7 @@ public class LableInfoActivity extends BaseActivity {
             String encode = MD5Encoder.encode(Sign.generateSign(map3) +
                     "12345678901234567890123456789011");
             map3.put("sign", encode);
-            Log.e("考勤标签add",UiUtils.Map2JsonStr(map3));
+//            Log.e("考勤标签add",UiUtils.Map2JsonStr(map3));
             request3.add(map3);
             CallServer.getRequestInstance().add(this, 3, request3, httpListener, false, false);
         } catch (Exception e) {
@@ -252,7 +252,7 @@ public class LableInfoActivity extends BaseActivity {
                     myAdapter2.notifyDataSetChanged();*/
                     break;
                 case 4:
-                    Log.e("delete",response.get());
+//                    Log.e("delete",response.get());
                     getServerData1();
                     getServerData2();
                 /*    applyBean2 = new Gson().fromJson(response.get(), ApplyBean.class);

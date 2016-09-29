@@ -63,7 +63,9 @@
 
         <TextView
             android:id="@+id/per_username"
-            style="@style/personal_right_text"/>
+            style="@style/personal_right_text"
+            android:singleLine="true"
+            android:layout_marginLeft="10dp"/>
 
         <ImageView
             android:layout_width="18dp"
@@ -176,27 +178,35 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/white"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="8dp">
-
         <TextView
+            android:layout_gravity="center"
             style="@style/three_text"
             android:text="地址"/>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_gravity="center">
         <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/per_empaddress"
-            style="@style/personal_right_text"/>
+            android:layout_width="150dp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ems="20"
+
+            />
 
         <ImageView
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:src="@mipmap/to_right"/>
+            </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
