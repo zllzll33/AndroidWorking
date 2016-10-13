@@ -1,23 +1,18 @@
 package com.luofangyun.shangchao.activity.app;
 
-import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.luofangyun.shangchao.R;
-import com.luofangyun.shangchao.activity.MainActivity;
-import com.luofangyun.shangchao.activity.MyCaptureActivity;
 import com.luofangyun.shangchao.base.BaseActivity;
 import com.luofangyun.shangchao.utils.PrefUtils;
 import com.luofangyun.shangchao.utils.UiUtils;
@@ -79,7 +74,7 @@ public class CardSettingActivity extends BaseActivity {
     }
     private void initData() {
         cardSet.setLayoutManager(new LinearLayoutManager(this));
-        String labelTvText = PrefUtils.getString(CardSettingActivity.this, "confirmNameText", null);
+        String labelTvText = PrefUtils.getString(CardSettingActivity.this, "labelText", null);
         if (TextUtils.isEmpty(labelTvText)) {
              cards.get(2).setOpen(true);
         } else {
@@ -111,6 +106,11 @@ public class CardSettingActivity extends BaseActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    if(position==0&&nfcAdapter==null)
+                    {
+                        holder.buttonIv.setClickable(true);
+                        return;
+                    }
                     if(cards.get(position).isOpen==true) {
                         holder.buttonIv.setChecked(true);
                         holder.buttonIv.setClickable(false);
@@ -122,7 +122,6 @@ public class CardSettingActivity extends BaseActivity {
                 }
             }, 50);
         }
-
         @Override
         public int getItemCount() {
             return cards.size();
@@ -138,19 +137,16 @@ public class CardSettingActivity extends BaseActivity {
             buttonIv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Log.e("positon", String.valueOf(getLayoutPosition()));
                     if(cards.get(getLayoutPosition()).isOpen==false) {
-                   /*     for (int i = 0; i < cards.size(); i++) {
-                            cards.get(i).setOpen(false);
-                        }*/
-//                        cards.get(getLayoutPosition()).setOpen(true);
                         if(getLayoutPosition()==0)
                         {
                             if (nfcAdapter == null) {
+                                cards.get(getLayoutPosition()).setOpen(false);
                                 UiUtils.ToastUtils("此设备不支持NFC");
+                                buttonIv.setChecked(false);
                                 return;
                             }else {
-                                PrefUtils.putString(CardSettingActivity.this, "confirmNameText", "NFC");
+                                PrefUtils.putString(CardSettingActivity.this, "labelText", "NFC");
                                 for (int i = 0; i < cards.size(); i++) {
                                     cards.get(i).setOpen(false);
                                 }
@@ -159,14 +155,14 @@ public class CardSettingActivity extends BaseActivity {
 //
                         }
                         else if(getLayoutPosition()==1) {
-                            PrefUtils.putString(CardSettingActivity.this, "confirmNameText", "蓝牙");
+                            PrefUtils.putString(CardSettingActivity.this, "labelText", "蓝牙");
                             for (int i = 0; i < cards.size(); i++) {
                                 cards.get(i).setOpen(false);
                             }
                             cards.get(getLayoutPosition()).setOpen(true);
                         }
                         else if(getLayoutPosition()==2) {
-                            PrefUtils.putString(CardSettingActivity.this, "confirmNameText", "GPS");
+                            PrefUtils.putString(CardSettingActivity.this, "labelText", "GPS");
                             for (int i = 0; i < cards.size(); i++) {
                                 cards.get(i).setOpen(false);
                             }

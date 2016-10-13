@@ -1,17 +1,10 @@
 package com.luofangyun.shangchao.activity.app;
 
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
-import android.nfc.tech.MifareClassic;
-import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,7 +16,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
-import com.luofangyun.shangchao.activity.MyCaptureActivity;
 import com.luofangyun.shangchao.base.BaseActivity;
 import com.luofangyun.shangchao.domain.ApplyBean;
 import com.luofangyun.shangchao.domain.Label;
@@ -251,15 +243,6 @@ public class NfcLabelActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == 10) {
-            String stringExtra = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
-            System.out.println("扫描的结果为:" + stringExtra);
-            int start = stringExtra.indexOf("=");
-            String nfcid = stringExtra.substring(start + 1, stringExtra.length());
-
-            Log.e("扫描的结果为=====", stringExtra);
-        }
 
     }
 }

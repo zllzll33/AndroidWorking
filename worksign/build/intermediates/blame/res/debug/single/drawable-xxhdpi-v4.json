@@ -180,10 +180,6 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\drawable-xxhdpi\\closed.png"
     },
     {
-        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
-        "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\AndroidWorking\\library_Zxing\\unspecified\\res\\drawable-xxhdpi-v4\\ic_launcher.png"
-    },
-    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable-xxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },

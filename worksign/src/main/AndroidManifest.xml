@@ -359,8 +359,6 @@
         </activity>
         <activity android:name=".activity.app.MeetDetailActivity">
         </activity>
-        <activity android:name=".activity.app.NfcActivity">
-        </activity>
         <activity android:name=".activity.app.AfficheNextActivity">
         </activity>
         <activity android:name=".activity.message.AttPeopActivity">

@@ -85,7 +85,6 @@ public class CorporActivity extends BaseActivity {
         branchHor = (RecyclerView) view.findViewById(R.id.branch_hor);
         one = (TextView) view.findViewById(R.id.one);
     }
-
     private void initData() {
 //        one.setOnClickListener(this);
         addBranchName = PrefUtils.getString(this, "addBranchName", null);
@@ -134,8 +133,20 @@ public class CorporActivity extends BaseActivity {
                 invite.setOnClickListener(this);
                 break;
             case R.id.add_empl:            //添加员工
-                startActivityForResult(new Intent(this, AddEmplActivity.class), 1);
+                Intent intent2=new Intent(this, AddEmplActivity.class);
+
+                if(branchCode==null)
+                {
+                    intent2.putExtra("parentdept", "0");
+                    intent2.putExtra("parentname", "");
+                }
+                else {
+                    intent2.putExtra("parentdept",branchCode);
+                    intent2.putExtra("parentname", branchName);
+                }
+                startActivity(intent2);
                 UiUtils.popupWindow.dismiss();
+                finish();
                 break;
             case R.id.add_branch:         //添加部门
                 if(isBigBranch==true) {
@@ -432,12 +443,11 @@ public class CorporActivity extends BaseActivity {
                     branchCode=dataList.get(getLayoutPosition()).deptcode;
                     parentName=dataList.get(getLayoutPosition()).parentdeptname;
                     parentCode=dataList.get(getLayoutPosition()).parentdept;
+
                     branchHor.setAdapter(myAdapter1);
                 }
 
         });
-
-
             corporDelete.setOnClickListener(this);
         }
         @Override

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,6 +45,7 @@ import java.util.Map;
 public class AddressListActivity extends BaseActivity {
     private View view;
     RecyclerView recyclerView;
+    Handler handler;
     List<ConnenctBean.Result>  dateList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +55,24 @@ public class AddressListActivity extends BaseActivity {
         recyclerView=(RecyclerView)view.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         flAddress.addView(view);
-        ReadAllContacts();
-        MyAdapter myAdapter = new MyAdapter();
-        recyclerView.setAdapter(myAdapter);
+        handler=new Handler(){
+            public void handleMessage(Message msg)
+            {
+                MyAdapter myAdapter = new MyAdapter();
+                recyclerView.setAdapter(myAdapter);
+            }
+        };
+
+        new  Thread(){
+            @Override
+            public void run() {
+                super.run();
+                ReadAllContacts();
+
+            }
+        }.start();
     }
+
     public void ReadAllContacts() {
         Cursor cursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,
                 null, null, null, null);
@@ -77,18 +94,20 @@ public class AddressListActivity extends BaseActivity {
                     ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + contactId,
                     null, null);
             int phoneIndex = 0;
+
             if(phones.getCount() > 0) {
                 phoneIndex = phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
             }
             while(phones.moveToNext()) {
                 String phoneNumber = phones.getString(phoneIndex);
                 connects.empphone=phoneNumber;
-                Log.e("phone", phoneNumber);
+//                Log.e("phone", phoneNumber);
             }
             dateList.add(connects);
+            phones.close();
+            handler.sendEmptyMessage(1);
         }
-        Log.e("size",String.valueOf(dateList.size()));
-
+//        Log.e("size",String.valueOf(dateList.size()));
     }
     private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         @Override
@@ -100,10 +119,10 @@ public class AddressListActivity extends BaseActivity {
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
             holder.listTv1.setText(dateList.get(position).empname);
-            Log.e("list_name",dateList.get(position).empname);
+//            Log.e("list_name",dateList.get(position).empname);
                 try{
                 holder.listTv2.setText(dateList.get(position).empphone);
-                Log.e("list_phone",dateList.get(position).empphone);
+//                Log.e("list_phone",dateList.get(position).empphone);
             }catch (Exception e)
             {
 //                UiUtils.ToastUtils(dateList.get(position).empname+"该用户未添加号码");
@@ -161,7 +180,7 @@ public class AddressListActivity extends BaseActivity {
         public void onSucceed(int what, Response<String> response) {
             String result = response.get();
             AddressListPager.handler.sendEmptyMessage(1)  ;
-         Log.e("phoneAdd",result);
+//         Log.e("phoneAdd",result);
         }
         @Override
         public void onFailed(int what, String url, Object tag, CharSequence message, int

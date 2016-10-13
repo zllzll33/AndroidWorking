@@ -3,6 +3,7 @@ package com.luofangyun.shangchao.activity.addresslist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -57,15 +58,14 @@ public class AddEmplActivity extends BaseActivity {
         addEmp = (LinearLayout) view.findViewById(R.id.add_empl_ll);
     }
     private void initData() {
-        if(PrefUtils.getBoolean(this, "addNewEt", true)) {
-            emplEtName.setText(PrefUtils.getString(this, "emplEtNameText", ""));
-            emplEtPhone.setText(PrefUtils.getString(this, "emplEtPhoneText", ""));
-            emplEtChoce.setText(PrefUtils.getString(this, "emplEtChoceText", ""));
-        }
-        deptName = getIntent().getStringExtra("deptName");               //点击企业部门传来的部门名称
-        deptCode = getIntent().getStringExtra("deptCode");               //点击企业部门传来的部门编码
+        deptName = getIntent().getStringExtra("parentname");               //点击企业部门传来的部门名称
+        deptCode = getIntent().getStringExtra("parentdept");               //点击企业部门传来的部门编码
         if (!TextUtils.isEmpty(deptName)) {
             addTv.setText(deptName);
+        }
+        else
+        {
+            addTv.setText("暂无");
         }
         addEmplSave.setOnClickListener(this);
         addEmp.setOnClickListener(this);
@@ -80,7 +80,7 @@ public class AddEmplActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.title_ll_back:
-                PrefUtils.putBoolean(AddEmplActivity.this, "addNewEt", false);
+//                PrefUtils.putBoolean(AddEmplActivity.this, "addNewEt", false);
                 finish();
 //                startActivity(new Intent(this, CorporActivity.class));
                 break;
@@ -88,19 +88,19 @@ public class AddEmplActivity extends BaseActivity {
                 getServerData(1);
                 break;
             case R.id.add_empl_ll:
-                PrefUtils.putBoolean(AddEmplActivity.this, "addNewEt", true);
+         /*       PrefUtils.putBoolean(AddEmplActivity.this, "addNewEt", true);
                 PrefUtils.putString(this, "emplEtNameText", emplEtName.getText().toString().trim());
                 PrefUtils.putString(this, "emplEtPhoneText", emplEtPhone.getText().toString().trim());
                 PrefUtils.putString(this, "emplEtChoceText", emplEtChoce.getText().toString().trim());
                 startActivity(new Intent(this, CorporBranchActivity.class));
-                finish();
+                finish();*/
                 break;
             case R.id.right:
                 if (TextUtils.isEmpty(emplEtName.getText().toString().trim())) {
                     UiUtils.ToastUtils("名字不能为空");
                 }  else if (TextUtils.isEmpty(emplEtPhone.getText().toString().trim())) {
                     UiUtils.ToastUtils("电话号码不能为空");
-                }else if (!UiUtils.isMobileNO(emplEtPhone.getText().toString().trim())) {
+                }else if (emplEtPhone.getText().toString().trim().length()!=11) {
                       UiUtils.ToastUtils("非法手机号");
                 }
                 else {
@@ -122,10 +122,7 @@ public class AddEmplActivity extends BaseActivity {
             map.put("timestamp", time);
             map.put("telnum", UiUtils.getPhoneNumber());
             map.put("empname", emplEtName.getText().toString().trim());
-            if (!TextUtils.isEmpty(addTv.getText().toString().trim()))
-                map.put("empdept", deptCode);
-            else
-                map.put("empdept", "0");
+            map.put("empdept", deptCode);
             map.put("empphone", emplEtPhone.getText().toString().trim());
             map.put("empcode", "0");
             map.put("emppost", emplEtChoce.getText().toString().trim());
@@ -147,21 +144,28 @@ public class AddEmplActivity extends BaseActivity {
             switch (what)
             {
                 case 0:
-                     CorporActivity.handler.sendEmptyMessage(1);
-                    PrefUtils.putBoolean(AddEmplActivity.this, "addNewEt", false);
                     processData(result);
-                    UiUtils.ToastUtils(applyBean.summary);
-                    finish();
+                    if(applyBean.status.equals("00000")) {
+                        CorporActivity.handler.sendEmptyMessage(1);
+                        finish();
+                    }
+                    else
+                    {
+                        UiUtils.ToastUtils(applyBean.summary);
+                    }
                     break;
                 case 1:
-                    CorporActivity.handler.sendEmptyMessage(1);
-                    PrefUtils.putBoolean(AddEmplActivity.this, "addNewEt", false);
                     processData(result);
-                    UiUtils.ToastUtils(applyBean.summary);
-                    emplEtName.setText("");
-                    emplEtPhone.setText("");
-                    addTv.setText("");
-                    emplEtChoce.setText("");
+                    if(applyBean.status.equals("00000"))
+                    {
+                        CorporActivity.handler.sendEmptyMessage(1);
+                        emplEtName.setText("");
+                        emplEtPhone.setText("");
+                        addTv.setText("");
+                        emplEtChoce.setText("");
+                    }
+                    else
+                        UiUtils.ToastUtils(applyBean.summary);
                     break;
             }
 

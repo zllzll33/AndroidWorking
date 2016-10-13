@@ -225,14 +225,14 @@ public class EvectionActivity extends AppBaseActivity {
             holder.workDays.setText(dataList.get(position).traveldays);
             if (dataList.get(position).statu.equals("0")) {
                 holder.workState.setText("审批中");
+                holder.cancleTv.setVisibility(View.VISIBLE);
             } else if (dataList.get(position).statu.equals("1")) {
                 holder.workState.setText("审批通过");
-                holder.workDaysTv.setVisibility(View.GONE);
+                holder.cancleTv.setVisibility(View.GONE);
             } else if (dataList.get(position).statu.equals("2")) {
                 holder.workState.setText("审批拒绝");
-                holder.workDaysTv.setVisibility(View.GONE);
+                holder.cancleTv.setVisibility(View.GONE);
             }
-            holder.cancleTv.setVisibility(View.VISIBLE);
             holder.starttime.setText(dataList.get(position).stattime);
             holder.endtime.setText(dataList.get(position).endtime);
         }

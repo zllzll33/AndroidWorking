@@ -48,12 +48,12 @@
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\cirque.png",
-        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-hdpi\\cirque.png"
-    },
-    {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\sharelogo.png",
         "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-hdpi\\sharelogo.png"
+    },
+    {
+        "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\cirque.png",
+        "source": "D:\\shang11\\AndroidWorking\\worksign\\src\\main\\res\\mipmap-hdpi\\cirque.png"
     },
     {
         "merged": "D:\\shang11\\AndroidWorking\\worksign\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\rectangle.png",

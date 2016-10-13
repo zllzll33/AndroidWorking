@@ -16,6 +16,7 @@ import com.baidu.location.Poi;
 import com.igexin.sdk.PushManager;
 import com.luofangyun.shangchao.R;
 import com.luofangyun.shangchao.fragment.ContentFragment;
+import com.luofangyun.shangchao.utils.UiUtils;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class MainActivity extends FragmentActivity {
     public static String addrStr;
     public static String nowTime;
     public static Handler handler;
+    long mExitTime=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,7 +153,24 @@ public class MainActivity extends FragmentActivity {
             }
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        exitApp();
+    }
+    private void exitApp() {
+        if (System.currentTimeMillis() - mExitTime > 2000) {
+            UiUtils.ToastUtils("再按一次退出!");
+        } else {
+            exitApp(false);
+        }
+        mExitTime = System.currentTimeMillis();
+    }
+    public void exitApp(boolean isBackground) {
+        if (isBackground) {
+        } else {
+            System.exit(0);
+        }
+    }
     //初始化Fragment
     private void initFragment() {
         //获取fragment管理器

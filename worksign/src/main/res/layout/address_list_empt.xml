@@ -28,7 +28,6 @@
             android:layout_marginLeft="13dp"
             android:textSize="15dp"
             android:text="点击加入团队或创建团队"/>
-
         <LinearLayout
             android:id="@+id/address_ll"
             android:visibility="gone"

@@ -8,14 +8,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/library_Zxing" />
             <option value="$PROJECT_DIR$/worksign" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/library_Zxing" />
             <option value="$PROJECT_DIR$/worksign" />
           </set>
         </option>

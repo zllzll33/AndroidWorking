@@ -41,10 +41,8 @@ public class BlueListActivitiy extends BaseActivity {
     private void initView() {
         listRecy = (RecyclerView) view.findViewById(R.id.blue_list_recy);
     }
-
     private void initData() {
         ylwlmanager = YlwlManager.getInstance(this);
-
         /**
          * 设置启用云服务 (上传传感器数据，如电量、rssi等)。如果不设置，默认为关闭状态。
          **/

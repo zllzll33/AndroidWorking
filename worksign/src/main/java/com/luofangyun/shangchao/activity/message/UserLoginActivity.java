@@ -3,6 +3,7 @@ package com.luofangyun.shangchao.activity.message;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     private String              vercode="";
     private View view;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         map2 = new HashMap<>();
         titleTv.setText("用户注册");
         flAddress.addView(view);
+
     }
 
     @Override

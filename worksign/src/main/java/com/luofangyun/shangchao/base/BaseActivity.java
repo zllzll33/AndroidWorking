@@ -67,7 +67,6 @@ public class BaseActivity extends Activity implements View.OnClickListener {
         screenWidth = display.getWidth();                                  //屏幕宽度
         screenHeight = display.getHeight();                                //屏幕高度
     }
-
     public void initLocation() {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);

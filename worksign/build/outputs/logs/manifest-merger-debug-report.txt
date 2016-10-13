@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:2:1-372:12
+ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:2:1-370:12
 	package
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:4:11-45
 		INJECTED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml
@@ -44,7 +44,6 @@ MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\shang11\Andr
 MERGED from [com.android.support:support-v4:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:recyclerview-v7:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.0.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
-MERGED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:design:23.3.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\design\23.3.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:support-v4:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:21:5-23:54
@@ -131,7 +130,6 @@ ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:39:5-
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:39:22-78
 uses-permission#android.permission.VIBRATE
 ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:41:5-65
-MERGED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:12:5-66
 	android:name
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:41:22-63
 uses-permission#android.permission.GET_TASKS
@@ -169,7 +167,7 @@ ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:61:5-
 	android:name
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:61:22-72
 application
-ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:63:5-370:19
+ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:63:5-368:19
 MERGED from [com.android.support:appcompat-v7:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
@@ -195,7 +193,6 @@ MERGED from [com.android.support:animated-vector-drawable:24.0.0] D:\shang11\And
 MERGED from [com.android.support:support-vector-drawable:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0\AndroidManifest.xml:23:5-20
 MERGED from [com.android.support:support-v4:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
-MERGED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:19:5-32:19
 MERGED from [com.android.support:design:23.3.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\design\23.3.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:24.0.0] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0\AndroidManifest.xml:25:5-20
@@ -214,7 +211,6 @@ MERGED from [com.android.support:support-v4:24.0.0] D:\shang11\AndroidWorking\wo
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:65:9-35
 	android:icon
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:66:9-36
-		REJECTED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:21:9-45
 	android:persistent
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:68:9-34
 	android:theme
@@ -757,22 +753,18 @@ activity#com.luofangyun.shangchao.activity.app.MeetDetailActivity
 ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:360:9-361:20
 	android:name
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:360:19-66
-activity#com.luofangyun.shangchao.activity.app.NfcActivity
+activity#com.luofangyun.shangchao.activity.app.AfficheNextActivity
 ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:362:9-363:20
 	android:name
-		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:362:19-59
-activity#com.luofangyun.shangchao.activity.app.AfficheNextActivity
+		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:362:19-67
+activity#com.luofangyun.shangchao.activity.message.AttPeopActivity
 ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:364:9-365:20
 	android:name
 		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:364:19-67
-activity#com.luofangyun.shangchao.activity.message.AttPeopActivity
+activity#com.luofangyun.shangchao.activity.app.PeopDetailActivity
 ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:366:9-367:20
 	android:name
-		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:366:19-67
-activity#com.luofangyun.shangchao.activity.app.PeopDetailActivity
-ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:368:9-369:20
-	android:name
-		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:368:19-66
+		ADDED from D:\shang11\AndroidWorking\worksign\src\main\AndroidManifest.xml:366:19-66
 uses-permission#android.permission.CHANGE_NETWORK_STATE
 ADDED from [com.yolanda.nohttp:nohttp:1.0.4] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.yolanda.nohttp\nohttp\1.0.4\AndroidManifest.xml:16:5-79
 	android:name
@@ -781,29 +773,3 @@ uses-permission#android.permission.CHANGE_WIFI_MULTICAST_STATE
 ADDED from [com.yolanda.nohttp:nohttp:1.0.4] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.yolanda.nohttp\nohttp\1.0.4\AndroidManifest.xml:18:5-86
 	android:name
 		ADDED from [com.yolanda.nohttp:nohttp:1.0.4] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\com.yolanda.nohttp\nohttp\1.0.4\AndroidManifest.xml:18:22-83
-uses-permission#android.permission.CAMERA
-ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:11:5-65
-	android:name
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:11:22-62
-uses-feature#android.hardware.camera
-ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:14:5-60
-	android:name
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:14:19-57
-uses-feature#android.hardware.camera.autofocus
-ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:16:5-70
-	android:name
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:16:19-67
-activity#com.fanwe.zxing.CaptureActivity
-ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:24:9-31:20
-	android:screenOrientation
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:28:13-49
-	android:label
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:27:13-45
-	android:windowSoftInputMode
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:30:13-60
-	android:configChanges
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:26:13-63
-	android:theme
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:29:13-71
-	android:name
-		ADDED from [AndroidWorking:library_Zxing:unspecified] D:\shang11\AndroidWorking\worksign\build\intermediates\exploded-aar\AndroidWorking\library_Zxing\unspecified\AndroidManifest.xml:25:13-59

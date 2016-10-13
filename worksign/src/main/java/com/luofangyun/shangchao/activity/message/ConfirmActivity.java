@@ -21,12 +21,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
 import com.luofangyun.shangchao.activity.MainActivity;
-import com.luofangyun.shangchao.activity.MyCaptureActivity;
 import com.luofangyun.shangchao.activity.app.AttAreaActivity;
 import com.luofangyun.shangchao.activity.app.BlueListActivitiy;
 import com.luofangyun.shangchao.base.BaseActivity;
@@ -145,7 +143,8 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
    }
     private void initData() {
         showLocationText();
-            String confirmNameText = PrefUtils.getString(this, "confirmNameText", null);
+            String confirmNameText = PrefUtils.getString(this, "labelText", null);
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
             if (TextUtils.isEmpty(confirmNameText)) {
                 labelTv.setText("GPS标签:");
                 confirmName.setText(MainActivity.addrStr);
@@ -155,8 +154,7 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                     labelTv.setText("GPS标签:");
                     confirmName.setText(MainActivity.addrStr);
                 } else if (confirmNameText.contains("NFC")) {
-                    Intent intent = new Intent(ConfirmActivity.this, MyCaptureActivity.class);
-                    startActivityForResult(intent, 1);
+                    labelTv.setText("NFC标签:");
                 } else if (confirmNameText.contains("蓝牙")) {
                     Intent intent1 = new Intent(ConfirmActivity.this, BlueListActivitiy.class);
                     intent1.setAction("chooseBlue");
@@ -174,12 +172,7 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
         new Thread(this).start();
         titleTv.setText("打卡");
         flAddress.addView(view);
-        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
-            return;
-        }else if (!nfcAdapter.isEnabled()) {
-            UiUtils.ToastUtils("请打开NFC");
-            startActivity(new Intent("android.settings.NFC_SETTINGS"));
             return;
         }else {
             pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,
@@ -191,6 +184,9 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                     new String[]{MifareClassic.class.getName()},
                     new String[]{NfcA.class.getName()}};// 允许扫描的标签类型
         }
+
+
+
     }
     private void showLocationText() {
         //获取地理位置管理器
@@ -235,7 +231,6 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
         public void onProviderEnabled(String provider) {
 
         }
-
         @Override
         public void onProviderDisabled(String provider) {
 
@@ -269,6 +264,11 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                 }
                 if (labelTv.getText().toString().trim().contains("GPS")) {
                     confirmTime.setText(nowTime);
+                    if(MainActivity.longitude==0)
+                    {
+                        UiUtils.ToastUtils("请设置位置权限");
+                        return;
+                    }
                     getServerData("("+String.valueOf(MainActivity.longitude) + "," + String.valueOf(MainActivity.latitude)+")", 3);
                     PrefUtils.putString(this, "confirmNameText", confirmName.getText().toString().trim());
                     PrefUtils.putString(this, "confirmTimeText", confirmTime.getText().toString().trim());
@@ -277,11 +277,17 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                     if(TextUtils.isEmpty(confirmName.getText().toString()))
                     {
                         UiUtils.ToastUtils("请感应NFC卡");
+                        return;
                     }
                     getServerData(confirmName.getText().toString(), 1);
                     PrefUtils.putString(this, "confirmNameText", confirmName.getText().toString().trim());
                     PrefUtils.putString(this, "confirmTimeText", confirmTime.getText().toString().trim());
                 } else if (labelTv.getText().toString().trim().contains("蓝牙")) {
+                    if(TextUtils.isEmpty(confirmName.getText().toString()))
+                    {
+                        UiUtils.ToastUtils("请选择蓝牙设备");
+                        return;
+                    }
                     getServerData(confirmName.getText().toString(), 2);
                     PrefUtils.putString(this, "confirmNameText", confirmName.getText().toString().trim());
                     PrefUtils.putString(this, "confirmTimeText", confirmTime.getText().toString().trim());
@@ -312,10 +318,25 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
                 confirmName.setText("");
                 confirmTime.setText("");
                 confirmTime.setText(nowTime);
+                Log.e("labelText",labelTv.getText().toString().trim());
                 PrefUtils.putString(this, "labelText", labelTv.getText().toString().trim());
-                UiUtils.ToastUtils("请感应NFC卡");
-          /*      Intent intent=new Intent(ConfirmActivity.this, MyCaptureActivity.class);
-                startActivityForResult(intent,1);*/
+                if (nfcAdapter == null) {
+                    return;
+                }else if (!nfcAdapter.isEnabled()) {
+                    UiUtils.ToastUtils("请打开NFC");
+                    startActivity(new Intent("android.settings.NFC_SETTINGS"));
+                    return;
+                }else {
+                    pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this,
+                            getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+                    IntentFilter ndef = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
+                    ndef.addCategory("*/*");
+                    mFilters = new IntentFilter[]{ndef};// 过滤器
+                    mTechLists = new String[][]{
+                            new String[]{MifareClassic.class.getName()},
+                            new String[]{NfcA.class.getName()}};// 允许扫描的标签类型
+                    UiUtils.ToastUtils("请感应NFC卡");
+                }
                 UiUtils.parentpopupWindow.dismiss();
                 break;
             case R.id.card_bule:
@@ -349,13 +370,13 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, mFilters,
-                mTechLists);
-
+        if (nfcAdapter != null) {
+            nfcAdapter.enableForegroundDispatch(this, pendingIntent, mFilters,
+                    mTechLists);
+        }
     }
     @Override
     protected void onNewIntent(Intent intent) {
-        // TODO Auto-generated method stub
         super.onNewIntent(intent);
         if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
             String result = processIntent(intent);
@@ -406,12 +427,6 @@ public class ConfirmActivity extends BaseActivity implements Runnable {
     public void onActivityResult(int requestCode,int resultCode,Intent data)
     {
        if(requestCode==1) {
-           if (data != null) {
-               String scan = data.getStringExtra(MyCaptureActivity.EXTRA_RESULT_SUCCESS_STRING);
-               int start = scan.indexOf("=");
-               String nfcid = scan.substring(start + 1, scan.length());
-               confirmName.setText(nfcid);
-           }
        }
         else if(requestCode==2)
        {

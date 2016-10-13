@@ -3,6 +3,7 @@ package com.luofangyun.shangchao.activity.message;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -44,7 +45,7 @@ public class UserEnterActivity extends Activity implements View.OnClickListener 
     private String enterPhoneNumber;
     private String enterPassWord;
     private LinearLayout titleLlBack;
-
+    long mExitTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +77,6 @@ public class UserEnterActivity extends Activity implements View.OnClickListener 
         titleLlBack.setVisibility(View.GONE);
         titleTv.setText("用户登录");
     }
-
     /**
      * 获取网络数据
      */
@@ -150,7 +150,26 @@ public class UserEnterActivity extends Activity implements View.OnClickListener 
 
         return uerEnBean;
     }
+    @Override
+    public void onBackPressed() {
+        Log.e("exit","eixt");
+        exitApp();
+    }
+    private void exitApp() {
 
+        if (System.currentTimeMillis() - mExitTime > 2000) {
+            UiUtils.ToastUtils("再按一次退出!");
+        } else {
+            exitApp(false);
+        }
+        mExitTime = System.currentTimeMillis();
+    }
+    public void exitApp(boolean isBackground) {
+        if (isBackground) {
+        } else {
+            System.exit(0);
+        }
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

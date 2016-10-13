@@ -1105,7 +1105,6 @@ public class SwipeLayout extends FrameLayout {
 
             } catch (Exception e) {
                 e.printStackTrace();
-
                 if (view.getOnItemLongClickListener() != null) {
                     handled = view.getOnItemLongClickListener().onItemLongClick(view, SwipeLayout.this, p, vId);
                 }

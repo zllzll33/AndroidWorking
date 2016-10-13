@@ -164,15 +164,13 @@ public class LeavetypeListActivity extends BaseActivity {
                         } else if (TextUtils.isEmpty(leaveTypeEt3.getText().toString().trim())) {
                             UiUtils.ToastUtils("结束时间不能为空");
                         }
-                        else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                       /* else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) < UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 UiUtils.refFormatNowDate("yyyy-MM-dd HH:mm"))) {
                             UiUtils.ToastUtils("开始时间不能比当前时间小");
-                        } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                        }*/ else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) > UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 leaveTypeEt3.getText().toString().trim())) {
-                            Log.e("会议开始时间",String.valueOf(UiUtils.timeToMill("yyyy-MM-dd HH:mm",leaveTypeEt2.getText().toString().trim())));
-                            Log.e("会议结束时间",String.valueOf(UiUtils.timeToMill("yyyy-MM-dd HH:mm",leaveTypeEt3.getText().toString().trim())));
                             UiUtils.ToastUtils("开始时间不能大于结束时间");
                         } else if (TextUtils.isEmpty(leaveTypeEt4.getText().toString().trim())) {
                             Log.e("会议开始时间",String.valueOf(UiUtils.timeToMill("yyyy-MM-dd HH:mm",leaveTypeEt2.getText().toString().trim())));
@@ -204,11 +202,11 @@ public class LeavetypeListActivity extends BaseActivity {
                             UiUtils.ToastUtils("外出天数不能为空");
                         } else if (TextUtils.isEmpty(leaveTypeEt5.getText().toString().trim())) {
                             UiUtils.ToastUtils("理由不能为空");
-                        } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                        }/* else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) < UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 UiUtils.refFormatNowDate("yyyy-MM-dd HH:mm"))) {
                             UiUtils.ToastUtils("开始时间不能比当前时间小");
-                        } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                        }*/ else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) > UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 leaveTypeEt3.getText().toString().trim())) {
                             UiUtils.ToastUtils("开始时间不能大于或等于结束时间");
@@ -241,11 +239,11 @@ public class LeavetypeListActivity extends BaseActivity {
                             UiUtils.ToastUtils("出差天数不能为空");
                         } else if (TextUtils.isEmpty(leaveTypeEt5.getText().toString().trim())) {
                             UiUtils.ToastUtils("理由不能为空");
-                        } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                        } /*else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) < UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 UiUtils.refFormatNowDate("yyyy-MM-dd HH:mm"))) {
                             UiUtils.ToastUtils("开始时间不能比当前时间小");
-                        } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                        } */else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) > UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 leaveTypeEt3.getText().toString().trim())) {
                             UiUtils.ToastUtils("开始时间不能大于或等于结束时间");
@@ -275,11 +273,11 @@ public class LeavetypeListActivity extends BaseActivity {
                             UiUtils.ToastUtils("加班天数不能为空");
                         } else if (TextUtils.isEmpty(leaveTypeEt5.getText().toString().trim())) {
                             UiUtils.ToastUtils("理由不能为空");
-                        } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                        } /*else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) < UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 UiUtils.refFormatNowDate("yyyy-MM-dd HH:mm"))) {
                             UiUtils.ToastUtils("开始时间不能比当前时间小");
-                        } else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
+                        } */else if (UiUtils.timeToMill("yyyy-MM-dd HH:mm", leaveTypeEt2.getText
                                 ().toString().trim()) > UiUtils.timeToMill("yyyy-MM-dd HH:mm",
                                 leaveTypeEt3.getText().toString().trim())) {
                             UiUtils.ToastUtils("开始时间不能大于或等于结束时间");
@@ -321,9 +319,15 @@ public class LeavetypeListActivity extends BaseActivity {
                 String statu = getIntent().getStringExtra("statu");
                 if (statu.equals("0")) {
                     leaveTypeEt6.setText("审批中");
+                    accede.setVisibility(View.VISIBLE);
+                    negate.setVisibility(View.VISIBLE);
                 } else if (statu.equals("1")) {
+                    accede.setVisibility(View.GONE);
+                    negate.setVisibility(View.GONE);
                     leaveTypeEt6.setText("审批通过");
                 } else if (statu.equals("2")) {
+                    accede.setVisibility(View.GONE);
+                    negate.setVisibility(View.GONE);
                     leaveTypeEt6.setText("审批拒绝");
                 }
                 titleTv.setText("请假详情");
@@ -356,10 +360,16 @@ public class LeavetypeListActivity extends BaseActivity {
                 String statu = getIntent().getStringExtra("statu");
                 if (statu.equals("0")) {
                     leaveTypeEt6.setText("审批中");
+                    accede.setVisibility(View.VISIBLE);
+                    negate.setVisibility(View.VISIBLE);
                 } else if (statu.equals("1")) {
                     leaveTypeEt6.setText("审批通过");
+                    accede.setVisibility(View.GONE);
+                    negate.setVisibility(View.GONE);
                 } else if (statu.equals("2")) {
                     leaveTypeEt6.setText("审批拒绝");
+                    accede.setVisibility(View.GONE);
+                    negate.setVisibility(View.GONE);
                 }
                 titleTv.setText("外出详情");
             } else if (action.equals("travelletail") || action.equals("travelwaitletail") ||
@@ -392,9 +402,15 @@ public class LeavetypeListActivity extends BaseActivity {
                 String statu = getIntent().getStringExtra("statu");
                 if (statu.equals("0")) {
                     leaveTypeEt6.setText("审批中");
+                    accede.setVisibility(View.VISIBLE);
+                    negate.setVisibility(View.VISIBLE);
                 } else if (statu.equals("1")) {
+                    accede.setVisibility(View.GONE);
+                    negate.setVisibility(View.GONE);
                     leaveTypeEt6.setText("审批通过");
                 } else if (statu.equals("2")) {
+                    accede.setVisibility(View.GONE);
+                    negate.setVisibility(View.GONE);
                     leaveTypeEt6.setText("审批拒绝");
                 }
                 leaveTypeEt5.setText("travelreason");
@@ -431,9 +447,15 @@ public class LeavetypeListActivity extends BaseActivity {
                 String statu = getIntent().getStringExtra("statu");
                 if (statu.equals("0")) {
                     leaveTypeEt6.setText("审批中");
+                    accede.setVisibility(View.VISIBLE);
+                    negate.setVisibility(View.VISIBLE);
                 } else if (statu.equals("1")) {
+                    accede.setVisibility(View.GONE);
+                    negate.setVisibility(View.GONE);
                     leaveTypeEt6.setText("审批通过");
                 } else if (statu.equals("2")) {
+                    accede.setVisibility(View.GONE);
+                    negate.setVisibility(View.GONE);
                     leaveTypeEt6.setText("审批拒绝");
                 }
                 leaveTypeEt5.setText(TextUtils.isEmpty(getIntent().getStringExtra("overreason"))
@@ -479,10 +501,16 @@ public class LeavetypeListActivity extends BaseActivity {
                     leaveTypeEt4.setText(workNotify3.result.outdays);
                     leaveTypeEt5.setText(workNotify3.result.outreason);
                     if (workNotify3.result.statu == 0) {
+                        accede.setVisibility(View.VISIBLE);
+                        negate.setVisibility(View.VISIBLE);
                         leaveTypeEt6.setText("审批中");
                     } else if (workNotify3.result.statu == 1) {
+                        accede.setVisibility(View.GONE);
+                        negate.setVisibility(View.GONE);
                         leaveTypeEt6.setText("审批通过");
                     } else if (workNotify3.result.statu == 2) {
+                        accede.setVisibility(View.GONE);
+                        negate.setVisibility(View.GONE);
                         leaveTypeEt6.setText("审批拒绝");
                     }
                     titleTv.setText("外出详细信息");
@@ -495,10 +523,16 @@ public class LeavetypeListActivity extends BaseActivity {
                     leaveTypeEt5.setText(workNotify4.result.travelreason);
                     if (workNotify4.result.statu == 0) {
                         leaveTypeEt6.setText("审批中");
+                        accede.setVisibility(View.VISIBLE);
+                        negate.setVisibility(View.VISIBLE);
                     } else if (workNotify4.result.statu == 1) {
                         leaveTypeEt6.setText("审批通过");
+                        accede.setVisibility(View.GONE);
+                        negate.setVisibility(View.GONE);
                     } else if (workNotify4.result.statu == 2) {
                         leaveTypeEt6.setText("审批拒绝");
+                        accede.setVisibility(View.GONE);
+                        negate.setVisibility(View.GONE);
                     }
                     titleTv.setText("出差详细信息");
                 } else if (notifykind.equals("4")) {       //加班申请通知
@@ -509,11 +543,17 @@ public class LeavetypeListActivity extends BaseActivity {
                     leaveTypeEt4.setText(workNotify5.result.overdays);
                     leaveTypeEt5.setText(workNotify5.result.overreason);
                     if (workNotify5.result.statu == 0) {
+                        accede.setVisibility(View.VISIBLE);
+                        negate.setVisibility(View.VISIBLE);
                         leaveTypeEt6.setText("审批中");
                     } else if (workNotify5.result.statu == 1) {
+                        accede.setVisibility(View.GONE);
+                        negate.setVisibility(View.GONE);
                         leaveTypeEt6.setText("审批通过");
                     } else if (workNotify5.result.statu == 2) {
                         leaveTypeEt6.setText("审批拒绝");
+                        accede.setVisibility(View.GONE);
+                        negate.setVisibility(View.GONE);
                     }
                     titleTv.setText("加班详细信息");
                 } else if (notifykind.equals("5")) {       //申请加入团队通知
