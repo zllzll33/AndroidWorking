@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.mobileim.YWAPI;
+import com.alibaba.mobileim.YWIMKit;
 import com.google.gson.Gson;
 import com.luofangyun.shangchao.R;
 import com.luofangyun.shangchao.activity.message.ConfirmActivity;
@@ -78,6 +80,8 @@ public class CorporActivity extends BaseActivity {
                 getServerData();
             }
         };
+
+
     }
 
     private void initView() {
